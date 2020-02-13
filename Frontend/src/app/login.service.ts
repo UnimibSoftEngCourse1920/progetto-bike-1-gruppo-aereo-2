@@ -9,11 +9,15 @@ import { Router } from '@angular/router';
 })
 export class LoginService {
   private _loginAPI = "http://localhost:8080/authenticate";
-
+  private _registrationAPI= "http://localhost:8080/registration";
 
   constructor(private _router: Router,
     private http: HttpClient) { }
 
+  registration(user) {
+      return this.http.post<any>(this._registrationAPI, user) 
+  }
+  
   login(user) {
     return this.http.post<any>(this._loginAPI, user)
   }

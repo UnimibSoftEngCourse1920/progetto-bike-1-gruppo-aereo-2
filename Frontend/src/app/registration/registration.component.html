@@ -1,0 +1,16 @@
+
+      <h1>Registrazione</h1> 
+
+      <form>
+              <div>
+                  <input type="text" id="nome"[(ngModel)]="userRegistration.nome" name="nome" placeholder="Nome" required="required">
+                  <input type="text" [(ngModel)]="userRegistration.cognome" name="cognome" placeholder="Cognome" required="required">
+                  <input type="text" [(ngModel)]="userRegistration.email" name="email" placeholder="Email" required="required">
+                  <input type="text" [(ngModel)]="userRegistration.username" name="username"   placeholder="Username" required="required">
+                  <input type="password" [(ngModel)]="userRegistration.password" name="password"  placeholder="Password" required="required">
+              </div>
+              <div>
+                  <button mat-raised-button  (click)="registration()">Registrazione</button>
+              </div>
+      </form>
+  
