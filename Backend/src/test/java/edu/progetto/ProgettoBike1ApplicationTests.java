@@ -1,10 +1,10 @@
-package edu.bicocca.bike1.progetto.bike1;
+package edu.progetto;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ApplicationTests {
+class ProgettoBike1ApplicationTests {
 
 	@Test
 	void contextLoads() {

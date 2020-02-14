@@ -1,13 +1,13 @@
-package edu.bicocca.bike1.progetto.bike1;
+package edu.progetto;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class Application {
+public class ProgettoBike1Application {
 
 	public static void main(String[] args) {
-		SpringApplication.run(Application.class, args);
+		SpringApplication.run(ProgettoBike1Application.class, args);
 	}
 
 }
