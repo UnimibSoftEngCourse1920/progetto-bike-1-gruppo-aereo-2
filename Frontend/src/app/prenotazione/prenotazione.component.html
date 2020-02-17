@@ -1,0 +1,30 @@
+<h1>Prenotazioni</h1> 
+
+<form>
+    <div>
+        <label for="rastrelliera">Rastrelliera</label><br>
+        <input type="text" id="nome"[(ngModel)]="prenotazioni.rastrelliera" name="rastrelliera" required="required"><br>
+        <label for="oraInizio">Ora Inizio</label><br>
+        <input type="time" [(ngModel)]="prenotazioni.oraInizio" name="oraInizio"  required="required"><br>
+        <label for="oraFine">Ora Fine</label><br>
+        <input type="time" [(ngModel)]="prenotazioni.oraFine" name="oraFine" required="required"><br>
+    </div>
+    <div>
+        <button mat-raised-button  (click)="postPrenotazioni()">Cerca</button>
+    </div>
+</form>
+
+<tr *ngFor="let prenotazione of prenotazioni">
+    <td >
+        {{prenotazione.rastrelliera}}
+    </td>
+    <td>
+        {{prenotazione.oraInizio}}
+    </td>
+    <td>
+        {{prenotazione.oraFine}}
+    </td>
+    <td>
+        <button class="btn btn-primary" (click)="prenota(prenotazione)">Prenota</button>
+    </td>
+</tr>

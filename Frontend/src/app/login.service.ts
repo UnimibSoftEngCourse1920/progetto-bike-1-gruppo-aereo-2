@@ -24,7 +24,13 @@ export class LoginService {
   getToken() {
     return localStorage.getItem('jwt')
    }
-   
+
+   logout() {
+    localStorage.removeItem('jwt')
+    localStorage.removeItem('username')
+    localStorage.removeItem('role')
+    this._router.navigate(['/login'])
+  }
    loggedIn() {
     return !!localStorage.getItem('jwt')    
   }

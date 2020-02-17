@@ -4,6 +4,8 @@ import { LoginComponent } from './login/login.component';
 import { GuardiaGuard } from './guardia.guard';
 import { ModalComponent } from './modal/modal.component'
 import { RegistrationComponent } from './registration/registration.component'
+import { PrenotazioneComponent } from './prenotazione/prenotazione.component'
+import { MiePrenotazioniComponent } from './mie-prenotazioni/mie-prenotazioni.component';
 
 
 
@@ -12,8 +14,16 @@ const routes: Routes = [{
   component: LoginComponent
 },
 {
+  path: 'mie-registration',
+  component: MiePrenotazioniComponent
+},
+{
   path: 'registration',
   component: RegistrationComponent
+},
+{
+  path: 'prenotazione',
+  component: PrenotazioneComponent
 },
 {
   path: 'modal',

@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
               private _router: Router) { }
 
   ngOnInit() {
-    this.userLogin = { username: "", password: ""};
+    this.userLogin = { username: "", password: "", role: ""};
   }
 
   login() {
@@ -23,6 +23,7 @@ export class LoginComponent implements OnInit {
     .subscribe(
       res => {
         localStorage.setItem('username', this.userLogin.username)
+        localStorage.setItem('role', this.userLogin.role)
         localStorage.setItem('jwt', res.jwt)
         this._router.navigate(['/login'])
       },
