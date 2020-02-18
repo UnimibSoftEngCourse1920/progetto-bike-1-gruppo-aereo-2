@@ -7,14 +7,13 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import edu.progetto.dto.ClienteDTO;
 import edu.progetto.entity.Cliente;
-import edu.progetto.exception.EmailAlreadyRegistered;
-import edu.progetto.exception.UserAlreadyRegistered;
+import edu.progetto.exception.ExistingUserException;
 import edu.progetto.request.AuthenticationRequest;
 import edu.progetto.response.AuthenticationResponse;
 import edu.progetto.security.JwtUtil;
@@ -34,8 +33,8 @@ public class AuthController {
 	private CustomUserDetailsService userDetailsService;
 	
 	
-	@RequestMapping(value = "/authenticate", method = RequestMethod.POST)
-	public ResponseEntity<?> createAuthenticationToken(@RequestBody AuthenticationRequest authenticationRequest) throws Exception {
+	@PostMapping(value = "/authenticate")
+	public ResponseEntity<AuthenticationResponse> createAuthenticationToken(@RequestBody AuthenticationRequest authenticationRequest){
 
 		try {
 			authenticationManager.authenticate(
@@ -43,7 +42,7 @@ public class AuthController {
 			);
 		}
 		catch (BadCredentialsException e) {
-			throw new Exception("Incorrect username or password", e);
+			throw new BadCredentialsException("Incorrect username or password", e);
 		}
 
 
@@ -55,14 +54,17 @@ public class AuthController {
 		return ResponseEntity.ok(new AuthenticationResponse(jwt));
 	}
 	
-	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public ResponseEntity<?> saveUser(@RequestBody Cliente cliente) throws Exception {
-		if (userDetailsService.isPresentUsername(cliente.getUsername())){
-			 throw new UserAlreadyRegistered("Username exists: "+cliente.getUsername());
+	@PostMapping(value = "/register")
+	public ResponseEntity<Cliente> saveUser(@RequestBody ClienteDTO clienteDTO){
+		if (userDetailsService.isPresentUsername(clienteDTO.getUsername())){
+			 throw new ExistingUserException("Username exists: "+clienteDTO.getUsername());
 		}
-		if (userDetailsService.isPresentEmail(cliente.getEmail())){
-			 throw new EmailAlreadyRegistered("Email already registered: "+cliente.getEmail());
+		if (userDetailsService.isPresentEmail(clienteDTO.getEmail())){
+			 throw new ExistingUserException("Email already registered: "+clienteDTO.getEmail());
 		}
+		
+		Cliente cliente = new Cliente(clienteDTO);
+		
 		
 		
 		return ResponseEntity.ok(userDetailsService.save(cliente));

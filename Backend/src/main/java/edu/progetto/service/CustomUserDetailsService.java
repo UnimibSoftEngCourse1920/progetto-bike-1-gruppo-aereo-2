@@ -1,7 +1,7 @@
 package edu.progetto.service;
 
 import java.util.ArrayList;
-import java.util.List;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -25,14 +25,14 @@ public class CustomUserDetailsService implements UserDetailsService {
 	private PasswordEncoder bcryptEncoder;
 	
 	@Override
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+	public UserDetails loadUserByUsername(String username){
 		Cliente cliente = clienteRepo.findByUsername(username);
 		 if(cliente == null) {
 	        	throw new UsernameNotFoundException("username not found");
 	        }
 
-	        UserDetails userDetails = new org.springframework.security.core.userdetails.User(cliente.getUsername(), cliente.getPassword(), new ArrayList<>());
-	        return userDetails;
+	        return new org.springframework.security.core.userdetails.User(cliente.getUsername(), cliente.getPassword(), new ArrayList<>());
+	        
 	}
 
 	public Cliente save(Cliente cliente) {

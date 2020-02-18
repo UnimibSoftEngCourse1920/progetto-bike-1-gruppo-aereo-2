@@ -9,32 +9,24 @@ import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
+import edu.progetto.dto.ClienteDTO;
+
 @Entity
-@Table(	name = "cliente", 
-uniqueConstraints = { 
-	@UniqueConstraint(columnNames = "username"),
-	@UniqueConstraint(columnNames = "email") 
-})
 public class Cliente {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Integer id;
-	
-	@NotBlank
+
 	private String nome;
 	
-	@NotBlank
 	private String cognome;
 	
-	@NotBlank
 	@Email
 	private String email;
 	
-	@NotBlank
 	private String username;
 	
-	@NotBlank
 	private String password;
 	
 	
@@ -47,6 +39,14 @@ public class Cliente {
 		this.email = email;
 		this.username = username;
 		this.password = password;
+	}
+	
+	public Cliente(ClienteDTO clienteDTO) {
+		this.nome = clienteDTO.getName();
+		this.cognome = clienteDTO.getCognome();
+		this.email = clienteDTO.getEmail();
+		this.username = clienteDTO.getUsername();
+		this.password = clienteDTO.getPassword();
 	}
 	
 	public Integer getId() {
