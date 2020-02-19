@@ -22,7 +22,7 @@ export class RegistrationComponent implements OnInit {
    
   }
 
-  openModal(message) {
+  openModal() {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = false;
     dialogConfig.id = "modal-component";
@@ -32,13 +32,17 @@ export class RegistrationComponent implements OnInit {
   }
 
   registration() {
+    window.sessionStorage.clear()
     this._service.registration(this.userRegistration)
     .subscribe(
-      res => {
-        this.openModal("registrazione avvenuta")
-        this._router.navigate(['/login'])
+      res => { 
+      window.sessionStorage.setItem("modalMessage","registrazione avvenuta")
+      this.openModal()
+      this._router.navigate(['/login'])
       },
-      err => {this.openModal("registrazione non avvenuta correttamente")
+      err => {
+        window.sessionStorage.setItem("modalMessage","registrazione non avvenuta")
+        this.openModal()
         console.log(err)}
     )      
   }

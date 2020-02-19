@@ -45,7 +45,7 @@ export class LoginService {
     window.sessionStorage.setItem('jwt', token);
   }
 
-   loggedIn() {
+  loggedIn() {
     return !!this.getToken()    
   }
 
@@ -53,11 +53,7 @@ export class LoginService {
     return this.getUser().includes('ADMIN')
   }
 
-  isStudent(){
+  isUser(){
     return this.getUser().includes('STUDENT')
-  }
-
-  isGeneric(){
-    return this.getUser().includes('GENERIC')
   }
 }

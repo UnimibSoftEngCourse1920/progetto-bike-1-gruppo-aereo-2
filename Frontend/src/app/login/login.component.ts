@@ -15,17 +15,15 @@ export class LoginComponent implements OnInit {
               private _router: Router) { }
 
   ngOnInit() {
-    this.userLogin = { username: "", password: "", role: ""};
   }
 
   login() {
     this._service.login(this.userLogin)
     .subscribe(
       res => {
-        localStorage.setItem(this.userLogin.username, 'username')
         this._service.saveUser(res)
         this._service.saveToken(res.jwt)
-        this._router.navigate(['/login'])
+        this._router.navigate(['/prenotazione'])
       },
       err => console.log(err)
     ) 

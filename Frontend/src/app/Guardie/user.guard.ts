@@ -5,12 +5,12 @@ import { LoginService } from '../login.service';
 @Injectable({
   providedIn: 'root'
 })
-export class StudentGuard implements CanActivate {
+export class UserGuard implements CanActivate {
   constructor(private _service: LoginService,
     private _router: Router){}
 
   canActivate():boolean{
-    if (this._service.isStudent()) {
+    if (this._service.isUser()) {
       console.log('true')
       return true
     } else {

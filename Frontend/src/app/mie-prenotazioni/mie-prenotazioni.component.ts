@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { BikeService } from '../bike.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { LoginService } from '../login.service'
 
 @Component({
   selector: 'app-mie-prenotazioni',
@@ -11,11 +12,12 @@ import { HttpErrorResponse } from '@angular/common/http';
 export class MiePrenotazioniComponent implements OnInit {
 
   constructor(private _router: Router,
-    private _bikeService: BikeService) { }
+    private _bikeService: BikeService,
+    private _service: LoginService) { }
   prenotazioni = [];
 
   ngOnInit() {
-    this._bikeService.postPrenotazioni(localStorage.getItem("username"))
+    this._bikeService.postPrenotazioni(this._service.getUser())
     .subscribe(
      res => this.prenotazioni = res,
      err => {
