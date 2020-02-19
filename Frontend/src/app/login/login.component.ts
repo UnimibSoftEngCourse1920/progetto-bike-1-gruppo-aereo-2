@@ -22,9 +22,9 @@ export class LoginComponent implements OnInit {
     this._service.login(this.userLogin)
     .subscribe(
       res => {
-        localStorage.setItem('username', this.userLogin.username)
-        localStorage.setItem('role', this.userLogin.role)
-        localStorage.setItem('jwt', res.jwt)
+        localStorage.setItem(this.userLogin.username, 'username')
+        this._service.saveUser(res)
+        this._service.saveToken(res.jwt)
         this._router.navigate(['/login'])
       },
       err => console.log(err)

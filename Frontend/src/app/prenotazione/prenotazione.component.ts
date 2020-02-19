@@ -10,7 +10,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 export class PrenotazioneComponent implements OnInit {
   
-  filters={};
+  filters:any={};
   prenotazioni=[];
 
   constructor(private _router: Router,

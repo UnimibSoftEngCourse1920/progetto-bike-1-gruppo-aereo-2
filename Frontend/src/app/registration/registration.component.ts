@@ -38,7 +38,8 @@ export class RegistrationComponent implements OnInit {
         this.openModal("registrazione avvenuta")
         this._router.navigate(['/login'])
       },
-      err => console.log(err)
+      err => {this.openModal("registrazione non avvenuta correttamente")
+        console.log(err)}
     )      
   }
 

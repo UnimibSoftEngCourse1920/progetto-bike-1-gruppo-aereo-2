@@ -6,7 +6,9 @@ import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
-import { GuardiaGuard } from './guardia.guard';
+import { StudentGuard } from './Guardie/student.guard';
+import { AdminGuard } from './Guardie/admin.guard';
+import { GenericGuard } from './Guardie/generic.guard';
 import { LoginService } from './login.service';
 import { TokenService } from './token.service';
 import { RegistrationComponent } from './registration/registration.component';
@@ -35,7 +37,8 @@ import { MiePrenotazioniComponent } from './mie-prenotazioni/mie-prenotazioni.co
     MatDialogModule,
     BrowserAnimationsModule
   ],
-  providers: [LoginService, GuardiaGuard, {
+  providers: [LoginService, AdminGuard, 
+    StudentGuard, GenericGuard, {
     provide: HTTP_INTERCEPTORS,
     useClass: TokenService,
     multi: true

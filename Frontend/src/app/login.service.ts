@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -21,17 +20,44 @@ export class LoginService {
   login(user) {
     return this.http.post<any>(this._loginAPI, user)
   }
-  getToken() {
-    return localStorage.getItem('jwt')
-   }
 
-   logout() {
-    localStorage.removeItem('jwt')
-    localStorage.removeItem('username')
-    localStorage.removeItem('role')
+  getToken() {
+    return window.sessionStorage.getItem('jwt');
+  }
+
+  getUser() {
+    return JSON.parse(sessionStorage.getItem('user'));
+  }
+
+  logout() {
+    localStorage.getItem('username')
+    window.sessionStorage.clear();
     this._router.navigate(['/login'])
   }
+
+  saveUser(user) {
+    window.sessionStorage.removeItem('user');
+    window.sessionStorage.setItem('user', JSON.stringify(user));
+  }
+
+  saveToken(token: string) {
+    window.sessionStorage.removeItem('jwt');
+    window.sessionStorage.setItem('jwt', token);
+  }
+
    loggedIn() {
-    return !!localStorage.getItem('jwt')    
+    return !!this.getToken()    
+  }
+
+  isAdmin(){
+    return this.getUser().includes('ADMIN')
+  }
+
+  isStudent(){
+    return this.getUser().includes('STUDENT')
+  }
+
+  isGeneric(){
+    return this.getUser().includes('GENERIC')
   }
 }

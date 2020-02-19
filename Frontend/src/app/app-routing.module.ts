@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
-import { GuardiaGuard } from './guardia.guard';
+import { StudentGuard } from './Guardie/student.guard';
+import { AdminGuard } from './Guardie/admin.guard';
+import { GenericGuard } from './Guardie/generic.guard';
 import { ModalComponent } from './modal/modal.component'
 import { RegistrationComponent } from './registration/registration.component'
 import { PrenotazioneComponent } from './prenotazione/prenotazione.component'
@@ -14,7 +16,7 @@ const routes: Routes = [{
   component: LoginComponent
 },
 {
-  path: 'mie-registration',
+  path: 'mie-prenotazioni',
   component: MiePrenotazioniComponent
 },
 {
@@ -23,6 +25,7 @@ const routes: Routes = [{
 },
 {
   path: 'prenotazione',
+  canActivate: [StudentGuard],
   component: PrenotazioneComponent
 },
 {

@@ -1,1 +1,15 @@
-<p>mie-prenotazioni works!</p>
+
+<tr *ngFor="let prenotazione of prenotazioni">
+    <td >
+        {{prenotazione.rastrelliera}}
+    </td>
+    <td>
+        {{prenotazione.oraInizio}}
+    </td>
+    <td>
+        {{prenotazione.oraFine}}
+    </td>
+    <td>
+        <button class="btn btn-primary" (click)="termina(prenotazione)">Termina</button>
+    </td>
+</tr>

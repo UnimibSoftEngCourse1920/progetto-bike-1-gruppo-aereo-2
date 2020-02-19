@@ -7,6 +7,8 @@ import { HttpClient } from '@angular/common/http'
 export class BikeService {
   private _prenotazioniAPI = "";
   private _miePrenotazioniAPI = "";
+  private _terminaPrenotazioneAPI = "";
+
   constructor(private http: HttpClient) { }
 
   postPrenotazioni(prenotazioni){
@@ -15,6 +17,10 @@ export class BikeService {
 
   postMiePrenotazioni(username){
     return this.http.post<any>(this._miePrenotazioniAPI, username)
+  }
+
+  termina(prenotazione){
+    return this.http.post<any>(this._terminaPrenotazioneAPI, prenotazione)
   }
 
 }
