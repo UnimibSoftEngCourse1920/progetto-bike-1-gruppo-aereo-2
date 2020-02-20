@@ -16,6 +16,10 @@
 
 	<properties>
 		<java.version>11</java.version>
+  		<sonar.projectKey>UnimibSoftEngCourse1920_progetto-bike-1-gruppo-aereo-2</sonar.projectKey>
+  		<sonar.organization>unimibsoftengcourse1920</sonar.organization>
+ 		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
+ 		<sonar.login>c62733e61af4818ee73f9615672eadccb9c86665</sonar.login>
 	</properties>
 
 	<dependencies>
@@ -70,6 +74,7 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
+	
 
 	<build>
 		<plugins>

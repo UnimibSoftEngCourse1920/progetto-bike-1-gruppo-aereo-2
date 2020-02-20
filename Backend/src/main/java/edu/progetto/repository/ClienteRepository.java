@@ -8,4 +8,8 @@ public interface ClienteRepository extends CrudRepository<Cliente,Integer>{
 	public Cliente findByUsername(String username);
 	
 	public Cliente findByEmail(String email);
+	
+	Boolean existsByUsername(String username);
+
+	Boolean existsByEmail(String email);
 }
