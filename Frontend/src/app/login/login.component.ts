@@ -10,7 +10,7 @@ import { IUser } from '../Interface/IUser'
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  userLogin: IUser
+  userLogin: IUser = { username: "", password: ""};
   constructor(private _service: LoginService,
               private _router: Router) { }
 
@@ -18,6 +18,7 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
+    console.log(this.userLogin)
     this._service.login(this.userLogin)
     .subscribe(
       res => {

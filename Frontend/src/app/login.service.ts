@@ -26,11 +26,10 @@ export class LoginService {
   }
 
   getUser() {
-    return JSON.parse(sessionStorage.getItem('user'));
+    return window.sessionStorage.getItem('user');
   }
 
   logout() {
-    localStorage.getItem('username')
     window.sessionStorage.clear();
     this._router.navigate(['/login'])
   }
@@ -50,10 +49,13 @@ export class LoginService {
   }
 
   isAdmin(){
-    return this.getUser().includes('ADMIN')
+    return !!this.getUser().includes('ADMIN')
   }
 
   isUser(){
-    return this.getUser().includes('STUDENT')
+    if(this.getUser==null){
+    return !!this.getUser().includes('STUDENT')
+    }
+    return false
   }
 }
