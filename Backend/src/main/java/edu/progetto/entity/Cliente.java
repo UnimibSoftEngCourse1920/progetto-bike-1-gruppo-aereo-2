@@ -1,52 +1,75 @@
 package edu.progetto.entity;
 
+
+
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
+
+import edu.progetto.dto.ClienteDTO;
 
 @Entity
-@Table(	name = "cliente", 
-uniqueConstraints = { 
-	@UniqueConstraint(columnNames = "username"),
-	@UniqueConstraint(columnNames = "email") 
-})
+@Table(name = "clienti")
 public class Cliente {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Integer id;
-	
-	@NotBlank
+
 	private String nome;
 	
-	@NotBlank
 	private String cognome;
 	
-	@NotBlank
 	@Email
 	private String email;
 	
-	@NotBlank
 	private String username;
 	
-	@NotBlank
 	private String password;
 	
+//	@ManyToOne
+//	@JoinTable(	name = "clienti_ruoli", 
+//				joinColumns = @JoinColumn(name = "cliente_id"), 
+//				inverseJoinColumns = @JoinColumn(name = "ruolo_id"))
+	@Enumerated(EnumType.STRING)
+	private Ruolo ruolo;
 	
+	
+	public Ruolo getRuolo() {
+		return ruolo;
+	}
+
+	public void setRuolo(Ruolo ruolo) {
+		this.ruolo = ruolo;
+	}
+
 	public Cliente() {
 	}
 	
-	public Cliente(String nome, String cognome, String email,String username, String password) {
+	public Cliente(String nome, String cognome, String email,String username, String password, Ruolo ruolo) {
 		this.nome = nome;
 		this.cognome = cognome;
 		this.email = email;
 		this.username = username;
 		this.password = password;
+		this.ruolo = ruolo;
+	}
+	
+	public Cliente(ClienteDTO clienteDTO) {
+		this.nome = clienteDTO.getNome();
+		this.cognome = clienteDTO.getCognome();
+		this.email = clienteDTO.getEmail();
+		this.username = clienteDTO.getUsername();
+		this.password = clienteDTO.getPassword();
+		this.ruolo = clienteDTO.getRuolo();
 	}
 	
 	public Integer getId() {

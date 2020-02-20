@@ -1,15 +1,17 @@
 package edu.progetto.controller;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import edu.progetto.dto.ClienteDTO;
 import edu.progetto.entity.Cliente;
 import edu.progetto.service.ClienteService;
 
@@ -20,28 +22,30 @@ public class ClienteController {
 	private ClienteService clienteService;
 	
 
-	@RequestMapping("/clienti")
+	@GetMapping("/clienti")
 	public List<Cliente> getAllClienti(){
 		return clienteService.getAllclienti();
 	}
 	
-	@RequestMapping("/clienti/{id}")
+	@GetMapping("/clienti/{id}")
 	public Cliente getCliente(@PathVariable Integer id)
 	{
 		return clienteService.getCliente(id);
 	}
 	
-	@RequestMapping(method=RequestMethod.POST, value="/clienti")
-	public void addCliente(@RequestBody Cliente c) {
+	@PostMapping("/clienti")
+	public void addCliente(@RequestBody ClienteDTO clienteDTO) {
+		Cliente c = new Cliente(clienteDTO);
 		clienteService.addCliente(c);
 	}
 	
-	@RequestMapping(method=RequestMethod.PUT, value="/clienti/{id}")
-	public void updateVolo(@RequestBody Cliente c, Integer id) {
+	@PutMapping("/clienti/{id}")
+	public void updateVolo(@RequestBody ClienteDTO clienteDTO, Integer id) {
+		Cliente c = new Cliente(clienteDTO);
 		clienteService.updateCliente(id,c);
 	}
 	
-	@RequestMapping(method=RequestMethod.DELETE, value="/clienti/{id}")
+	@DeleteMapping("/clienti/{id}")
 	public void deleteCliente(@PathVariable Integer id) {
 		clienteService.deleteCliente(id);
 	}

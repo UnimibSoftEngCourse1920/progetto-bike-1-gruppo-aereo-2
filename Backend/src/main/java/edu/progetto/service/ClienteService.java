@@ -20,7 +20,7 @@ public class ClienteService {
 	
 	
 	public List<Cliente> getAllclienti() {
-		List<Cliente> clienti= new ArrayList<Cliente>();
+		List<Cliente> clienti= new ArrayList<>();
 		for (Cliente c : clienteRepository.findAll()){
 			clienti.add(c);
 		}
