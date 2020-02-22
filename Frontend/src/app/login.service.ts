@@ -7,8 +7,8 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class LoginService {
-  private _loginAPI = "http://localhost:8080/authenticate";
-  private _registrationAPI= "http://localhost:8080/registration";
+  private _loginAPI = "http://localhost:8080/auth/signin";
+  private _registrationAPI= "http://localhost:8080/auth/signup";
 
   constructor(private _router: Router,
     private http: HttpClient) { }
@@ -22,26 +22,32 @@ export class LoginService {
   }
 
   getToken() {
-    return window.sessionStorage.getItem('jwt');
+    return localStorage.getItem('jwt');
   }
 
   getUser() {
-    return window.sessionStorage.getItem('user');
+    return localStorage.getItem('username');
+  }
+
+  getRuolo() {
+    return localStorage.getItem('ruolo');
   }
 
   logout() {
-    window.sessionStorage.clear();
+    localStorage.clear();
     this._router.navigate(['/login'])
   }
 
-  saveUser(user) {
-    window.sessionStorage.removeItem('user');
-    window.sessionStorage.setItem('user', JSON.stringify(user));
+  saveUser(username, ruolo) {
+    localStorage.removeItem('ruolo');
+    localStorage.removeItem('username');
+    localStorage.setItem('ruolo', ruolo);
+    localStorage.setItem('username', username);
   }
 
   saveToken(token: string) {
-    window.sessionStorage.removeItem('jwt');
-    window.sessionStorage.setItem('jwt', token);
+    localStorage.removeItem('jwt');
+    localStorage.setItem('jwt', token);
   }
 
   loggedIn() {
@@ -49,13 +55,14 @@ export class LoginService {
   }
 
   isAdmin(){
-    return !!this.getUser().includes('ADMIN')
+    if(this.getRuolo()=='ROLE_ADMIN')
+        return true;
+    return false
   }
 
   isUser(){
-    if(this.getUser==null){
-    return !!this.getUser().includes('STUDENT')
-    }
+    if(this.getRuolo()=='ROLE_GENERIC' || this.getRuolo()=='ROLE_STUDENT')
+        return true;
     return false
   }
 }

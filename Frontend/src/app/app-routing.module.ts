@@ -24,7 +24,7 @@ const routes: Routes = [{
 },
 {
   path: 'prenotazione',
-  canActivate: [UserGuard],
+  //canActivate: [UserGuard],
   component: PrenotazioneComponent
 },
 {
