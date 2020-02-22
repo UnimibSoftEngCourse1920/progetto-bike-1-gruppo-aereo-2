@@ -18,11 +18,10 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    console.log(this.userLogin)
     this._service.login(this.userLogin)
     .subscribe(
       res => {
-        this._service.saveUser(res)
+        this._service.saveUser(res.username, res.ruolo)
         this._service.saveToken(res.jwt)
         this._router.navigate(['/prenotazione'])
       },

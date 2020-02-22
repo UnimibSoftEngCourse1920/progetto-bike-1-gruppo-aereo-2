@@ -11,7 +11,7 @@ import { LoginService } from '../login.service'
 })
 export class PrenotazioneComponent implements OnInit {
   
-  filters:any={};
+  filters={};
   prenotazioni=[];
   prezzo={};
 
@@ -39,7 +39,7 @@ export class PrenotazioneComponent implements OnInit {
   prenota(prenotazione){
     this._bikeService.prenota(prenotazione,this._service.getUser)
     .subscribe(
-     res => this.prezzo = res,
+     res => this.prezzo = res.prezzo,
      err => {
        if(err instanceof HttpErrorResponse) {
          if (err.status === 401) {

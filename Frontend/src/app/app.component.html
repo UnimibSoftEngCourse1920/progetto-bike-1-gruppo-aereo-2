@@ -6,11 +6,14 @@
         <a routerLink="/registration" *ngIf="!_service.loggedIn()">Registration</a>
     </li>
     <li>
-        <a routerLink="/prenotazione" *ngIf="_service.isUser()">Prenotazione</a>
+        <a routerLink="/prenotazione" *ngIf="!!_service.isUser()">Prenotazione</a>
     </li>
     <li>
         <a routerLink="/mie-prenotazioni" *ngIf="_service.isUser()">Mie Prenotazioni</a>
     </li>    
+    <li>
+        <a *ngIf="_service.loggedIn()" style="cursor:pointer" (click)="_service.logout()">Logout</a>
+    </li> 
 </ul>
 
 <router-outlet></router-outlet>

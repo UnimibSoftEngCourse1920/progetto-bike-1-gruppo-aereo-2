@@ -3,11 +3,11 @@
 <form>
     <div>
         <label for="rastrelliera">Rastrelliera</label><br>
-        <input type="text" [(ngModel)]="prenotazioni.rastrelliera" name="rastrelliera" required="required"><br>
+        <input type="text" [(ngModel)]="filters.rastrelliera" name="rastrelliera" required="required"><br>
         <label for="oraInizio">Ora Inizio</label><br>
-        <input type="time" [(ngModel)]="prenotazioni.oraInizio" name="oraInizio"  required="required"><br>
+        <input type="time" [(ngModel)]="filters.oraInizio" name="oraInizio"  required="required"><br>
         <label for="oraFine">Ora Fine</label><br>
-        <input type="time" [(ngModel)]="prenotazioni.oraFine" name="oraFine" required="required"><br>
+        <input type="time" [(ngModel)]="filters.oraFine" name="oraFine" required="required"><br>
     </div>
     <div>
         <button mat-raised-button  (click)="postPrenotazioni()">Cerca</button>
