@@ -5,12 +5,15 @@
              <label for="rastrellieraInizio">Rastrelliera Inizio</label>
              <select class="form-control" id="rastrellieraInizio" [(ngModel)]="filters.rastrellieraInizio" name="rastrellieraInizio">
              <option *ngFor="let rastrelliera of rastrelliere">{{rastrelliera}}</option>
+             <option>Prova</option>
              </select>
           </div>
           <div class="form-group col-md-6">
              <label for="rastrellieraFine">Rastrelliera Fine</label>
              <select class="form-control" id="rastrellieraFine" [(ngModel)]="filters.rastrellieraFine" name="rastrellieraFine">
              <option *ngFor="let rastrelliera of rastrelliere">{{rastrelliera}}</option>
+             <option>Prova</option>
+
              </select>          
           </div>
        </div>
@@ -24,7 +27,7 @@
              <input type="time" class="form-control" id="oraFine" [(ngModel)]="filters.oraFine" name="oraFine"  required="required">
           </div>
        </div>
-       <button class="btn btn-primary" type="submit"(click)=postPrenotazioni()>Submit</button>
+       <button class="btn btn-primary" type="submit"(click)=postPrenotazioni()>Cerca</button>
     </form>
  </div>
  <div class="container">

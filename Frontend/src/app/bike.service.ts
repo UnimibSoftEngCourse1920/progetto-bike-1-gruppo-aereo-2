@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
+import { IfStmt } from '@angular/compiler';
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +20,21 @@ export class BikeService {
 
   getRastrelliere(){
     return this.http.get<any>(this._rastrelliereAPI)
+  }
+
+  validaFiltri(oraInizio){
+    let currentdate=new Date()
+    let currentHours =  +currentdate.getHours()
+    let currentMinutes = +currentdate.getMinutes()
+    let filterHours = +oraInizio.substring(0, 2)
+    let filterMinutes= +oraInizio.substring(3, 5) 
+    if(currentHours==filterHours && currentMinutes<filterMinutes){
+      return true
+    }
+    if(filterHours-currentHours==1 && filterMinutes<currentMinutes){
+      return true
+    }
+    return false
   }
 
   postMiePrenotazioni(username){

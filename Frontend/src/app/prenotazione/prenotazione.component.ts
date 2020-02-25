@@ -2,7 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { BikeService } from '../bike.service';
 import { HttpErrorResponse } from '@angular/common/http';
-import { LoginService } from '../login.service'
+import { LoginService } from '../login.service';
+import { IFilter } from '../Interface/IFilter';
+import { ModalComponent } from '../modal/modal.component'
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-prenotazione',
@@ -12,12 +15,13 @@ import { LoginService } from '../login.service'
 export class PrenotazioneComponent implements OnInit {
   
   rastrelliere=[];
-  filters={};
+  filters: IFilter={oraFine: '', oraInizio: '', rastrellieraFine: '', rastrellieraInizio: ''};
   prenotazioni=[];
   prezzo={};
 
   constructor(private _router: Router,
     private _bikeService: BikeService,
+    private matDialog: MatDialog,
     private _service: LoginService) { }
 
   ngOnInit() {
@@ -30,6 +34,7 @@ export class PrenotazioneComponent implements OnInit {
   }
 
   postPrenotazioni(){
+    if(this._bikeService.validaFiltri(this.filters.oraInizio)){
     this._bikeService.postPrenotazioni(this.filters)
     .subscribe(
      res => this.prenotazioni = res,
@@ -40,7 +45,10 @@ export class PrenotazioneComponent implements OnInit {
          }
        }
      }
-   ) 
+   ) }else{
+    localStorage.setItem("modalMessage","Errore nell'inserimento dei filtri, seguire le istruzioni in calce")
+    this.openModal()
+   }
   }
 
   prenota(prenotazione){
@@ -54,6 +62,13 @@ export class PrenotazioneComponent implements OnInit {
        }
      }
    ) 
+  }
+
+  openModal() {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = false;
+    dialogConfig.id = "modal-component";  
+    this.matDialog.open(ModalComponent, dialogConfig);
   }
 
 }
