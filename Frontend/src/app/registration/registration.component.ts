@@ -15,7 +15,7 @@ export class RegistrationComponent implements OnInit {
   userRegistration ={}
   constructor(private _service: LoginService,
               private _router: Router,
-              private matDialog: MatDialog,
+              private matDialog: MatDialog
               ) { }
 
   ngOnInit() {
@@ -34,12 +34,12 @@ export class RegistrationComponent implements OnInit {
     this._service.registration(this.userRegistration)
     .subscribe(
       res => { 
-      window.sessionStorage.setItem("modalMessage","registrazione avvenuta")
+      localStorage.setItem("modalMessage","registrazione avvenuta")
       this.openModal()
       this._router.navigate(['/login'])
       },
       err => {
-        window.sessionStorage.setItem("modalMessage","registrazione non avvenuta")
+        localStorage.setItem("modalMessage","registrazione non avvenuta")
         this.openModal()
         console.log(err)}
     )      

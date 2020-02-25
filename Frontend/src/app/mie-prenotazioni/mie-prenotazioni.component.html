@@ -1,15 +1,23 @@
-
-<tr *ngFor="let prenotazione of prenotazioni">
-    <td >
-        {{prenotazione.rastrelliera}}
-    </td>
-    <td>
-        {{prenotazione.oraInizio}}
-    </td>
-    <td>
-        {{prenotazione.oraFine}}
-    </td>
-    <td>
-        <button class="btn btn-primary" (click)="termina(prenotazione)">Termina</button>
-    </td>
-</tr>
+<div class="container">
+    <div class="container">
+       <table class="table table-striped">
+          <thead>
+             <tr>
+                <th>Rastrelliera Inizio</th>
+                <th>Rastrelliera Fine</th>
+                <th>Ora Inizio</th>
+                <th>Ora Fine</th>
+             </tr>
+          </thead>
+          <tbody>
+             <tr *ngFor="let prenotazione of prenotazioni">
+                <td>{{prenotazione.rastrellieraInizio}}</td>
+                <td>{{prenotazione.rastrellieraFine}}</td>
+                <td>{{prenotazione.oraInizio}}</td>
+                <td>{{prenotazione.oraFine}}</td>
+                <td> <button class="btn btn-danger" (click)="termina(prenotazione)" style="margin-left: 20px;">Prenota</button></td>
+             </tr>
+          </tbody>
+       </table>
+    </div>
+</div>

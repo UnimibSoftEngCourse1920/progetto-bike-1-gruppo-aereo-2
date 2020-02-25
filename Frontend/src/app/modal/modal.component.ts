@@ -11,7 +11,7 @@ export class ModalComponent implements OnInit {
    }
 
   ngOnInit() {
-    this.message=window.sessionStorage.getItem("modalMessage");
+    this.message=localStorage.getItem("modalMessage");
   }
 
 }
