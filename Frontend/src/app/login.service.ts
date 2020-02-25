@@ -55,13 +55,13 @@ export class LoginService {
   }
 
   isAdmin(){
-    if(this.getRuolo()=='ROLE_ADMIN')
+    if(this.getRuolo()=='ADMIN')
         return true;
     return false
   }
 
   isUser(){
-    if(this.getRuolo()=='ROLE_GENERIC' || this.getRuolo()=='ROLE_STUDENT')
+    if(this.getRuolo()=='PERSONALE' || this.getRuolo()=='GENERICO')
         return true;
     return false
   }

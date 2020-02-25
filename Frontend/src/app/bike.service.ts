@@ -9,11 +9,16 @@ export class BikeService {
   private _miePrenotazioniAPI = "";
   private _terminaPrenotazioneAPI = "";
   private _prenotaAPI = "";
+  private _rastrelliereAPI = "http://localhost:8080/rastrelliere";
 
   constructor(private http: HttpClient) { }
 
   postPrenotazioni(prenotazioni){
       return this.http.post<any>(this._prenotazioniAPI, prenotazioni)
+  }
+
+  getRastrelliere(){
+    return this.http.get<any>(this._rastrelliereAPI)
   }
 
   postMiePrenotazioni(username){

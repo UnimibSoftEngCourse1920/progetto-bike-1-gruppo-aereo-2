@@ -20,12 +20,12 @@
           <label for="password">Password</label>
           <input type="password" class="form-control" id="password" [(ngModel)]="userRegistration.password" name="password">
        </div>
-       <div class="form-group">
+       <div class="form-group" id="special">
           <label for="ruolo">Ruolo</label>
           <select class="form-control" id="ruolo">
-             <option>ROLE_ADMIN</option>
-             <option>ROLE_STUDENT</option>
-             <option>ROLE_GENERIC</option>
+             <option>PERSONALE</option>
+             <option>GENERICO</option>
+             <option>ADMIN </option>
           </select>
        </div>
        <button type="submit" class="btn btn-primary" (click)="registration()">Registrazione</button>

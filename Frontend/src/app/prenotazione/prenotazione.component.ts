@@ -11,6 +11,7 @@ import { LoginService } from '../login.service'
 })
 export class PrenotazioneComponent implements OnInit {
   
+  rastrelliere=[];
   filters={};
   prenotazioni=[];
   prezzo={};
@@ -20,6 +21,12 @@ export class PrenotazioneComponent implements OnInit {
     private _service: LoginService) { }
 
   ngOnInit() {
+    this._bikeService.getRastrelliere()
+    .subscribe(
+      res => console.log(res),
+      err => {
+      }
+    )
   }
 
   postPrenotazioni(){
