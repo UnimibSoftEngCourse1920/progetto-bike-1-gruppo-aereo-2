@@ -1,23 +1,21 @@
 package edu.progetto.request;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
-import java.util.Date;
 
 public class ReservationRequest implements Serializable {
 
 	private static final long serialVersionUID = -8892729993882809980L;
-	
+
 	private String posizionePartenza;
-	
+
 	private String posizioneArrivo;
-	
+
 	private String username;
-	
+
 	private Integer idBici;
-	
+
 	private String oraInizio;
-	
+
 	private String oraFine;
 
 	public String getPosizionePartenza() {
@@ -70,22 +68,22 @@ public class ReservationRequest implements Serializable {
 
 	public ReservationRequest(String posizionePartenza, String posizioneArrivo, String username, Integer idBici,
 			String oraInizio, String oraFine) {
-		this.posizionePartenza = posizionePartenza;
-		this.posizioneArrivo = posizioneArrivo;
-		this.username = username;
-		this.idBici = idBici;
-		this.oraInizio = oraInizio;
-		this.oraFine = oraFine;
+		this.setPosizionePartenza(posizionePartenza);
+		this.setPosizioneArrivo(posizioneArrivo);
+		this.setUsername(username);
+		this.setIdBici(idBici);
+		this.setOraInizio(oraInizio);
+		this.setOraFine(oraFine);
 	}
-	
+
 	public ReservationRequest() {
-		
+
 	}
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
 
 }
