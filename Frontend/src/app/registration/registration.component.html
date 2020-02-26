@@ -22,10 +22,10 @@
        </div>
        <div class="form-group" id="special">
           <label for="ruolo">Ruolo</label>
-          <select class="form-control" id="ruolo">
-             <option>PERSONALE</option>
-             <option>GENERICO</option>
-             <option>ADMIN </option>
+          <select class="form-control" id="ruolo"  [(ngModel)]="userRegistration.ruolo" name="ruolo">
+             <option>ROLE_PERSONALE</option>
+             <option>ROLE_GENERICO</option>
+             <option>ROLE_ADMIN </option>
           </select>
        </div>
        <button type="submit" class="btn btn-primary" (click)="registration()">Registrazione</button>

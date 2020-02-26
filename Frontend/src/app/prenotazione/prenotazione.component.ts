@@ -16,7 +16,7 @@ export class PrenotazioneComponent implements OnInit {
   
   rastrelliere=[];
   filters: IFilter={oraFine: '', oraInizio: '', rastrellieraFine: '', rastrellieraInizio: ''};
-  prenotazioni=[];
+  bici=[];
   prezzo={};
 
   constructor(private _router: Router,
@@ -27,7 +27,7 @@ export class PrenotazioneComponent implements OnInit {
   ngOnInit() {
     this._bikeService.getRastrelliere()
     .subscribe(
-      res => console.log(res),
+      res => this.rastrelliere=res,
       err => {
       }
     )
@@ -35,9 +35,10 @@ export class PrenotazioneComponent implements OnInit {
 
   postPrenotazioni(){
     if(this._bikeService.validaFiltri(this.filters.oraInizio)){
-    this._bikeService.postPrenotazioni(this.filters)
+      console.log(JSON.stringify({posizione : this.filters.rastrellieraInizio}))
+    this._bikeService.postPrenotazioni({posizione : this.filters.rastrellieraInizio})
     .subscribe(
-     res => this.prenotazioni = res,
+     res => this.bici = res,
      err => {
        if(err instanceof HttpErrorResponse) {
          if (err.status === 401) {
@@ -51,8 +52,12 @@ export class PrenotazioneComponent implements OnInit {
    }
   }
 
-  prenota(prenotazione){
-    this._bikeService.prenota(prenotazione,this._service.getUser)
+  prenota(bici_id){
+    
+    let prenotazione = {posizionePartenza : this.filters.rastrellieraInizio, posizioneArrivo : this.filters.rastrellieraInizio,
+              username : localStorage.getItem("username"), idBici : bici_id, oraInizio : this.filters.oraInizio, oraFine : this.filters.oraFine};
+    console.log(prenotazione)
+    this._bikeService.prenota(prenotazione)
     .subscribe(
      res => this.prezzo = res.prezzo,
      err => {

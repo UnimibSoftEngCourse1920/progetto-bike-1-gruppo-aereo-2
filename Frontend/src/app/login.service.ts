@@ -14,10 +14,12 @@ export class LoginService {
     private http: HttpClient) { }
 
   registration(user) {
+    console.log(user)
       return this.http.post<any>(this._registrationAPI, user) 
   }
   
   login(user) {
+    console.log(user)
     return this.http.post<any>(this._loginAPI, user)
   }
 
@@ -55,13 +57,13 @@ export class LoginService {
   }
 
   isAdmin(){
-    if(this.getRuolo()=='ADMIN')
+    if(this.getRuolo()=='ROLE_ADMIN')
         return true;
     return false
   }
 
   isUser(){
-    if(this.getRuolo()=='PERSONALE' || this.getRuolo()=='GENERICO')
+    if(this.getRuolo()=='ROLE_PERSONALE' || this.getRuolo()=='ROLE_GENERICO')
         return true;
     return false
   }
