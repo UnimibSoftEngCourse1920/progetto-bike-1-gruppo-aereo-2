@@ -10,21 +10,20 @@ import { IUser } from '../Interface/IUser'
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  userLogin: IUser
+  userLogin: IUser = { username: "", password: ""};
   constructor(private _service: LoginService,
               private _router: Router) { }
 
   ngOnInit() {
-    this.userLogin = { username: "", password: ""};
   }
 
   login() {
     this._service.login(this.userLogin)
     .subscribe(
       res => {
-        localStorage.setItem('username', this.userLogin.username)
-        localStorage.setItem('jwt', res.jwt)
-        this._router.navigate(['/login'])
+        this._service.saveUser(res.username, res.ruolo)
+        this._service.saveToken(res.jwt)
+        this._router.navigate(['/prenotazione'])
       },
       err => console.log(err)
     ) 

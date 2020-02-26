@@ -8,37 +8,40 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.component.html',
-  styleUrls: ['../app.component.css']
+  styleUrls: ['./registration.component.css']
 })
 export class RegistrationComponent implements OnInit {
 
   userRegistration ={}
   constructor(private _service: LoginService,
               private _router: Router,
-              private matDialog: MatDialog,
+              private matDialog: MatDialog
               ) { }
 
   ngOnInit() {
    
   }
 
-  openModal(message) {
+  openModal() {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = false;
-    dialogConfig.id = "modal-component";
-    dialogConfig.height = "350px";
-    dialogConfig.width = "600px";
+    dialogConfig.id = "modal-component";  
     this.matDialog.open(ModalComponent, dialogConfig);
   }
 
   registration() {
+    window.sessionStorage.clear()
     this._service.registration(this.userRegistration)
     .subscribe(
-      res => {
-        this.openModal("registrazione avvenuta")
-        this._router.navigate(['/login'])
+      res => { 
+      localStorage.setItem("modalMessage","registrazione avvenuta")
+      this.openModal()
+      this._router.navigate(['/login'])
       },
-      err => console.log(err)
+      err => {
+        localStorage.setItem("modalMessage","registrazione non avvenuta")
+        this.openModal()
+        console.log(err)}
     )      
   }
 

@@ -1,16 +1,33 @@
-
-      <h1>Registrazione</h1> 
-
-      <form>
-              <div>
-                  <input type="text" id="nome"[(ngModel)]="userRegistration.nome" name="nome" placeholder="Nome" required="required">
-                  <input type="text" [(ngModel)]="userRegistration.cognome" name="cognome" placeholder="Cognome" required="required">
-                  <input type="text" [(ngModel)]="userRegistration.email" name="email" placeholder="Email" required="required">
-                  <input type="text" [(ngModel)]="userRegistration.username" name="username"   placeholder="Username" required="required">
-                  <input type="password" [(ngModel)]="userRegistration.password" name="password"  placeholder="Password" required="required">
-              </div>
-              <div>
-                  <button mat-raised-button  (click)="registration()">Registrazione</button>
-              </div>
-      </form>
-  
+<div id="formPadding" class="container">
+    <form>
+       <div class="form-group">
+          <label for="nome">Nome</label>
+          <input type="text" class="form-control" id="nome"[(ngModel)]="userRegistration.nome" name="nome"  >
+       </div>
+       <div class="form-group">
+          <label for="cognome">Cognome</label>
+          <input type="text" class="form-control" id="cognome"[(ngModel)]="userRegistration.cognome" name="cognome"  >
+       </div>
+       <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" class="form-control" id="email"[(ngModel)]="userRegistration.email" name="email"  >
+       </div>
+       <div class="form-group">
+          <label for="username">Username</label>
+          <input type="email" class="form-control" id="username"[(ngModel)]="userRegistration.username" name="username"  >
+       </div>
+       <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" class="form-control" id="password" [(ngModel)]="userRegistration.password" name="password">
+       </div>
+       <div class="form-group" id="special">
+          <label for="ruolo">Ruolo</label>
+          <select class="form-control" id="ruolo">
+             <option>PERSONALE</option>
+             <option>GENERICO</option>
+             <option>ADMIN </option>
+          </select>
+       </div>
+       <button type="submit" class="btn btn-primary" (click)="registration()">Registrazione</button>
+    </form>
+ </div>

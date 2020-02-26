@@ -1,0 +1,55 @@
+<div id="formPadding" class="container">
+    <form >
+       <div class="form-row">
+          <div class="form-group col-md-6">
+             <label for="rastrellieraInizio">Rastrelliera Inizio</label>
+             <select class="form-control" id="rastrellieraInizio" [(ngModel)]="filters.rastrellieraInizio" name="rastrellieraInizio">
+             <option *ngFor="let rastrelliera of rastrelliere">{{rastrelliera}}</option>
+             <option>Prova</option>
+             </select>
+          </div>
+          <div class="form-group col-md-6">
+             <label for="rastrellieraFine">Rastrelliera Fine</label>
+             <select class="form-control" id="rastrellieraFine" [(ngModel)]="filters.rastrellieraFine" name="rastrellieraFine">
+             <option *ngFor="let rastrelliera of rastrelliere">{{rastrelliera}}</option>
+             <option>Prova</option>
+
+             </select>          
+          </div>
+       </div>
+       <div class="form-row">
+          <div class="form-group col-md-6">
+             <label for="oraInizio">Ora Inizio</label>
+             <input type="time" class="form-control" id="oraInizio" [(ngModel)]="filters.oraInizio" name="oraInizio"  required="required">
+          </div>
+          <div class="form-group col-md-6">
+             <label for="oraFine">Ora Fine</label>
+             <input type="time" class="form-control" id="oraFine" [(ngModel)]="filters.oraFine" name="oraFine"  required="required">
+          </div>
+       </div>
+       <button class="btn btn-primary" type="submit"(click)=postPrenotazioni()>Cerca</button>
+    </form>
+ </div>
+ <div class="container">
+    <div class="container">
+       <table class="table table-striped">
+          <thead>
+             <tr>
+                <th>Rastrelliera Inizio</th>
+                <th>Rastrelliera Fine</th>
+                <th>Ora Inizio</th>
+                <th>Ora Fine</th>
+             </tr>
+          </thead>
+          <tbody>
+             <tr *ngFor="let prenotazione of prenotazioni">
+                <td>{{prenotazione.rastrellieraInizio}}</td>
+                <td>{{prenotazione.rastrellieraFine}}</td>
+                <td>{{prenotazione.oraInizio}}</td>
+                <td>{{prenotazione.oraFine}}</td>
+                <td> <button class="btn btn-success" (click)="prenota(prenotazione)" style="margin-left: 20px;">Prenota</button></td>
+             </tr>
+          </tbody>
+       </table>
+    </div>
+ </div>
