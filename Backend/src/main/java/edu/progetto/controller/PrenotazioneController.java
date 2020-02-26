@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import edu.progetto.entity.Prenotazione;
 import edu.progetto.request.ReservationRequest;
+import edu.progetto.response.ReservationResponse;
 import edu.progetto.service.PrenotazioneService;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -31,9 +32,9 @@ public class PrenotazioneController {
 	}
 	
 	
-	@GetMapping(value = "/prenotazioni")
-	public List<Prenotazione> getAllPrenotazioni(){
-		return prenotazioneService.getAllPrenotazioni();
+	@GetMapping(value = "/prenotazioni/mie")
+	public List<ReservationResponse> getAllPrenotazioni(@RequestBody String username){
+		return prenotazioneService.getPrenotazioniByUsername(username);
 	}
 	
 	
