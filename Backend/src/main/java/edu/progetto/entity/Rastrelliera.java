@@ -19,19 +19,16 @@ public class Rastrelliera {
 	
 	private String posizione;
 	
-	private Integer numBici;
-	
 	@OneToMany
-	private List<Bici> biciDisponibili;
+	private List<Bici> listaBici;
 	
 	public Rastrelliera() {
 		
 	}
 	
-	public Rastrelliera(String posizione, Integer numBici, List<Bici> biciDisponibili) {
+	public Rastrelliera(String posizione, List<Bici> listaBici) {
 		this.posizione = posizione;
-		this.numBici = numBici;
-		this.biciDisponibili = biciDisponibili;
+		this.listaBici = listaBici;
 	}
 
 	public Integer getId() {
@@ -50,20 +47,12 @@ public class Rastrelliera {
 		this.posizione = posizione;
 	}
 
-	public Integer getNumBici() {
-		return numBici;
+	public List<Bici> getListaBici() {
+		return listaBici;
 	}
 
-	public void setNumBici(Integer numBici) {
-		this.numBici = numBici;
-	}
-
-	public List<Bici> getBiciDisponibili() {
-		return biciDisponibili;
-	}
-
-	public void setBiciDisponibili(List<Bici> biciDisponibili) {
-		this.biciDisponibili = biciDisponibili;
+	public void setListaBici(List<Bici> listaBici) {
+		this.listaBici = listaBici;
 	}
 
 }

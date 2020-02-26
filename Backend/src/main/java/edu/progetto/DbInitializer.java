@@ -42,7 +42,7 @@ public class DbInitializer implements CommandLineRunner {
 		this.rastrellieraRepo.deleteAll();
 		this.biciRepo.deleteAll();
 		
-		Cliente cliente1 = new Cliente("Oleg","Stoianov","oleg.stoianov@babbo.it","oleghinho",bcryptoEncoder.encode("1234"),Ruolo.ROLE_STUDENT);
+		Cliente cliente1 = new Cliente("Oleg","Stoianov","oleg.stoianov@babbo.it","oleghinho",bcryptoEncoder.encode("1234"),Ruolo.ROLE_GENERICO);
 		Cliente cliente2 = new Cliente("Lorenzo","Nosotti","lollo.noso@babbo.it","lollonoso",bcryptoEncoder.encode("4321"),Ruolo.ROLE_ADMIN);
 		
 		this.clienteRepo.save(cliente1);
@@ -72,8 +72,8 @@ public class DbInitializer implements CommandLineRunner {
 		this.biciRepo.save(bici4);
 		
 		
-		Rastrelliera rastrelliera1 = new Rastrelliera("Via le mani dal culo", 2, listBici1);
-		Rastrelliera rastrelliera2 = new Rastrelliera("angolo Piazza la bomba e scappa", 2, listBici2);
+		Rastrelliera rastrelliera1 = new Rastrelliera("Via Carducci", listBici1);
+		Rastrelliera rastrelliera2 = new Rastrelliera("Via Manzoni", listBici2);
 		
 		
 		this.rastrellieraRepo.save(rastrelliera1);

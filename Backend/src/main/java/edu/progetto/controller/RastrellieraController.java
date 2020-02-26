@@ -37,4 +37,7 @@ public class RastrellieraController {
 		rastrellieraService.rialloca();
 		return "Rastrelliere riallocate con successo";
 	}
+	
+	
+	
 }
