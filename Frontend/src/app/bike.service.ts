@@ -6,7 +6,7 @@ import { IfStmt } from '@angular/compiler';
   providedIn: 'root'
 })
 export class BikeService {
-  private _prenotazioniAPI = "";
+  private _prenotazioniAPI = "http://localhost:8080/rastrelliere/bici";
   private _miePrenotazioniAPI = "";
   private _terminaPrenotazioneAPI = "";
   private _prenotaAPI = "";
@@ -14,8 +14,8 @@ export class BikeService {
 
   constructor(private http: HttpClient) { }
 
-  postPrenotazioni(prenotazioni){
-      return this.http.post<any>(this._prenotazioniAPI, prenotazioni)
+  postPrenotazioni(rastrelliera){
+      return this.http.post<any>(this._prenotazioniAPI, JSON.stringify(rastrelliera))
   }
 
   getRastrelliere(){
@@ -45,9 +45,8 @@ export class BikeService {
     return this.http.post<any>(this._terminaPrenotazioneAPI, prenotazione)
   }
   
-  prenota(prenotazione, user){
-    var object = JSON.stringify(prenotazione, user)
-    return this.http.post<any>(this._prenotaAPI, object)
+  prenota(prenotazione){
+    return this.http.post<any>(this._prenotaAPI, JSON.stringify(prenotazione))
 
   }
 }
