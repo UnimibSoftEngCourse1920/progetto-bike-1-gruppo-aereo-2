@@ -3,16 +3,15 @@ package edu.progetto.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import edu.progetto.entity.Prenotazione;
 import edu.progetto.request.ReservationRequest;
+import edu.progetto.response.MessageResponse;
 import edu.progetto.response.ReservationResponse;
 import edu.progetto.service.PrenotazioneService;
 
@@ -23,21 +22,20 @@ public class PrenotazioneController {
 
 	@Autowired
 	PrenotazioneService prenotazioneService;
-	
-	
+
+
 	@PostMapping(value = "/prenota")
-	@PreAuthorize("hasRole('GENERICO')")
-	public String prenotaBici(@RequestBody ReservationRequest reservationRequest) {
-		return prenotazioneService.prenotaBici(reservationRequest);
+	public ResponseEntity<MessageResponse> prenotaBici(@RequestBody ReservationRequest reservationRequest){
+		return ResponseEntity.ok(new MessageResponse(prenotazioneService.prenotaBici(reservationRequest)));
 	}
-	
-	
-	@GetMapping(value = "/prenotazioni/mie")
+
+
+	@PostMapping(value = "/prenotazioni/mie")
 	public List<ReservationResponse> getAllPrenotazioni(@RequestBody String username){
 		return prenotazioneService.getPrenotazioniByUsername(username);
 	}
-	
-	
-	
-	
+
+
+
+
 }
