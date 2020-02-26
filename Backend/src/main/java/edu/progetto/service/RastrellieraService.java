@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.json.BasicJsonParser;
 import org.springframework.stereotype.Service;
 
 import edu.progetto.entity.Bici;
@@ -38,7 +39,7 @@ public class RastrellieraService {
 	
 	
 	public List<Bici> getAllBiciDisponibili(String posizione){
-		Rastrelliera rastrelliera = rastrellieraRepo.findByPosizione(posizione);
+		Rastrelliera rastrelliera = rastrellieraRepo.findByPosizione(new BasicJsonParser().parseMap(posizione).get("posizione").toString());
 		List<Bici> bici = new ArrayList<>();
 		for(Bici b : rastrelliera.getListaBici()) {
 			if(b.isDisponibile())

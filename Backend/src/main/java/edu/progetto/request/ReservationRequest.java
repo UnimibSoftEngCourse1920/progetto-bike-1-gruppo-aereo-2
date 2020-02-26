@@ -1,6 +1,7 @@
 package edu.progetto.request;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 public class ReservationRequest implements Serializable {
@@ -15,9 +16,9 @@ public class ReservationRequest implements Serializable {
 	
 	private Integer idBici;
 	
-	private Date oraInizio;
+	private String oraInizio;
 	
-	private Date oraFine;
+	private String oraFine;
 
 	public String getPosizionePartenza() {
 		return posizionePartenza;
@@ -51,24 +52,24 @@ public class ReservationRequest implements Serializable {
 		this.idBici = idBici;
 	}
 
-	public Date getOraInizio() {
+	public String getOraInizio() {
 		return oraInizio;
 	}
 
-	public void setOraInizio(Date oraInizio) {
+	public void setOraInizio(String oraInizio) {
 		this.oraInizio = oraInizio;
 	}
 
-	public Date getOraFine() {
+	public String getOraFine() {
 		return oraFine;
 	}
 
-	public void setOraFine(Date oraFine) {
+	public void setOraFine(String oraFine) {
 		this.oraFine = oraFine;
 	}
 
 	public ReservationRequest(String posizionePartenza, String posizioneArrivo, String username, Integer idBici,
-			Date oraInizio, Date oraFine) {
+			String oraInizio, String oraFine) {
 		this.posizionePartenza = posizionePartenza;
 		this.posizioneArrivo = posizioneArrivo;
 		this.username = username;

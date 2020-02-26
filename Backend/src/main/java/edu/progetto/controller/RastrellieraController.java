@@ -6,8 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import edu.progetto.entity.Bici;
 import edu.progetto.entity.Rastrelliera;
 import edu.progetto.service.RastrellieraService;
 
@@ -24,6 +26,10 @@ public class RastrellieraController {
 		return rastrellieraService.getVieRastrelliere();
 	}
 	
+	@GetMapping("/rastrelliere/bici")
+	public List<Bici> getBiciRastrelliera(@RequestBody String posizione){
+		return rastrellieraService.getAllBiciDisponibili(posizione);
+	}
 	
 	@GetMapping("/rastrelliere/info")
 	public List<Rastrelliera> getAllRastrelliere(){

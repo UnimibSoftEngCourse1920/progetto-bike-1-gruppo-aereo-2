@@ -1,5 +1,6 @@
 package edu.progetto.entity;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -31,9 +32,9 @@ public class Prenotazione {
 	@OneToOne
 	private Bici bici;
 	
-	private	Date oraInizio;
+	private	LocalDateTime oraInizio;
 	
-	private Date oraFine;
+	private LocalDateTime oraFine;
 	
 	
 
@@ -42,7 +43,7 @@ public class Prenotazione {
 		
 	}	
 	
-	public Prenotazione(Cliente cliente,Rastrelliera rastrellieraPartenza, Rastrelliera rastrellieraArrivo, Bici bici, Date oraInizio, Date oraFine) {
+	public Prenotazione(Cliente cliente,Rastrelliera rastrellieraPartenza, Rastrelliera rastrellieraArrivo, Bici bici, LocalDateTime oraInizio, LocalDateTime oraFine) {
 		this.cliente = cliente;
 		this.rastrellieraPartenza = rastrellieraPartenza;
 		this.rastrellieraArrivo = rastrellieraArrivo;
@@ -84,20 +85,28 @@ public class Prenotazione {
 		this.cliente = cliente;
 	}
 
-	public Date getOraInizio() {
+	public LocalDateTime getOraInizio() {
 		return oraInizio;
 	}
 
-	public void setOraInizio(Date oraInizio) {
+	public void setOraInizio(LocalDateTime oraInizio) {
 		this.oraInizio = oraInizio;
 	}
 
-	public Date getOraFine() {
+	public LocalDateTime getOraFine() {
 		return oraFine;
 	}
 
-	public void setOraFine(Date oraFine) {
+	public void setOraFine(LocalDateTime oraFine) {
 		this.oraFine = oraFine;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 	
 	

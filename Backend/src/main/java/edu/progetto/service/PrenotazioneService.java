@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.json.BasicJsonParser;
 import org.springframework.stereotype.Service;
 
 import edu.progetto.entity.Bici;
@@ -12,6 +13,7 @@ import edu.progetto.repository.ClienteRepository;
 import edu.progetto.repository.PrenotazioneRepository;
 import edu.progetto.repository.RastrellieraRepository;
 import edu.progetto.request.ReservationRequest;
+import edu.progetto.response.ReservationResponse;
 
 @Service
 public class PrenotazioneService {
@@ -27,6 +29,10 @@ public class PrenotazioneService {
 
 	@Autowired
 	BiciService biciService;
+	
+	@Autowired
+	UtilService utilService;
+	
 
 
 	public String prenotaBici(ReservationRequest reservationRequest) {
@@ -35,8 +41,11 @@ public class PrenotazioneService {
 			prenotazione.setCliente(clienteRepo.findByUsername(reservationRequest.getUsername()));
 			prenotazione.setRastrellieraPartenza(rastrellieraRepo.findByPosizione(reservationRequest.getPosizionePartenza()));
 			prenotazione.setRastrellieraArrivo(rastrellieraRepo.findByPosizione(reservationRequest.getPosizioneArrivo()));
-			prenotazione.setOraInizio(reservationRequest.getOraInizio());
-			prenotazione.setOraFine(reservationRequest.getOraFine());
+			
+			
+			
+			prenotazione.setOraInizio(utilService.calcolaData(reservationRequest.getOraInizio()));
+			prenotazione.setOraFine(utilService.calcolaData(reservationRequest.getOraFine()));
 
 			Bici bici = biciService.getBici(reservationRequest.getIdBici());
 			bici.setDisponibile(false);
@@ -62,7 +71,25 @@ public class PrenotazioneService {
 			prenotazioni.add(p);
 		}
 		return prenotazioni;
+	}
+	
+	public List<ReservationResponse> getPrenotazioniByUsername(String usernameJson) {
+		String username = new BasicJsonParser().parseMap(usernameJson).get("username").toString();
+		List<Prenotazione> miePrenotazione = prenotazioneRepo.findByCliente(clienteRepo.findByUsername(username));
+		List<ReservationResponse> listPrenotazioneResponse = new ArrayList<>();
+		for(Prenotazione p : miePrenotazione) {
+			ReservationResponse prenotazioneResponse= new ReservationResponse(
+					p.getId(),
+					p.getRastrellieraPartenza().getPosizione(),
+					p.getRastrellieraArrivo().getPosizione(),
+					p.getOraInizio().toString(),
+					p.getOraFine().toString(),
+					p.getBici().getId());
+			
+			listPrenotazioneResponse.add(prenotazioneResponse);
+		}
 		
+		return listPrenotazioneResponse;
 	}
 
 }
