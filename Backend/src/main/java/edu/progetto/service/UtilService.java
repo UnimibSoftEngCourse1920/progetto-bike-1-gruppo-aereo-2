@@ -13,6 +13,5 @@ public class UtilService {
 		LocalDate giorno = LocalDate.now();
 		String completa = giorno.toString()+" "+ ora;
 		return LocalDateTime.parse(completa, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
-		
 	}
 }

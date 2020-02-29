@@ -2,6 +2,7 @@ package edu.progetto.entity;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -54,5 +55,6 @@ public class Rastrelliera {
 	public void setListaBici(List<Bici> listaBici) {
 		this.listaBici = listaBici;
 	}
+
 
 }

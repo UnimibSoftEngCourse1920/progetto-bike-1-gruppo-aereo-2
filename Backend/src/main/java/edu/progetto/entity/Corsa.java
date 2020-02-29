@@ -1,6 +1,6 @@
 package edu.progetto.entity;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,9 +17,9 @@ public class Corsa {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Integer id;
 	
-	private Date inizioCorsa;
+	private LocalDateTime inizioCorsa;
 	
-	private Date fineCorsa;
+	private LocalDateTime fineCorsa;
 	
 	@OneToOne
 	private Prenotazione prenotazione;
@@ -28,25 +28,25 @@ public class Corsa {
 		
 	}
 	
-	public Corsa(Date inizioCorsa, Date fineCorsa, Prenotazione prenotazione) {
+	public Corsa(LocalDateTime inizioCorsa, LocalDateTime fineCorsa, Prenotazione prenotazione) {
 		this.inizioCorsa = inizioCorsa;
 		this.fineCorsa = fineCorsa;
 		this.prenotazione = prenotazione;
 	}
 
-	public Date getInizioCorsa() {
+	public LocalDateTime getInizioCorsa() {
 		return inizioCorsa;
 	}
 
-	public void setInizioCorsa(Date inizioCorsa) {
+	public void setInizioCorsa(LocalDateTime inizioCorsa) {
 		this.inizioCorsa = inizioCorsa;
 	}
 
-	public Date getFineCorsa() {
+	public LocalDateTime getFineCorsa() {
 		return fineCorsa;
 	}
 
-	public void setFineCorsa(Date fineCorsa) {
+	public void setFineCorsa(LocalDateTime fineCorsa) {
 		this.fineCorsa = fineCorsa;
 	}
 

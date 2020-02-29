@@ -8,9 +8,6 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 
@@ -19,30 +16,30 @@ import edu.progetto.dto.ClienteDTO;
 @Entity
 @Table(name = "clienti")
 public class Cliente {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Integer id;
 
 	private String nome;
-	
+
 	private String cognome;
-	
+
 	@Email
 	private String email;
-	
+
 	private String username;
-	
+
 	private String password;
-	
-//	@ManyToOne
-//	@JoinTable(	name = "clienti_ruoli", 
-//				joinColumns = @JoinColumn(name = "cliente_id"), 
-//				inverseJoinColumns = @JoinColumn(name = "ruolo_id"))
+
+	//	@ManyToOne
+	//	@JoinTable(	name = "clienti_ruoli", 
+	//				joinColumns = @JoinColumn(name = "cliente_id"), 
+	//				inverseJoinColumns = @JoinColumn(name = "ruolo_id"))
 	@Enumerated(EnumType.STRING)
 	private Ruolo ruolo;
-	
-	
+
+
 	public Ruolo getRuolo() {
 		return ruolo;
 	}
@@ -53,7 +50,7 @@ public class Cliente {
 
 	public Cliente() {
 	}
-	
+
 	public Cliente(String nome, String cognome, String email,String username, String password, Ruolo ruolo) {
 		this.nome = nome;
 		this.cognome = cognome;
@@ -62,7 +59,7 @@ public class Cliente {
 		this.password = password;
 		this.ruolo = ruolo;
 	}
-	
+
 	public Cliente(ClienteDTO clienteDTO) {
 		this.nome = clienteDTO.getNome();
 		this.cognome = clienteDTO.getCognome();
@@ -71,7 +68,7 @@ public class Cliente {
 		this.password = clienteDTO.getPassword();
 		this.ruolo = clienteDTO.getRuolo();
 	}
-	
+
 	public Integer getId() {
 		return id;
 	}
@@ -111,12 +108,12 @@ public class Cliente {
 	public String getPassword() {
 		return password;
 	}
-	
+
 	public String getUsername() {
 		return username;
 	}
-	
-	
-	
-	
+
+
+
+
 }

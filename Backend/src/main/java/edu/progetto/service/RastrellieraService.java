@@ -3,6 +3,8 @@ package edu.progetto.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.EntityNotFoundException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.json.BasicJsonParser;
 import org.springframework.stereotype.Service;
@@ -36,10 +38,11 @@ public class RastrellieraService {
 
 		return vieRastrelliere;
 	}
-	
-	
+
+
 	public List<Bici> getAllBiciDisponibili(String posizione){
-		Rastrelliera rastrelliera = rastrellieraRepo.findByPosizione(new BasicJsonParser().parseMap(posizione).get("posizione").toString());
+		Rastrelliera rastrelliera = rastrellieraRepo.findByPosizione(
+				new BasicJsonParser().parseMap(posizione).get("posizione").toString());
 		List<Bici> bici = new ArrayList<>();
 		for(Bici b : rastrelliera.getListaBici()) {
 			if(b.isDisponibile())
@@ -55,22 +58,30 @@ public class RastrellieraService {
 
 	public void rialloca() {
 		for (Rastrelliera r : rastrellieraRepo.findAll())
-			if (r.getListaBici().size() < 2) 
+			if (r.getListaBici().size() > 2) 
 				for(Rastrelliera r2 : rastrellieraRepo.findAll()) 
-					if (r2.getListaBici().size() > 2) {
-						spostaBici(r,r2);
-						this.updateRastrelliera(r.getId(),r);
-						this.updateRastrelliera(r2.getId(),r2);
+					if (r2.getListaBici().size() < 2) {
+						spostaBici(r, r2, r.getListaBici().get(0));
 					}
 	}
 
-	public void spostaBici(Rastrelliera r1 , Rastrelliera r2) {
-		r1.getListaBici().add(r2.getListaBici().get(0));
-		r2.getListaBici().remove(0);
+	public void spostaBici(Rastrelliera r1 , Rastrelliera r2, Bici bici) {
+		int indexOfBici = r1.getListaBici().indexOf(bici);
+		r2.getListaBici().add(r1.getListaBici().get(indexOfBici));
+		r1.getListaBici().remove(bici);
+		this.updateRastrelliera(r1.getId(), r1);
+		this.updateRastrelliera(r2.getId(), r2);
 	}
+
+
+	public Rastrelliera getRastrelliera(Integer id) {
+		return rastrellieraRepo.findById(id).
+				orElseThrow(() -> new EntityNotFoundException());
+	}
+
 	
-	
-	
+
+
 
 
 

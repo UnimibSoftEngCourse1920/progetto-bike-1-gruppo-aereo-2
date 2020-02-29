@@ -1,13 +1,12 @@
 package edu.progetto.entity;
 
 import java.time.LocalDateTime;
-import java.util.Date;
+
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -15,41 +14,46 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "prenotazione")
 public class Prenotazione {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Integer id;
-	
+
 	@ManyToOne
 	private Cliente cliente;
-	
-	@ManyToOne
+
+	@OneToOne
 	private Rastrelliera rastrellieraPartenza;
-	
-	@ManyToOne
+
+	@OneToOne
 	private Rastrelliera rastrellieraArrivo;
-	
+
 	@OneToOne
 	private Bici bici;
-	
-	private	LocalDateTime oraInizio;
-	
-	private LocalDateTime oraFine;
-	
-	
 
-	
+	private	LocalDateTime oraInizio;
+
+	private LocalDateTime oraFine;
+
+	private StatoPrenotazione statoPrenotazione;
+
+
+
+
 	public Prenotazione() {
-		
+
 	}	
-	
-	public Prenotazione(Cliente cliente,Rastrelliera rastrellieraPartenza, Rastrelliera rastrellieraArrivo, Bici bici, LocalDateTime oraInizio, LocalDateTime oraFine) {
+
+	public Prenotazione(Cliente cliente,Rastrelliera rastrellieraPartenza,
+			Rastrelliera rastrellieraArrivo, Bici bici, LocalDateTime oraInizio,
+			LocalDateTime oraFine, StatoPrenotazione statoPrenotazione) {
 		this.cliente = cliente;
 		this.rastrellieraPartenza = rastrellieraPartenza;
 		this.rastrellieraArrivo = rastrellieraArrivo;
 		this.bici = bici;
 		this.oraInizio = oraInizio;
 		this.oraFine = oraFine;
+		this.statoPrenotazione = statoPrenotazione;
 	}
 
 	public Rastrelliera getRastrellieraPartenza() {
@@ -74,7 +78,7 @@ public class Prenotazione {
 
 	public void setBici(Bici bici) {
 		this.bici = bici;
-		
+
 	}
 
 	public Cliente getCliente() {
@@ -108,7 +112,17 @@ public class Prenotazione {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	
-	
+
+	public StatoPrenotazione getStatoPrenotazione() {
+		return statoPrenotazione;
+	}
+
+	public void setStatoPrenotazione(StatoPrenotazione statoPrenotazione) {
+		this.statoPrenotazione = statoPrenotazione;
+	}
+
+
+
+
 
 }
