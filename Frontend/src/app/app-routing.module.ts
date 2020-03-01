@@ -7,6 +7,9 @@ import { ModalComponent } from './modal/modal.component'
 import { RegistrationComponent } from './registration/registration.component'
 import { PrenotazioneComponent } from './prenotazione/prenotazione.component'
 import { MiePrenotazioniComponent } from './mie-prenotazioni/mie-prenotazioni.component';
+import { ContoComponent } from './conto/conto.component';
+import { AdminComponent } from './admin/admin.component';
+
 
 
 
@@ -16,6 +19,7 @@ const routes: Routes = [{
 },
 {
   path: 'mie-prenotazioni',
+    //canActivate: [UserGuard],
   component: MiePrenotazioniComponent
 },
 {
@@ -26,6 +30,16 @@ const routes: Routes = [{
   path: 'prenotazione',
   //canActivate: [UserGuard],
   component: PrenotazioneComponent
+},
+{
+  path: 'conto',
+  //canActivate: [UserGuard],
+  component: ContoComponent
+},
+{
+  path: 'admin',
+  //canActivate: [AdminGuard],
+  component: AdminComponent
 },
 {
   path: 'modal',

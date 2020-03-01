@@ -1,15 +1,15 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule, HTTP_INTERCEPTORS  } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-  
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { UserGuard } from './Guardie/user.guard';
 import { AdminGuard } from './Guardie/admin.guard';
-import { LoginService } from './login.service';
-import { TokenService } from './token.service';
+import { LoginService } from './Service/login.service';
+import { TokenService } from './Service/token.service';
 import { RegistrationComponent } from './registration/registration.component';
 import { ModalComponent } from './modal/modal.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -17,6 +17,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { PrenotazioneComponent } from './prenotazione/prenotazione.component';
 import { MiePrenotazioniComponent } from './mie-prenotazioni/mie-prenotazioni.component';
+import { ContoComponent } from './conto/conto.component';
+import { AdminComponent } from './admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,8 @@ import { MiePrenotazioniComponent } from './mie-prenotazioni/mie-prenotazioni.co
     ModalComponent,
     PrenotazioneComponent,
     MiePrenotazioniComponent,
+    ContoComponent,
+    AdminComponent,
   ],
   imports: [
     BrowserModule,
@@ -36,12 +40,12 @@ import { MiePrenotazioniComponent } from './mie-prenotazioni/mie-prenotazioni.co
     MatDialogModule,
     BrowserAnimationsModule
   ],
-  providers: [LoginService, AdminGuard, 
+  providers: [LoginService, AdminGuard,
     UserGuard, {
-    provide: HTTP_INTERCEPTORS,
-    useClass: TokenService,
-    multi: true
-  }],  bootstrap: [AppComponent],
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenService,
+      multi: true
+    }], bootstrap: [AppComponent],
   entryComponents: [ModalComponent]
 
 })

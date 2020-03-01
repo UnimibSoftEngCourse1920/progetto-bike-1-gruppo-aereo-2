@@ -8,10 +8,10 @@ import { Component, OnInit } from '@angular/core';
 export class ModalComponent implements OnInit {
   private message: string;
   constructor() {
-   }
+  }
 
   ngOnInit() {
-    this.message=localStorage.getItem("modalMessage");
+    this.message = localStorage.getItem("modalMessage");
   }
 
 }

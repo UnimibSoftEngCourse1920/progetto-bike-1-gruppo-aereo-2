@@ -1,23 +1,27 @@
 <div class="container">
-    <div class="container">
-       <table class="table table-striped">
-          <thead>
-             <tr>
-                <th>Rastrelliera Inizio</th>
-                <th>Rastrelliera Fine</th>
-                <th>Ora Inizio</th>
-                <th>Ora Fine</th>
-             </tr>
-          </thead>
-          <tbody>
-             <tr *ngFor="let prenotazione of prenotazioni">
-                <td>{{prenotazione.rastrellieraInizio}}</td>
-                <td>{{prenotazione.rastrellieraFine}}</td>
-                <td>{{prenotazione.oraInizio}}</td>
-                <td>{{prenotazione.oraFine}}</td>
-                <td> <button class="btn btn-danger" (click)="termina(prenotazione)" style="margin-left: 20px;">Prenota</button></td>
-             </tr>
-          </tbody>
-       </table>
-    </div>
+   <div class="container">
+      <table class="table table-striped">
+         <thead>
+            <tr>
+               <th>Rastrelliera Inizio</th>
+               <th>Rastrelliera Fine</th>
+               <th>Ora Inizio</th>
+               <th>Ora Fine</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr *ngFor="let prenotazione of prenotazioni">
+               <td>{{prenotazione.rastrellieraInizio}}</td>
+               <td>{{prenotazione.rastrellieraFine}}</td>
+               <td>{{prenotazione.oraInizio}}</td>
+               <td>{{prenotazione.oraFine}}</td>
+               <td>{{prenotazione.stato}}</td>
+               <td> <button class="btn btn-danger" (click)="termina(prenotazione.id)" *ngIf="_bikeService.inCorso(prenotazione.stato)"
+                     style="margin-left: 20px;">Termina</button></td>
+               <td> <button class="btn btn-success" (click)="inizia(prenotazione.id)" *ngIf="_bikeService.daIniziare(prenotazione.stato)"
+                     style="margin-left: 20px;">Inizia</button></td>
+            </tr>
+         </tbody>
+      </table>
+   </div>
 </div>

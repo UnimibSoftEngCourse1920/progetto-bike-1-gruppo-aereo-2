@@ -8,16 +8,16 @@ import { Router } from '@angular/router';
 })
 export class LoginService {
   private _loginAPI = "http://localhost:8080/auth/signin";
-  private _registrationAPI= "http://localhost:8080/auth/signup";
+  private _registrationAPI = "http://localhost:8080/auth/signup";
 
   constructor(private _router: Router,
     private http: HttpClient) { }
 
   registration(user) {
     console.log(user)
-      return this.http.post<any>(this._registrationAPI, user) 
+    return this.http.post<any>(this._registrationAPI, user)
   }
-  
+
   login(user) {
     console.log(user)
     return this.http.post<any>(this._loginAPI, user)
@@ -53,18 +53,18 @@ export class LoginService {
   }
 
   loggedIn() {
-    return !!this.getToken()    
+    return !!this.getToken()
   }
 
-  isAdmin(){
-    if(this.getRuolo()=='ROLE_ADMIN')
-        return true;
+  isAdmin() {
+    if (this.getRuolo() == 'ROLE_ADMIN')
+      return true;
     return false
   }
 
-  isUser(){
-    if(this.getRuolo()=='ROLE_PERSONALE' || this.getRuolo()=='ROLE_GENERICO')
-        return true;
+  isUser() {
+    if (this.getRuolo() == 'ROLE_PERSONALE' || this.getRuolo() == 'ROLE_GENERICO')
+      return true;
     return false
   }
 }
