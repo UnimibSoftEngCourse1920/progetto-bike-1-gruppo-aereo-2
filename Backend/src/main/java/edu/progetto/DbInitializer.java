@@ -1,6 +1,5 @@
 package edu.progetto;
 
-import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -48,33 +47,23 @@ public class DbInitializer implements CommandLineRunner {
 		this.clienteRepo.save(cliente1);
 		this.clienteRepo.save(cliente2);
 		
+		Rastrelliera rastrelliera1 = new Rastrelliera("Via Carducci");
+		Rastrelliera rastrelliera2 = new Rastrelliera("Via Manzoni");
+		
 		Bici bici1 = new Bici(true,5);
 		Bici bici2 = new Bici(true,4);
 		Bici bici3 = new Bici(true,5);
 		Bici bici4 = new Bici(true,4);
 		
 		this.biciRepo.save(bici1);
-		this.biciRepo.save(bici2);
-		
-		ArrayList<Bici> listBici1 = new ArrayList<>();
-		ArrayList<Bici> listBici2 = new ArrayList<>();
-		
-		
-		
-		listBici1.add(bici1);
-		listBici1.add(bici2);
-		listBici1.add(bici3);
-		listBici2.add(bici4);
-		
-		
-		
+		this.biciRepo.save(bici2);	
 		this.biciRepo.save(bici3);
 		this.biciRepo.save(bici4);
 		
-		
-		Rastrelliera rastrelliera1 = new Rastrelliera("Via Carducci", listBici1);
-		Rastrelliera rastrelliera2 = new Rastrelliera("Via Manzoni", listBici2);
-		
+		rastrelliera1.addBici(bici1);
+		rastrelliera1.addBici(bici2);
+		rastrelliera1.addBici(bici3);
+		rastrelliera2.addBici(bici4);
 		
 		this.rastrellieraRepo.save(rastrelliera1);
 		this.rastrellieraRepo.save(rastrelliera2);

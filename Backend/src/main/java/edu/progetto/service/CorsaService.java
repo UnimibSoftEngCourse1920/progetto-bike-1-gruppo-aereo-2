@@ -54,7 +54,10 @@ public class CorsaService {
 		Bici bici = biciService.getBici(p.getBici().getId());
 		Rastrelliera rastrellieraPartenza = rastrellieraService.getRastrelliera(p.getRastrellieraPartenza().getId());
 		Rastrelliera rastrellieraArrivo = rastrellieraService.getRastrelliera(p.getRastrellieraArrivo().getId());
-		rastrellieraService.spostaBici(rastrellieraPartenza, rastrellieraArrivo, bici);
+		rastrellieraPartenza.removeBici(bici);
+		rastrellieraService.updateRastrelliera(rastrellieraPartenza.getId(), rastrellieraPartenza);
+		rastrellieraArrivo.addBici(bici);
+		rastrellieraService.updateRastrelliera(rastrellieraArrivo.getId(), rastrellieraArrivo);
 		bici.setDisponibile(true);
 		biciService.updateBici(bici.getId(), bici);		
 		p.setStatoPrenotazione(StatoPrenotazione.PASSATA);
@@ -63,8 +66,6 @@ public class CorsaService {
 				DateTimeFormatter.ofPattern(FORMATO_DATA));
 		corsa.setFineCorsa(fineCorsa);
 		corsaRepo.save(corsa);
-		rastrellieraService.spostaBici(rastrellieraPartenza, rastrellieraArrivo, bici);
-		//prenotazioneService.updatePrenotazione(p.getId(), p);	
 		return fineCorsa;
 
 	}

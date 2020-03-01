@@ -1,8 +1,9 @@
 package edu.progetto.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -27,9 +28,9 @@ public class Rastrelliera {
 		
 	}
 	
-	public Rastrelliera(String posizione, List<Bici> listaBici) {
+	public Rastrelliera(String posizione) {
 		this.posizione = posizione;
-		this.listaBici = listaBici;
+		this.listaBici = new ArrayList<>();
 	}
 
 	public Integer getId() {
@@ -56,5 +57,12 @@ public class Rastrelliera {
 		this.listaBici = listaBici;
 	}
 
+	public void addBici(Bici bici) {
+		listaBici.add(bici);
+	}
+	
+	public void removeBici(Bici bici) {
+		listaBici.remove(bici);
+	}
 
 }
