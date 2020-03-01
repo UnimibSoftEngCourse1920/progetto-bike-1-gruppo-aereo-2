@@ -1,2 +1,4 @@
 
 *.log
+.scannerwork
+Frontend/sonar-project.properties

@@ -1,0 +1,21 @@
+<div id="formPadding" class="container">
+    <form>
+       <div class="form-group">
+          <label for="numero">Numero Carta</label>
+          <input type="text" class="form-control" id="numero">
+       </div>
+       <div class="form-group">
+          <label for="importo">Importo</label>
+          <input type="number" class="form-control" id="importo" [(ngModel)]="importo" name="importo">
+       </div>
+       <div class="form-group" id="special">
+        <label for="tipoCarta">Tipo Carta</label>
+        <select class="form-control" id="tipoCarta">
+           <option>VISA</option>
+           <option>MASTERCARD</option>
+           <option>PAGO BANCOMAT</option>
+        </select>
+     </div>
+       <button type="submit" class="btn btn-primary" (click)="ricarica()">Ricarica</button>
+    </form>
+ </div>
