@@ -12,7 +12,6 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "corsa")
 public class Corsa {
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Integer id;
@@ -23,6 +22,7 @@ public class Corsa {
 	
 	@OneToOne
 	private Prenotazione prenotazione;
+	
 	
 	public Corsa() {
 		

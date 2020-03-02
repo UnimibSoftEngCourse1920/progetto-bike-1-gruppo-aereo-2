@@ -36,9 +36,8 @@ public class Prenotazione {
 	private LocalDateTime oraFine;
 
 	private StatoPrenotazione statoPrenotazione;
-
-
-
+	
+	private Double importo;
 
 	public Prenotazione() {
 
@@ -46,14 +45,14 @@ public class Prenotazione {
 
 	public Prenotazione(Cliente cliente,Rastrelliera rastrellieraPartenza,
 			Rastrelliera rastrellieraArrivo, Bici bici, LocalDateTime oraInizio,
-			LocalDateTime oraFine, StatoPrenotazione statoPrenotazione) {
+			LocalDateTime oraFine, Double importo) {
 		this.cliente = cliente;
 		this.rastrellieraPartenza = rastrellieraPartenza;
 		this.rastrellieraArrivo = rastrellieraArrivo;
 		this.bici = bici;
 		this.oraInizio = oraInizio;
 		this.oraFine = oraFine;
-		this.statoPrenotazione = statoPrenotazione;
+		this.importo = importo;
 	}
 
 	public Rastrelliera getRastrellieraPartenza() {
@@ -121,8 +120,11 @@ public class Prenotazione {
 		this.statoPrenotazione = statoPrenotazione;
 	}
 
+	public Double getImporto() {
+		return importo;
+	}
 
-
-
-
+	public void setImporto(Double importo) {
+		this.importo = importo;
+	}
 }

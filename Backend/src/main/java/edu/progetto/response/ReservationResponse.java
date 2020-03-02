@@ -13,19 +13,21 @@ public class ReservationResponse implements Serializable{
 	private String oraFine;
 	private String statoPrenotazione;
 	private Integer idBici;
+	private Double importo;
 
 	public ReservationResponse(Integer idPrenotazione, String posizioneInizio, String posizioneFine, String oraInizio,
-			String oraFine, String statoPrenotazione, Integer idBici) {
+			String oraFine, Integer idBici, Double importo) {
 		this.idPrenotazione = idPrenotazione;
 		this.posizioneInizio = posizioneInizio;
 		this.posizioneFine = posizioneFine;
 		this.oraInizio = oraInizio;
 		this.oraFine = oraFine;
-		this.statoPrenotazione = statoPrenotazione;
 		this.idBici = idBici;
+		this.importo = importo;
 	}
-
-
+	public ReservationResponse() {
+		
+	}
 	public Integer getIdPrenotazione() {
 		return idPrenotazione;
 	}
@@ -78,5 +80,12 @@ public class ReservationResponse implements Serializable{
 	}
 
 
+	public Double getImporto() {
+		return importo;
+	}
 
+
+	public void setImporto(Double importo) {
+		this.importo = importo;
+	}
 }
