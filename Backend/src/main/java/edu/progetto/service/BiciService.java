@@ -36,6 +36,7 @@ public class BiciService {
 	}
 
 	public void updateBici(Integer id, Bici b) {
+		biciRepo.findById(id);
 		biciRepo.save(b);
 	}
 	

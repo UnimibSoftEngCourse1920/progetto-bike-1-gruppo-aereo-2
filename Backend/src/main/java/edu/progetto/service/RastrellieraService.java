@@ -52,6 +52,7 @@ public class RastrellieraService {
 	}
 
 	public void updateRastrelliera(Integer id, Rastrelliera r) {
+		rastrellieraRepo.findById(id);
 		rastrellieraRepo.save(r);
 	}
 
@@ -66,10 +67,9 @@ public class RastrellieraService {
 	}
 
 	public void spostaBici(Rastrelliera r1 , Rastrelliera r2, Bici bici) {
-		int indexOfBici = r1.getListaBici().indexOf(bici);
-		r2.getListaBici().add(r1.getListaBici().get(indexOfBici));
-		r1.getListaBici().remove(bici);
+		r1.removeBici(bici);
 		this.updateRastrelliera(r1.getId(), r1);
+		r2.addBici(bici);
 		this.updateRastrelliera(r2.getId(), r2);
 	}
 

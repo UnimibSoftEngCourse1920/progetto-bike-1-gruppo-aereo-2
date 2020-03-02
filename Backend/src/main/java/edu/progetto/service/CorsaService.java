@@ -1,5 +1,8 @@
 package edu.progetto.service;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -11,7 +14,7 @@ import org.springframework.stereotype.Service;
 import edu.progetto.entity.Bici;
 import edu.progetto.entity.Corsa;
 import edu.progetto.entity.Prenotazione;
-import edu.progetto.entity.Rastrelliera;
+import edu.progetto.entity.Ruolo;
 import edu.progetto.entity.StatoPrenotazione;
 import edu.progetto.repository.CorsaRepository;
 
@@ -20,9 +23,12 @@ public class CorsaService {
 
 	private static final String FORMATO_DATA = "yyyy-MM-dd HH:mm";
 
+	private static DecimalFormat df2 = new DecimalFormat("#.##");
+
+	private static Double costoAlMinuto = 0.10;
+
 	@Autowired
 	CorsaRepository corsaRepo;
-
 
 	@Autowired
 	PrenotazioneService prenotazioneService;
@@ -32,6 +38,9 @@ public class CorsaService {
 
 	@Autowired
 	BiciService biciService;
+
+	@Autowired
+	ContoService contoService;
 
 	public LocalDateTime iniziaCorsa(Integer idPrenotazione) {
 		Prenotazione p = prenotazioneService.getPrenotazioneById(idPrenotazione);
@@ -48,16 +57,12 @@ public class CorsaService {
 	}
 
 
-	public LocalDateTime finisciCorsa(Integer idPrenotazione) {
+	public String finisciCorsa(Integer idPrenotazione) {
 		Prenotazione p = prenotazioneService.getPrenotazioneById(idPrenotazione);
 		Corsa corsa = corsaRepo.findByPrenotazione(p);
 		Bici bici = biciService.getBici(p.getBici().getId());
-		Rastrelliera rastrellieraPartenza = rastrellieraService.getRastrelliera(p.getRastrellieraPartenza().getId());
-		Rastrelliera rastrellieraArrivo = rastrellieraService.getRastrelliera(p.getRastrellieraArrivo().getId());
-		rastrellieraPartenza.removeBici(bici);
-		rastrellieraService.updateRastrelliera(rastrellieraPartenza.getId(), rastrellieraPartenza);
-		rastrellieraArrivo.addBici(bici);
-		rastrellieraService.updateRastrelliera(rastrellieraArrivo.getId(), rastrellieraArrivo);
+		rastrellieraService.spostaBici(p.getRastrellieraPartenza(), p.getRastrellieraArrivo(), bici);
+
 		bici.setDisponibile(true);
 		biciService.updateBici(bici.getId(), bici);		
 		p.setStatoPrenotazione(StatoPrenotazione.PASSATA);
@@ -66,10 +71,28 @@ public class CorsaService {
 				DateTimeFormatter.ofPattern(FORMATO_DATA));
 		corsa.setFineCorsa(fineCorsa);
 		corsaRepo.save(corsa);
-		return fineCorsa;
+
+		Double importoFineCorsa = this.controllaFineCorsa(p.getOraFine(), fineCorsa);
+		if (importoFineCorsa > 0.0 && !p.getCliente().getRuolo().equals(Ruolo.ROLE_PERSONALE)) {
+			contoService.addebita(p.getCliente().getUsername(), importoFineCorsa);
+			return "Ti è stato addebitata una sanzione di " + df2.format(importoFineCorsa) +
+					"€ perchè hai ritardato la consegna prevista alle: "+p.getOraFine()+
+					" mentre hai riconsegnato alle: "+ fineCorsa;
+		}
+
+		return "Corsa terminata correttamente";
 
 	}
-	
+
+	private Double controllaFineCorsa(LocalDateTime oraFine, LocalDateTime fineCorsa) {
+		double differenzaOre = fineCorsa.getHour() - oraFine.getHour() * costoAlMinuto * 60;
+		double differenzaMinuti = fineCorsa.getMinute() - oraFine.getMinute() * costoAlMinuto;
+		return BigDecimal.valueOf(differenzaOre + differenzaMinuti)
+	            .setScale(3, RoundingMode.HALF_UP)
+	            .doubleValue();
+	}
+
+
 	public List<Corsa> getAllCorse(){
 		List<Corsa> corse= new ArrayList<>();
 		for (Corsa c : corsaRepo.findAll()){

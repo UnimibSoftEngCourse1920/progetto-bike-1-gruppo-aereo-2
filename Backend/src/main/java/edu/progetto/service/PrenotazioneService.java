@@ -2,12 +2,10 @@ package edu.progetto.service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import javax.persistence.EntityNotFoundException;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.json.BasicJsonParser;
 import org.springframework.stereotype.Service;
 
 import edu.progetto.entity.Bici;
@@ -38,6 +36,9 @@ public class PrenotazioneService {
 	@Autowired
 	UtilService utilService;
 
+	@Autowired
+	ContoService contoService;
+
 
 
 	public String prenotaBici(ReservationRequest reservationRequest) {
@@ -49,13 +50,15 @@ public class PrenotazioneService {
 			prenotazione.setOraInizio(utilService.calcolaData(reservationRequest.getOraInizio()));
 			prenotazione.setOraFine(utilService.calcolaData(reservationRequest.getOraFine()));
 			prenotazione.setStatoPrenotazione(StatoPrenotazione.DA_INIZIARE);
-
+			prenotazione.setImporto(reservationRequest.getImporto());
 			Bici bici = biciService.getBici(reservationRequest.getIdBici());
 			bici.setDisponibile(false);
 			biciService.updateBici(reservationRequest.getIdBici(), bici);
 
 			prenotazione.setBici(bici);
 			prenotazioneRepo.save(prenotazione);
+
+			contoService.addebita(reservationRequest.getUsername(), reservationRequest.getImporto());
 
 			return "Prenotazione effettuata con successo";
 		}
@@ -73,20 +76,19 @@ public class PrenotazioneService {
 		return prenotazioni;
 	}
 
-	public List<ReservationResponse> getPrenotazioniByUsername(String usernameJson) {
-		String username = new BasicJsonParser().parseMap(usernameJson).get("username").toString();
+	public List<ReservationResponse> getPrenotazioniByUsername(String username) {
 		List<Prenotazione> miePrenotazione = prenotazioneRepo.findByCliente(clienteRepo.findByUsername(username));
 		List<ReservationResponse> listPrenotazioneResponse = new ArrayList<>();
 		for(Prenotazione p : miePrenotazione) {
-			ReservationResponse prenotazioneResponse= new ReservationResponse(
-					p.getId(),
-					p.getRastrellieraPartenza().getPosizione(),
-					p.getRastrellieraArrivo().getPosizione(),
-					p.getOraInizio().toString(),
-					p.getOraFine().toString(),
-					p.getStatoPrenotazione().toString(),
-					p.getBici().getId());
-
+			ReservationResponse prenotazioneResponse= new ReservationResponse();
+			prenotazioneResponse.setIdPrenotazione(p.getId());
+			prenotazioneResponse.setPosizioneInizio(p.getRastrellieraPartenza().getPosizione());
+			prenotazioneResponse.setPosizioneFine(p.getRastrellieraArrivo().getPosizione());
+			prenotazioneResponse.setOraInizio(p.getOraInizio().toString());
+			prenotazioneResponse.setOraFine(p.getOraFine().toString());
+			prenotazioneResponse.setStatoPrenotazione(p.getStatoPrenotazione().toString());
+			prenotazioneResponse.setIdBici(p.getBici().getId());
+			prenotazioneResponse.setImporto(p.getImporto());
 			listPrenotazioneResponse.add(prenotazioneResponse);
 		}
 
@@ -94,7 +96,6 @@ public class PrenotazioneService {
 	}
 
 	public Prenotazione getPrenotazioneById(Integer idPrenotazione) {
-		//if(idPrenotazione != null && prenotazioneRepo.existsById(idPrenotazione))
 		return prenotazioneRepo.findById(idPrenotazione)
 				.orElseThrow(() -> new EntityNotFoundException());
 
@@ -102,6 +103,7 @@ public class PrenotazioneService {
 
 
 	public void updatePrenotazione(Integer id,Prenotazione p) {
+		prenotazioneRepo.findById(id);
 		prenotazioneRepo.save(p);
 	}
 
