@@ -20,8 +20,6 @@ import edu.progetto.service.UserDetailsServiceImpl;
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(
-		// securedEnabled = true,
-		// jsr250Enabled = true,
 		prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	
@@ -55,11 +53,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 				.exceptionHandling().and().sessionManagement()
 				.sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
 				.authorizeRequests()
-						.antMatchers("/auth/**").permitAll()
-						.antMatchers("/preno/**").permitAll()
-//						.antMatchers("/admin/**").hasRole("ADMIN")
-//						.antMatchers("/student").hasRole("ROLE_STUDENT")
-//						.antMatchers("/generic").hasRole("ROLE_GENERIC")
+						.antMatchers("/").permitAll()
+						.antMatchers("/clienti/**").permitAll()
+//						.antMatchers("/statistiche/**").hasRole("ADMIN")
 						.anyRequest().authenticated();		
 				
 		httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);

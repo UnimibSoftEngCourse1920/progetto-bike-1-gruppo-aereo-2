@@ -17,15 +17,18 @@ public class Bici {
 	private boolean disponibile;
 	
 	private Integer statoBici;
+	
+	private TipologiaBici  tipologia;
 
 
 	public Bici() {
 
 	}
 	
-	public Bici(boolean disponibile, Integer statoBici) {
+	public Bici(boolean disponibile, Integer statoBici, TipologiaBici tipologia) {
 		this.disponibile = disponibile;
 		this.statoBici = statoBici;
+		this.tipologia = tipologia;
 	}
 
 	public Integer getId() {
@@ -51,5 +54,12 @@ public class Bici {
 	public void setDisponibile(boolean disponibile) {
 		this.disponibile = disponibile;
 	}
-	
+
+	public TipologiaBici getTipologia() {
+		return tipologia;
+	}
+
+	public void setTipologia(TipologiaBici tipologia) {
+		this.tipologia = tipologia;
+	}
 }

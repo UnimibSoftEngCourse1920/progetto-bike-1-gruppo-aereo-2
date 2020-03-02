@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import edu.progetto.request.InfoRequest;
 import edu.progetto.request.ReservationRequest;
 import edu.progetto.response.MessageResponse;
 import edu.progetto.response.ReservationResponse;
@@ -17,7 +18,7 @@ import edu.progetto.service.PrenotazioneService;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
-@RequestMapping("/preno")
+@RequestMapping("/prenotazioni")
 public class PrenotazioneController {
 
 	@Autowired
@@ -30,9 +31,9 @@ public class PrenotazioneController {
 	}
 
 
-	@PostMapping(value = "/prenotazioni/mie")
-	public List<ReservationResponse> getAllPrenotazioni(@RequestBody String username){
-		return prenotazioneService.getPrenotazioniByUsername(username);
+	@PostMapping(value = "/mie")
+	public List<ReservationResponse> getAllPrenotazioni(@RequestBody InfoRequest infoRequest){
+		return prenotazioneService.getPrenotazioniByUsername(infoRequest.getUsername());
 	}
 
 

@@ -41,6 +41,7 @@ public class ClienteService {
 	}
 
 	public void updateCliente(Integer id, Cliente c) {
+		clienteRepository.findById(id);
 		clienteRepository.save(c);
 	}
 	

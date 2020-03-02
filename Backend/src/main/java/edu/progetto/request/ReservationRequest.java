@@ -18,6 +18,8 @@ public class ReservationRequest implements Serializable {
 
 	private String oraFine;
 
+	private Double importo;
+
 	public String getPosizionePartenza() {
 		return posizionePartenza;
 	}
@@ -66,14 +68,23 @@ public class ReservationRequest implements Serializable {
 		this.oraFine = oraFine;
 	}
 
+	public Double getImporto() {
+		return importo;
+	}
+
+	public void setImporto(Double importo) {
+		this.importo = importo;
+	}
+
 	public ReservationRequest(String posizionePartenza, String posizioneArrivo, String username, Integer idBici,
-			String oraInizio, String oraFine) {
+			String oraInizio, String oraFine, Double importo) {
 		this.setPosizionePartenza(posizionePartenza);
 		this.setPosizioneArrivo(posizioneArrivo);
 		this.setUsername(username);
 		this.setIdBici(idBici);
 		this.setOraInizio(oraInizio);
 		this.setOraFine(oraFine);
+		this.setImporto(importo);
 	}
 
 	public ReservationRequest() {
