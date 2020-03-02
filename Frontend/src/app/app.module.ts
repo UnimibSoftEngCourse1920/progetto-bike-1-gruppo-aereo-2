@@ -10,6 +10,9 @@ import { UserGuard } from './Guardie/user.guard';
 import { AdminGuard } from './Guardie/admin.guard';
 import { LoginService } from './Service/login.service';
 import { TokenService } from './Service/token.service';
+import { BikeService } from './Service/bike.service';
+import { ContoService } from './Service/conto.service';
+
 import { RegistrationComponent } from './registration/registration.component';
 import { ModalComponent } from './modal/modal.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -41,6 +44,7 @@ import { AdminComponent } from './admin/admin.component';
     BrowserAnimationsModule
   ],
   providers: [LoginService, AdminGuard,
+    BikeService, ContoService,
     UserGuard, {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenService,

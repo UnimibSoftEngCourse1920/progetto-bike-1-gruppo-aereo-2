@@ -1,21 +1,26 @@
-<div id="formPadding" class="container">
-    <form>
-       <div class="form-group">
-          <label for="numero">Numero Carta</label>
-          <input type="text" class="form-control" id="numero">
+
+ <div class="container mt-5">
+   <h2>Ricarica Conto</h2>
+   <div class="row mt-5">
+      <div class="col-md-4">
+         <button (click)="ricarica(5)" class="btn btn-primary btn-block">Ricarica 5.00 €</button>
        </div>
-       <div class="form-group">
-          <label for="importo">Importo</label>
-          <input type="number" class="form-control" id="importo" [(ngModel)]="importo" name="importo">
+       <div class="col-md-4">
+         <button (click)="ricarica(10)" class="btn btn-primary btn-block">Ricarica 10.00 €</button>
        </div>
-       <div class="form-group" id="special">
-        <label for="tipoCarta">Tipo Carta</label>
-        <select class="form-control" id="tipoCarta">
-           <option>VISA</option>
-           <option>MASTERCARD</option>
-           <option>PAGO BANCOMAT</option>
-        </select>
+     <div class="col-md-4">
+       <button (click)="ricarica(20)" class="btn btn-primary btn-block">Ricarica 20.00 €</button>
+     </div>  
+   </div>
+   <div class="row mt-5">
+    <div class="col-md-4">
+      <button (click)="ricarica(30)" class="btn btn-primary btn-block">Ricarica 30.00 €</button>
+    </div>
+     <div class="col-md-4">
+       <button (click)="ricarica(40)" class="btn btn-primary btn-block">Ricarica 40.00 €</button>
      </div>
-       <button type="submit" class="btn btn-primary" (click)="ricarica()">Ricarica</button>
-    </form>
+     <div class="col-md-4">
+       <button (click)="ricarica(50)" class="btn btn-primary btn-block">Ricarica 50.00 €</button>
+     </div>    
+   </div>
  </div>

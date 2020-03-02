@@ -9,8 +9,4 @@ export class AdminService {
 
   constructor(private http: HttpClient) { }
 
-  ricarica(importo) {
-    console.log(importo)
-    return this.http.post<any>(this._API, importo)
-  }
 }
