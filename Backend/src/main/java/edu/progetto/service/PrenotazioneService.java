@@ -10,25 +10,25 @@ import org.springframework.stereotype.Service;
 
 import edu.progetto.entity.Bici;
 import edu.progetto.entity.Prenotazione;
+import edu.progetto.entity.Ruolo;
 import edu.progetto.entity.StatoPrenotazione;
-import edu.progetto.repository.ClienteRepository;
 import edu.progetto.repository.PrenotazioneRepository;
-import edu.progetto.repository.RastrellieraRepository;
+import edu.progetto.request.FiltersRequest;
 import edu.progetto.request.ReservationRequest;
+import edu.progetto.response.FiltersResponse;
 import edu.progetto.response.ReservationResponse;
 
 @Service
-@SuppressWarnings(value = { })
 public class PrenotazioneService {
 
 	@Autowired
-	ClienteRepository clienteRepo;
+	ClienteService clienteService;
 
 	@Autowired
 	PrenotazioneRepository prenotazioneRepo;
 
 	@Autowired
-	RastrellieraRepository rastrellieraRepo;
+	RastrellieraService rastrellieraService;
 
 	@Autowired
 	BiciService biciService;
@@ -46,9 +46,11 @@ public class PrenotazioneService {
 			Bici bici = biciService.getBici(reservationRequest.getIdBici());
 			if(bici.isDisponibile()) {
 				Prenotazione prenotazione = new Prenotazione();
-				prenotazione.setCliente(clienteRepo.findByUsername(reservationRequest.getUsername()));
-				prenotazione.setRastrellieraPartenza(rastrellieraRepo.findByPosizione(reservationRequest.getPosizionePartenza()));
-				prenotazione.setRastrellieraArrivo(rastrellieraRepo.findByPosizione(reservationRequest.getPosizioneArrivo()));
+				prenotazione.setCliente(clienteService.findByUsername(reservationRequest.getUsername()));
+				prenotazione.setRastrellieraPartenza(rastrellieraService.findByPosizione(
+						reservationRequest.getPosizionePartenza()));
+				prenotazione.setRastrellieraArrivo(rastrellieraService.findByPosizione(
+						reservationRequest.getPosizioneArrivo()));
 				prenotazione.setOraInizio(utilService.calcolaData(reservationRequest.getOraInizio()));
 				prenotazione.setOraFine(utilService.calcolaData(reservationRequest.getOraFine()));
 				prenotazione.setStatoPrenotazione(StatoPrenotazione.DA_INIZIARE);
@@ -81,7 +83,8 @@ public class PrenotazioneService {
 	}
 
 	public List<ReservationResponse> getPrenotazioniByUsername(String username) {
-		List<Prenotazione> miePrenotazione = prenotazioneRepo.findByCliente(clienteRepo.findByUsername(username));
+		List<Prenotazione> miePrenotazione = prenotazioneRepo.findByCliente
+				(clienteService.findByUsername(username));
 		List<ReservationResponse> listPrenotazioneResponse = new ArrayList<>();
 		for(Prenotazione p : miePrenotazione) {
 			ReservationResponse prenotazioneResponse= new ReservationResponse();
@@ -110,5 +113,15 @@ public class PrenotazioneService {
 		prenotazioneRepo.findById(id);
 		prenotazioneRepo.save(p);
 	}
-
+	
+	public FiltersResponse searchFilters(FiltersRequest filtersRequest) {
+		FiltersResponse filtersResponse = new FiltersResponse();
+		filtersResponse.setListaBici(rastrellieraService.getAllBiciDisponibili(
+				filtersRequest.getPosizioneInizio()));
+		if(filtersRequest.getRuolo().equals(Ruolo.ROLE_PERSONALE.toString()))
+			filtersResponse.setImporto(0.00);
+		else 
+			filtersResponse.setImporto(utilService.calcolaImporto(filtersRequest.getOraInizio(),filtersRequest.getOraFine()));
+		return filtersResponse;
+	}
 }
