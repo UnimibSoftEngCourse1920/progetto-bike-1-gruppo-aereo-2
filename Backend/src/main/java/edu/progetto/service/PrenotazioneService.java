@@ -43,24 +43,28 @@ public class PrenotazioneService {
 
 	public String prenotaBici(ReservationRequest reservationRequest) {
 		try {
-			Prenotazione prenotazione = new Prenotazione();
-			prenotazione.setCliente(clienteRepo.findByUsername(reservationRequest.getUsername()));
-			prenotazione.setRastrellieraPartenza(rastrellieraRepo.findByPosizione(reservationRequest.getPosizionePartenza()));
-			prenotazione.setRastrellieraArrivo(rastrellieraRepo.findByPosizione(reservationRequest.getPosizioneArrivo()));
-			prenotazione.setOraInizio(utilService.calcolaData(reservationRequest.getOraInizio()));
-			prenotazione.setOraFine(utilService.calcolaData(reservationRequest.getOraFine()));
-			prenotazione.setStatoPrenotazione(StatoPrenotazione.DA_INIZIARE);
-			prenotazione.setImporto(reservationRequest.getImporto());
 			Bici bici = biciService.getBici(reservationRequest.getIdBici());
-			bici.setDisponibile(false);
-			biciService.updateBici(reservationRequest.getIdBici(), bici);
+			if(bici.isDisponibile()) {
+				Prenotazione prenotazione = new Prenotazione();
+				prenotazione.setCliente(clienteRepo.findByUsername(reservationRequest.getUsername()));
+				prenotazione.setRastrellieraPartenza(rastrellieraRepo.findByPosizione(reservationRequest.getPosizionePartenza()));
+				prenotazione.setRastrellieraArrivo(rastrellieraRepo.findByPosizione(reservationRequest.getPosizioneArrivo()));
+				prenotazione.setOraInizio(utilService.calcolaData(reservationRequest.getOraInizio()));
+				prenotazione.setOraFine(utilService.calcolaData(reservationRequest.getOraFine()));
+				prenotazione.setStatoPrenotazione(StatoPrenotazione.DA_INIZIARE);
+				prenotazione.setImporto(reservationRequest.getImporto());
 
-			prenotazione.setBici(bici);
-			prenotazioneRepo.save(prenotazione);
+				bici.setDisponibile(false);
+				biciService.updateBici(reservationRequest.getIdBici(), bici);
 
-			contoService.addebita(reservationRequest.getUsername(), reservationRequest.getImporto());
+				prenotazione.setBici(bici);
+				prenotazioneRepo.save(prenotazione);
 
-			return "Prenotazione effettuata con successo";
+				contoService.addebita(reservationRequest.getUsername(), reservationRequest.getImporto());
+
+				return "Prenotazione effettuata con successo";
+			}
+			return "Bici già prenotata";
 		}
 		catch(Exception e) {
 			return "Errore durante la prenotazione";
@@ -84,8 +88,8 @@ public class PrenotazioneService {
 			prenotazioneResponse.setIdPrenotazione(p.getId());
 			prenotazioneResponse.setPosizioneInizio(p.getRastrellieraPartenza().getPosizione());
 			prenotazioneResponse.setPosizioneFine(p.getRastrellieraArrivo().getPosizione());
-			prenotazioneResponse.setOraInizio(p.getOraInizio().toString());
-			prenotazioneResponse.setOraFine(p.getOraFine().toString());
+			prenotazioneResponse.setOraInizio(p.getOraInizio());
+			prenotazioneResponse.setOraFine(p.getOraFine());
 			prenotazioneResponse.setStatoPrenotazione(p.getStatoPrenotazione().toString());
 			prenotazioneResponse.setIdBici(p.getBici().getId());
 			prenotazioneResponse.setImporto(p.getImporto());

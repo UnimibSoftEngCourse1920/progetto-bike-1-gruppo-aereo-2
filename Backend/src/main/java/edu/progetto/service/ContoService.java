@@ -40,6 +40,10 @@ public class ContoService {
 		return conto.getSaldo();
 	}
 	
+	public void addConto(Conto c) {
+		contoRepo.save(c);
+	}
+	
 	
 	
 	

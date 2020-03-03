@@ -8,6 +8,7 @@ class ProgettoBike1ApplicationTests {
 
 	@Test
 	void contextLoads() {
+		
 	}
 
 }

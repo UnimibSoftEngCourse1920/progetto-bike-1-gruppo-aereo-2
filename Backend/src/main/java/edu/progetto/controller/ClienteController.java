@@ -20,12 +20,12 @@ import edu.progetto.dto.ClienteDTO;
 import edu.progetto.entity.Cliente;
 import edu.progetto.entity.Conto;
 import edu.progetto.exception.ExistingUserException;
-import edu.progetto.repository.ClienteRepository;
-import edu.progetto.repository.ContoRepository;
 import edu.progetto.request.AuthenticationRequest;
 import edu.progetto.response.AuthenticationResponse;
 import edu.progetto.response.MessageResponse;
 import edu.progetto.security.JwtUtil;
+import edu.progetto.service.ClienteService;
+import edu.progetto.service.ContoService;
 import edu.progetto.service.UserDetailsImpl;
 import edu.progetto.service.UserDetailsServiceImpl;
 
@@ -48,10 +48,10 @@ public class ClienteController {
 	UserDetailsServiceImpl userDetailsService;
 	
 	@Autowired
-	private ClienteRepository clienteRepo;
+	private ClienteService clienteService;
 	
 	@Autowired
-	private ContoRepository contoRepo;
+	private ContoService contoService;
 	
 	
 	@PostMapping(value = "/signin")
@@ -73,23 +73,23 @@ public class ClienteController {
 
 		return ResponseEntity.ok(new AuthenticationResponse(jwt,
 															userDetails.getUsername(),
-															clienteRepo.findByUsername(userDetails.getUsername()).getRuolo().name()));
+															clienteService.findByUsername(userDetails.getUsername()).getRuolo().name()));
 	}
 	
 	@PostMapping(value = "/signup")
 	public ResponseEntity<MessageResponse> saveUser(@RequestBody ClienteDTO clienteDTO){
-		if (Boolean.TRUE.equals(clienteRepo.existsByUsername(clienteDTO.getUsername()))){
+		if (Boolean.TRUE.equals(clienteService.existsByUsername(clienteDTO.getUsername()))){
 			 throw new ExistingUserException("Username exists: "+clienteDTO.getUsername());
 		}
-		if (Boolean.TRUE.equals(clienteRepo.existsByEmail(clienteDTO.getEmail()))){
+		if (Boolean.TRUE.equals(clienteService.existsByEmail(clienteDTO.getEmail()))){
 			 throw new ExistingUserException("Email already registered: "+clienteDTO.getEmail());
 		}
 		
 		clienteDTO.setPassword(encoder.encode(clienteDTO.getPassword()));
 		Cliente cliente = new Cliente(clienteDTO);
 		Conto conto = new Conto(cliente, 0.00);
-		contoRepo.save(conto);
-		clienteRepo.save(cliente);
+		contoService.addConto(conto);
+		clienteService.addCliente(cliente);
 		
 		
 		

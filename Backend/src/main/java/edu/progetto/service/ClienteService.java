@@ -49,5 +49,16 @@ public class ClienteService {
 		clienteRepository.deleteById(id);
 	}
 	
+	public boolean existsByUsername(String username) {
+		return clienteRepository.existsByUsername(username);
+	}
+	
+	public boolean existsByEmail(String email) {
+		return clienteRepository.existsByEmail(email);
+	}
+	
+	public Cliente findByUsername(String username) {
+		return clienteRepository.findByUsername(username);
+	}
 }
 
