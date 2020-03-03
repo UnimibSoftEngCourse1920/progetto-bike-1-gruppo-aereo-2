@@ -10,8 +10,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import edu.progetto.request.FiltersRequest;
 import edu.progetto.request.InfoRequest;
 import edu.progetto.request.ReservationRequest;
+import edu.progetto.response.FiltersResponse;
 import edu.progetto.response.MessageResponse;
 import edu.progetto.response.ReservationResponse;
 import edu.progetto.service.PrenotazioneService;
@@ -35,6 +37,13 @@ public class PrenotazioneController {
 	public List<ReservationResponse> getAllPrenotazioni(@RequestBody InfoRequest infoRequest){
 		return prenotazioneService.getPrenotazioniByUsername(infoRequest.getUsername());
 	}
+
+	@PostMapping(value = "/filtra")
+	public FiltersResponse searchFilters(@RequestBody FiltersRequest filtersRequest){
+		return prenotazioneService.searchFilters(filtersRequest);
+	}
+
+
 
 
 

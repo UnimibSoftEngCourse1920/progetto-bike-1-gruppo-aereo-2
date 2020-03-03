@@ -1,10 +1,8 @@
 package edu.progetto.service;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
+
 import java.text.DecimalFormat;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,11 +19,7 @@ import edu.progetto.repository.CorsaRepository;
 @Service
 public class CorsaService {
 
-	private static final String FORMATO_DATA = "yyyy-MM-dd HH:mm";
-
 	private static DecimalFormat df2 = new DecimalFormat("#.##");
-
-	private static Double costoAlMinuto = 0.10;
 
 	@Autowired
 	CorsaRepository corsaRepo;
@@ -42,14 +36,15 @@ public class CorsaService {
 	@Autowired
 	ContoService contoService;
 
+	@Autowired
+	UtilService utilService;
+
 	public LocalDateTime iniziaCorsa(Integer idPrenotazione) {
 		Prenotazione p = prenotazioneService.getPrenotazioneById(idPrenotazione);
 		p.setStatoPrenotazione(StatoPrenotazione.IN_CORSO);
 		prenotazioneService.updatePrenotazione(p.getId(), p);
-
 		Corsa corsa = new Corsa();
-		LocalDateTime inizioCorsa = LocalDateTime.parse(LocalDateTime.now().format(DateTimeFormatter.ofPattern(FORMATO_DATA)),
-				DateTimeFormatter.ofPattern(FORMATO_DATA));
+		LocalDateTime inizioCorsa = utilService.getData();
 		corsa.setInizioCorsa(inizioCorsa);
 		corsa.setPrenotazione(p);
 		corsaRepo.save(corsa);
@@ -67,12 +62,11 @@ public class CorsaService {
 		biciService.updateBici(bici.getId(), bici);		
 		p.setStatoPrenotazione(StatoPrenotazione.PASSATA);
 		prenotazioneService.updatePrenotazione(p.getId(), p);
-		LocalDateTime fineCorsa = LocalDateTime.parse(LocalDateTime.now().format(DateTimeFormatter.ofPattern(FORMATO_DATA)),
-				DateTimeFormatter.ofPattern(FORMATO_DATA));
+		LocalDateTime fineCorsa = utilService.getData();
 		corsa.setFineCorsa(fineCorsa);
 		corsaRepo.save(corsa);
 
-		Double importoFineCorsa = this.controllaFineCorsa(p.getOraFine(), fineCorsa);
+		Double importoFineCorsa = utilService.calcolaImporto(p.getOraFine(), fineCorsa);
 		if (importoFineCorsa > 0.0 && !p.getCliente().getRuolo().equals(Ruolo.ROLE_PERSONALE)) {
 			contoService.addebita(p.getCliente().getUsername(), importoFineCorsa);
 			return "Ti è stato addebitata una sanzione di " + df2.format(importoFineCorsa) +
@@ -83,15 +77,6 @@ public class CorsaService {
 		return "Corsa terminata correttamente";
 
 	}
-
-	private Double controllaFineCorsa(LocalDateTime oraFine, LocalDateTime fineCorsa) {
-		double differenzaOre = fineCorsa.getHour() - oraFine.getHour() * costoAlMinuto * 60;
-		double differenzaMinuti = fineCorsa.getMinute() - oraFine.getMinute() * costoAlMinuto;
-		return BigDecimal.valueOf(differenzaOre + differenzaMinuti)
-	            .setScale(3, RoundingMode.HALF_UP)
-	            .doubleValue();
-	}
-
 
 	public List<Corsa> getAllCorse(){
 		List<Corsa> corse= new ArrayList<>();

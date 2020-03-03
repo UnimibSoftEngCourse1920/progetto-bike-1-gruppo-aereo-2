@@ -27,11 +27,6 @@ public class RastrellieraController {
 		return rastrellieraService.getVieRastrelliere();
 	}
 	
-	@PostMapping("/rastrelliere/bici")
-	public List<Bici> getBiciRastrelliera(@RequestBody String posizione){
-		return rastrellieraService.getAllBiciDisponibili(posizione);
-	}
-	
 	@GetMapping("/rastrelliere/info")
 	public List<Rastrelliera> getAllRastrelliere(){
 		return rastrellieraService.getAllRastrelliere();
