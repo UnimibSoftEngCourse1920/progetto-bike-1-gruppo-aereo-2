@@ -24,6 +24,9 @@
       <li class="nav-item">
         <a class="nav-link" *ngIf="_service.loggedIn()" style="cursor:pointer" (click)="_service.logout()">Logout</a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/dashboard" *ngIf="_service.isAdmin()">Mie Prenotazioni</a>
+      </li>
     </ul>
   </div>
 </nav>

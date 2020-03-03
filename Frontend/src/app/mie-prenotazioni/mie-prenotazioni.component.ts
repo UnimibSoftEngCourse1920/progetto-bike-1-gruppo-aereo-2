@@ -17,7 +17,7 @@ export class MiePrenotazioniComponent implements OnInit {
   prenotazioni = [];
 
   ngOnInit() {
-    this._bikeService.postPrenotazioni(this._service.getUser())
+    this._bikeService.postMiePrenotazioni(this._service.getUser())
       .subscribe(
         res => this.prenotazioni = res,
         err => {
@@ -30,16 +30,16 @@ export class MiePrenotazioniComponent implements OnInit {
       )
   }
 
-  inizia(id) {
-    this._bikeService.inizia(id)
+  inizia(stato) {
+    this._bikeService.inizia(stato)
       .subscribe(
         res => this._router.navigate(['/mie-prenotazioni']),
         err => this._router.navigate(['/mie-prenotazioni'])
       )
   }
 
-  termina(id) {
-    this._bikeService.termina(id)
+  termina(stato) {
+    this._bikeService.termina(stato)
       .subscribe(
         res => this._router.navigate(['/mie-prenotazioni']),
         err => this._router.navigate(['/mie-prenotazioni'])

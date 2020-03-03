@@ -7,8 +7,8 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class LoginService {
-  private _loginAPI = "http://localhost:8080/auth/signin";
-  private _registrationAPI = "http://localhost:8080/auth/signup";
+  private _loginAPI = "http://localhost:8080/clienti/signin";
+  private _registrationAPI = "http://localhost:8080/clienti/signup";
 
   constructor(private _router: Router,
     private http: HttpClient) { }

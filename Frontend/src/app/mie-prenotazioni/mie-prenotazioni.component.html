@@ -1,24 +1,27 @@
-<div class="container">
-   <div class="container">
-      <table class="table table-striped">
-         <thead>
+<div id="n" class="jumbotron">
+   <div id="wrapper" class="container-fluid">
+      <table class="table">
+         <thead class="thead-dark">
             <tr>
-               <th>Rastrelliera Inizio</th>
-               <th>Rastrelliera Fine</th>
-               <th>Ora Inizio</th>
-               <th>Ora Fine</th>
+               <th scope="col">Rastrelliera Inizio</th>
+               <th scope="col">Rastrelliera Fine</th>
+               <th scope="col">Ora Inizio</th>
+               <th scope="col">Ora Fine</th>
+               <th scope="col">Importo</th>
             </tr>
          </thead>
          <tbody>
             <tr *ngFor="let prenotazione of prenotazioni">
-               <td>{{prenotazione.rastrellieraInizio}}</td>
-               <td>{{prenotazione.rastrellieraFine}}</td>
+               <th scope="row">{{prenotazione.posizioneInizio}}</th>
+               <td>{{prenotazione.posizioneFine}}</td>
                <td>{{prenotazione.oraInizio}}</td>
                <td>{{prenotazione.oraFine}}</td>
-               <td>{{prenotazione.stato}}</td>
-               <td> <button class="btn btn-danger" (click)="termina(prenotazione.id)" *ngIf="_bikeService.inCorso(prenotazione.stato)"
+               <td>{{prenotazione.importo}}</td>
+               <td> <button class="btn btn-danger" (click)="termina(prenotazione.idPrenotazione)"
+                     *ngIf="!!_bikeService.inCorso(prenotazione.statoPrenotazione)"
                      style="margin-left: 20px;">Termina</button></td>
-               <td> <button class="btn btn-success" (click)="inizia(prenotazione.id)" *ngIf="_bikeService.daIniziare(prenotazione.stato)"
+               <td> <button class="btn btn-success" (click)="inizia(prenotazione.idPrenotazione)"
+                     *ngIf="!!_bikeService.daIniziare(prenotazione.statoPrenotazione, prenotazione.oraInizio)"
                      style="margin-left: 20px;">Inizia</button></td>
             </tr>
          </tbody>

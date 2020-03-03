@@ -1,52 +1,73 @@
 <div id="formPadding" class="container">
-    <form >
-       <div class="form-row">
-          <div class="form-group col-md-6">
-             <label for="rastrellieraInizio">Rastrelliera Inizio</label>
-             <select class="form-control" id="rastrellieraInizio" [(ngModel)]="filters.rastrellieraInizio" name="rastrellieraInizio">
+   <form>
+      <div class="form-row">
+         <div class="form-group col-md-6">
+            <label for="rastrellieraInizio">Rastrelliera Inizio</label>
+            <select class="form-control" id="rastrellieraInizio" [(ngModel)]="filters.rastrellieraInizio"
+               name="rastrellieraInizio">
                <option></option>
                <option *ngFor="let rastrelliera of rastrelliere">{{rastrelliera}}</option>
-             </select>
-          </div>
-          <div class="form-group col-md-6">
-             <label for="rastrellieraFine">Rastrelliera Fine</label>
-             <select class="form-control" id="rastrellieraFine" [(ngModel)]="filters.rastrellieraFine" name="rastrellieraFine">
+            </select>
+         </div>
+         <div class="form-group col-md-6">
+            <label for="rastrellieraFine">Rastrelliera Fine</label>
+            <select class="form-control" id="rastrellieraFine" [(ngModel)]="filters.rastrellieraFine"
+               name="rastrellieraFine">
                <option></option>
                <option *ngFor="let rastrelliera of rastrelliere">{{rastrelliera}}</option>
-             </select>          
-          </div>
-       </div>
-       <div class="form-row">
-          <div class="form-group col-md-6">
-             <label for="oraInizio">Ora Inizio</label>
-             <input type="time" class="form-control" id="oraInizio" [(ngModel)]="filters.oraInizio" name="oraInizio"  required="required">
-          </div>
-          <div class="form-group col-md-6">
-             <label for="oraFine">Ora Fine</label>
-             <input type="time" class="form-control" id="oraFine" [(ngModel)]="filters.oraFine" name="oraFine"  required="required">
-          </div>
-       </div>
-       <button class="btn btn-primary" type="submit"(click)=postPrenotazioni()>Cerca</button>
-    </form>
- </div>
- <div class="container">
-    <div class="container">
-       <table class="table table-striped">
-          <thead>
-             <tr>
-                <th>Id</th>
-                <th>Tipologia</th>
-                <th>Stato</th>
-             </tr>
-          </thead>
-          <tbody>
-             <tr *ngFor="let bici_one of bici">
-                <td>{{bici_one.id}}</td>
-                <td>{{bici_one.tipologia}}</td>
-                <td>{{bici_one.stato}}</td>
-                <td> <button class="btn btn-success" (click)="prenota(bici_one.id)" style="margin-left: 20px;">Prenota</button></td>
-             </tr>
-          </tbody>
-       </table>
-    </div>
- </div>
+            </select>
+         </div>
+      </div>
+      <div class="form-row">
+         <div class="form-group col-md-6">
+            <label for="oraInizio">Ora Inizio</label>
+            <input type="time" class="form-control" id="oraInizio" [(ngModel)]="filters.oraInizio" name="oraInizio"
+               required="required">
+         </div>
+         <div class="form-group col-md-6">
+            <label for="oraFine">Ora Fine</label>
+            <input type="time" class="form-control" id="oraFine" [(ngModel)]="filters.oraFine" name="oraFine"
+               required="required">
+         </div>
+      </div>
+      <button class="btn btn-primary" type="submit" (click)=postPrenotazioni()>Cerca</button>
+   </form>
+</div>
+<div class="container">
+   <div class="container">
+      <table class="table table-striped">
+         <thead>
+            <tr>
+               <th>Id</th>
+               <th>Tipologia</th>
+               <th>Stato</th>
+               <th>Importo</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr *ngFor="let bici_one of bici">
+               <td>{{bici_one.id}}</td>
+               <td>
+                  <div class='row' [ngSwitch]="bici_one.tipologia">
+                     <div *ngSwitchCase="'MOUNTAIN_BIKE'">Mountain Bike</div>
+                     <div *ngSwitchCase="'DA_CORSA'">Da Corsa</div>
+                     <div *ngSwitchCase="'CITTA'">Città</div>
+                  </div>
+               </td>
+               <td>
+                  <div class='row' [ngSwitch]="bici_one.statoBici">
+                     <div *ngSwitchCase="1">Condizioni Sufficienti</div>
+                     <div *ngSwitchCase="2">Condizioni Buone</div>
+                     <div *ngSwitchCase="3">Condizioni Buone</div>
+                     <div *ngSwitchCase="4">Condizioni Ottime</div>
+                     <div *ngSwitchCase="5">Condizioni Perfette</div>
+                  </div>
+               </td>
+               <td>{{importo}}</td>
+               <td> <button class="btn btn-success" (click)="prenota(bici_one.id)"
+                     style="margin-left: 20px;">Prenota</button></td>
+            </tr>
+         </tbody>
+      </table>
+   </div>
+</div>

@@ -10,6 +10,9 @@ import { UserGuard } from './Guardie/user.guard';
 import { AdminGuard } from './Guardie/admin.guard';
 import { LoginService } from './Service/login.service';
 import { TokenService } from './Service/token.service';
+import { BikeService } from './Service/bike.service';
+import { ContoService } from './Service/conto.service';
+
 import { RegistrationComponent } from './registration/registration.component';
 import { ModalComponent } from './modal/modal.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -18,7 +21,9 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { PrenotazioneComponent } from './prenotazione/prenotazione.component';
 import { MiePrenotazioniComponent } from './mie-prenotazioni/mie-prenotazioni.component';
 import { ContoComponent } from './conto/conto.component';
-import { AdminComponent } from './admin/admin.component';
+import { HomeComponent } from './home/home.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { ManutenzioneComponent } from './manutenzione/manutenzione.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +34,9 @@ import { AdminComponent } from './admin/admin.component';
     PrenotazioneComponent,
     MiePrenotazioniComponent,
     ContoComponent,
-    AdminComponent,
+    HomeComponent,
+    DashboardComponent,
+    ManutenzioneComponent,
   ],
   imports: [
     BrowserModule,
@@ -41,6 +48,7 @@ import { AdminComponent } from './admin/admin.component';
     BrowserAnimationsModule
   ],
   providers: [LoginService, AdminGuard,
+    BikeService, ContoService,
     UserGuard, {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenService,
