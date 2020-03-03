@@ -62,8 +62,8 @@ public class CorsaService {
 		Corsa corsa = corsaRepo.findByPrenotazione(p);
 		Bici bici = biciService.getBici(p.getBici().getId());
 		rastrellieraService.spostaBici(p.getRastrellieraPartenza(), p.getRastrellieraArrivo(), bici);
-
 		bici.setDisponibile(true);
+		bici.setStatoBici(bici.getStatoBici() - 1);
 		biciService.updateBici(bici.getId(), bici);		
 		p.setStatoPrenotazione(StatoPrenotazione.PASSATA);
 		prenotazioneService.updatePrenotazione(p.getId(), p);

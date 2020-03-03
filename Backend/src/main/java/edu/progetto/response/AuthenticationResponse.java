@@ -1,7 +1,7 @@
 package edu.progetto.response;
 
 import java.io.Serializable;
-import java.util.List;
+
 
 public class AuthenticationResponse implements Serializable {
 

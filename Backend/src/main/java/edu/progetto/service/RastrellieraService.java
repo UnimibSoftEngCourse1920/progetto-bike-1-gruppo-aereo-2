@@ -45,7 +45,7 @@ public class RastrellieraService {
 				new BasicJsonParser().parseMap(posizione).get("posizione").toString());
 		List<Bici> bici = new ArrayList<>();
 		for(Bici b : rastrelliera.getListaBici()) {
-			if(b.isDisponibile())
+			if(b.isDisponibile() && b.getStatoBici() > 2)
 				bici.add(b);
 		}
 		return bici;

@@ -1,6 +1,7 @@
 package edu.progetto.response;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 public class ReservationResponse implements Serializable{
 
@@ -9,14 +10,14 @@ public class ReservationResponse implements Serializable{
 	private Integer idPrenotazione;
 	private String posizioneInizio;
 	private String posizioneFine;
-	private String oraInizio;
-	private String oraFine;
+	private LocalDateTime oraInizio;
+	private LocalDateTime oraFine;
 	private String statoPrenotazione;
 	private Integer idBici;
 	private Double importo;
 
-	public ReservationResponse(Integer idPrenotazione, String posizioneInizio, String posizioneFine, String oraInizio,
-			String oraFine, Integer idBici, Double importo) {
+	public ReservationResponse(Integer idPrenotazione, String posizioneInizio, String posizioneFine, LocalDateTime oraInizio,
+			LocalDateTime oraFine, Integer idBici, Double importo) {
 		this.idPrenotazione = idPrenotazione;
 		this.posizioneInizio = posizioneInizio;
 		this.posizioneFine = posizioneFine;
@@ -46,16 +47,16 @@ public class ReservationResponse implements Serializable{
 	public void setPosizioneFine(String posizioneFine) {
 		this.posizioneFine = posizioneFine;
 	}
-	public String getOraInizio() {
+	public LocalDateTime getOraInizio() {
 		return oraInizio;
 	}
-	public void setOraInizio(String oraInizio) {
+	public void setOraInizio(LocalDateTime oraInizio) {
 		this.oraInizio = oraInizio;
 	}
-	public String getOraFine() {
+	public LocalDateTime getOraFine() {
 		return oraFine;
 	}
-	public void setOraFine(String oraFine) {
+	public void setOraFine(LocalDateTime oraFine) {
 		this.oraFine = oraFine;
 	}
 
