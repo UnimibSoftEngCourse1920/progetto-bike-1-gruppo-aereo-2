@@ -21,7 +21,9 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { PrenotazioneComponent } from './prenotazione/prenotazione.component';
 import { MiePrenotazioniComponent } from './mie-prenotazioni/mie-prenotazioni.component';
 import { ContoComponent } from './conto/conto.component';
-import { AdminComponent } from './admin/admin.component';
+import { HomeComponent } from './home/home.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { ManutenzioneComponent } from './manutenzione/manutenzione.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,9 @@ import { AdminComponent } from './admin/admin.component';
     PrenotazioneComponent,
     MiePrenotazioniComponent,
     ContoComponent,
-    AdminComponent,
+    HomeComponent,
+    DashboardComponent,
+    ManutenzioneComponent,
   ],
   imports: [
     BrowserModule,

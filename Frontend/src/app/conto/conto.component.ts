@@ -11,6 +11,8 @@ export class ContoComponent implements OnInit {
 
   constructor(private _conto: ContoService) { }
   handler: any = null;
+  conto = {};
+
   ngOnInit() {
     this.loadStripe();
   }
@@ -51,5 +53,13 @@ export class ContoComponent implements OnInit {
       }
       window.document.body.appendChild(s);
     }
+  }
+
+  getConto(){
+    this._conto.getConto()
+    .subscribe(
+      res => this.conto=res.importo,
+      err => console.log(err)
+    )
   }
 }

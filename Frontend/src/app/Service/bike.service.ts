@@ -6,10 +6,10 @@ import { LoginService } from './login.service'
 })
 export class BikeService {
   private _prenotazioniAPI = "http://localhost:8080/rastrelliere/bici";
-  private _miePrenotazioniAPI = "http://localhost:8080/preno/prenotazioni/mie";
+  private _miePrenotazioniAPI = "http://localhost:8080/prenotazioni/mie";
   private _terminaPrenotazioneAPI = "http://localhost:8080/finisci-corsa";
   private _iniziaPrenotazioneAPI = "http://localhost:8080/inizia-corsa";
-  private _prenotaAPI = "http://localhost:8080/preno/prenota";
+  private _prenotaAPI = "http://localhost:8080/prenotazioni/prenota";
   private _rastrelliereAPI = "http://localhost:8080/rastrelliere";
 
   constructor(private http: HttpClient,
@@ -39,15 +39,15 @@ export class BikeService {
   }
 
   postMiePrenotazioni(username) {
-    return this.http.post<any>(this._miePrenotazioniAPI, JSON.stringify({ username: username }))
+    return this.http.post<any>(this._miePrenotazioniAPI, { username: username })
   }
 
   termina(id) {
-    return this.http.put<any>(this._terminaPrenotazioneAPI, JSON.stringify({ idPrenotazione: id }))
+    return this.http.put<any>(this._terminaPrenotazioneAPI, { idPrenotazione: id })
   }
 
   inizia(id) {
-    return this.http.put<any>(this._iniziaPrenotazioneAPI, JSON.stringify({ idPrenotazione: id }))
+    return this.http.post<any>(this._iniziaPrenotazioneAPI, { idPrenotazione: id })
   }
 
   prenota(prenotazione) {
@@ -61,7 +61,7 @@ export class BikeService {
       let inzioMinuti = +inizio.substring(3, 5)
       let fineOra = +fine.substring(0, 2)
       let fineMinuti = +fine.substring(3, 5)
-      return (((fineOra - inzioOra) * 60 + fineMinuti - inzioMinuti) * 0.3).toFixed(2)
+      return (((fineOra - inzioOra) * 60 + fineMinuti - inzioMinuti) * 0.1).toFixed(2)
     }
     return 0.0.toFixed(2);
   }
@@ -74,7 +74,8 @@ export class BikeService {
   }
 
   daIniziare(stato, oraInizio) {
-    if (stato == 'DA_INIZIARE' && oraInizio <= new Date)
+    console.log(oraInizio)
+    if (stato == 'DA_INIZIARE'  )
       return true
     else
       return false

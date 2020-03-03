@@ -41,6 +41,7 @@
                <th>Id</th>
                <th>Tipologia</th>
                <th>Stato</th>
+               <th>Importo</th>
             </tr>
          </thead>
          <tbody>
@@ -62,6 +63,7 @@
                      <div *ngSwitchCase="5">Condizioni Perfette</div>
                   </div>
                </td>
+               <td>{{importo}}</td>
                <td> <button class="btn btn-success" (click)="prenota(bici_one.id)"
                      style="margin-left: 20px;">Prenota</button></td>
             </tr>

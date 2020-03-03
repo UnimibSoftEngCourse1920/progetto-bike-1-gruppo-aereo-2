@@ -8,7 +8,8 @@ import { RegistrationComponent } from './registration/registration.component'
 import { PrenotazioneComponent } from './prenotazione/prenotazione.component'
 import { MiePrenotazioniComponent } from './mie-prenotazioni/mie-prenotazioni.component';
 import { ContoComponent } from './conto/conto.component';
-import { AdminComponent } from './admin/admin.component';
+import { HomeComponent } from './home/home.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 
 
@@ -27,6 +28,10 @@ const routes: Routes = [{
   component: RegistrationComponent
 },
 {
+  path: '',
+  component: HomeComponent
+},
+{
   path: 'prenotazione',
   //canActivate: [UserGuard],
   component: PrenotazioneComponent
@@ -37,9 +42,9 @@ const routes: Routes = [{
   component: ContoComponent
 },
 {
-  path: 'admin',
+  path: 'dashboard',
   //canActivate: [AdminGuard],
-  component: AdminComponent
+  component: DashboardComponent
 },
 {
   path: 'modal',

@@ -38,7 +38,7 @@ export class PrenotazioneComponent implements OnInit {
       this._bikeService.postPrenotazioni({ posizione: this.filters.rastrellieraInizio })
         .subscribe(
           res => {
-          this.importo = this._bikeService.calcolaImporto(this.filters.oraInizio, this.filters.oraFine)
+            this.importo = this._bikeService.calcolaImporto(this.filters.oraInizio, this.filters.oraFine)
             this.bici = res
           },
           err => this._router.navigate(['/prenotazione'])
@@ -50,14 +50,13 @@ export class PrenotazioneComponent implements OnInit {
   }
 
   prenota(bici_id) {
-    this.bici[1].stato="";
     let prenotazione = {
       posizionePartenza: this.filters.rastrellieraInizio, posizioneArrivo: this.filters.rastrellieraInizio,
       username: localStorage.getItem("username"), idBici: bici_id, oraInizio: this.filters.oraInizio, oraFine: this.filters.oraFine, importo: this.importo
     }
     this._bikeService.prenota(prenotazione)
       .subscribe(
-        res => this._router.navigate(['/prenotazione']),
+        res => this.postPrenotazioni(),
         err => this._router.navigate(['/prenotazione'])
       )
   }
