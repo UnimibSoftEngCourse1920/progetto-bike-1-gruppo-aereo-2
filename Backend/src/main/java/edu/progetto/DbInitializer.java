@@ -62,30 +62,109 @@ public class DbInitializer implements CommandLineRunner {
 		
 		
 		
-		Rastrelliera rastrelliera1 = new Rastrelliera("Via Carducci");
-		Rastrelliera rastrelliera2 = new Rastrelliera("Via Manzoni");
+		Rastrelliera rastrelliera1 = new Rastrelliera("Via Pitagora");
+		Rastrelliera rastrelliera2 = new Rastrelliera("Via Socrate");
+		Rastrelliera rastrelliera3 = new Rastrelliera("Via Platone");
+		Rastrelliera rastrelliera4 = new Rastrelliera("Via Aristotele");
+		Rastrelliera rastrelliera5 = new Rastrelliera("Via Talete");
 		
 		Bici bici1 = new Bici(true,5,TipologiaBici.CITTA);
-		Bici bici2 = new Bici(true,2,TipologiaBici.DA_CORSA);
+		Bici bici2 = new Bici(true,5,TipologiaBici.DA_CORSA);
 		Bici bici3 = new Bici(true,5,TipologiaBici.MOUNTAIN_BIKE);
 		Bici bici4 = new Bici(true,4,TipologiaBici.CITTA);
+		Bici bici5 = new Bici(true,4,TipologiaBici.CITTA);
+		
+		Bici bici6 = new Bici(true,5,TipologiaBici.CITTA);
+		Bici bici7 = new Bici(true,5,TipologiaBici.DA_CORSA);
+		Bici bici8 = new Bici(true,5,TipologiaBici.MOUNTAIN_BIKE);
+		Bici bici9 = new Bici(true,4,TipologiaBici.CITTA);
+		Bici bici10 = new Bici(true,4,TipologiaBici.CITTA);
+
+
+		Bici bici11 = new Bici(true,5,TipologiaBici.CITTA);
+		Bici bici12 = new Bici(true,5,TipologiaBici.DA_CORSA);
+		Bici bici13 = new Bici(true,5,TipologiaBici.MOUNTAIN_BIKE);
+		Bici bici14 = new Bici(true,4,TipologiaBici.CITTA);
+		Bici bici15 = new Bici(true,4,TipologiaBici.CITTA);
+		
+		Bici bici16 = new Bici(true,5,TipologiaBici.CITTA);
+		Bici bici17 = new Bici(true,5,TipologiaBici.DA_CORSA);
+		Bici bici18 = new Bici(true,5,TipologiaBici.MOUNTAIN_BIKE);
+		Bici bici19 = new Bici(true,4,TipologiaBici.CITTA);
+		Bici bici20 = new Bici(true,4,TipologiaBici.CITTA);
+		
+		Bici bici21 = new Bici(true,5,TipologiaBici.CITTA);
+		Bici bici22 = new Bici(true,5,TipologiaBici.DA_CORSA);
+		Bici bici23 = new Bici(true,5,TipologiaBici.MOUNTAIN_BIKE);
+		Bici bici24 = new Bici(true,4,TipologiaBici.CITTA);
+		Bici bici25 = new Bici(true,4,TipologiaBici.CITTA);
 		
 		this.biciRepo.save(bici1);
 		this.biciRepo.save(bici2);	
 		this.biciRepo.save(bici3);
 		this.biciRepo.save(bici4);
+		this.biciRepo.save(bici5);
+		
+		this.biciRepo.save(bici6);
+		this.biciRepo.save(bici7);	
+		this.biciRepo.save(bici8);
+		this.biciRepo.save(bici9);
+		this.biciRepo.save(bici10);
+		
+		this.biciRepo.save(bici11);
+		this.biciRepo.save(bici12);	
+		this.biciRepo.save(bici13);
+		this.biciRepo.save(bici14);
+		this.biciRepo.save(bici15);
+		
+		this.biciRepo.save(bici16);
+		this.biciRepo.save(bici17);	
+		this.biciRepo.save(bici18);
+		this.biciRepo.save(bici19);
+		this.biciRepo.save(bici20);
+		
+		this.biciRepo.save(bici21);
+		this.biciRepo.save(bici22);	
+		this.biciRepo.save(bici23);
+		this.biciRepo.save(bici24);
+		this.biciRepo.save(bici25);
+		
 		
 		rastrelliera1.addBici(bici1);
 		rastrelliera1.addBici(bici2);
 		rastrelliera1.addBici(bici3);
-		rastrelliera2.addBici(bici4);
+		rastrelliera1.addBici(bici4);
+		rastrelliera1.addBici(bici5);
+		
+		rastrelliera1.addBici(bici6);
+		rastrelliera1.addBici(bici7);
+		rastrelliera1.addBici(bici8);
+		rastrelliera1.addBici(bici9);
+		rastrelliera1.addBici(bici10);
+		
+		rastrelliera1.addBici(bici11);
+		rastrelliera1.addBici(bici12);
+		rastrelliera1.addBici(bici13);
+		rastrelliera1.addBici(bici14);
+		rastrelliera1.addBici(bici15);
+		
+		rastrelliera1.addBici(bici16);
+		rastrelliera1.addBici(bici17);
+		rastrelliera1.addBici(bici18);
+		rastrelliera1.addBici(bici19);
+		rastrelliera1.addBici(bici20);
+		
+		rastrelliera1.addBici(bici21);
+		rastrelliera1.addBici(bici22);
+		rastrelliera1.addBici(bici23);
+		rastrelliera1.addBici(bici24);
+		rastrelliera1.addBici(bici25);
 		
 		this.rastrellieraRepo.save(rastrelliera1);
 		this.rastrellieraRepo.save(rastrelliera2);
-		
-		
-	}
-	
-	
+		this.rastrellieraRepo.save(rastrelliera3);
+		this.rastrellieraRepo.save(rastrelliera4);
+		this.rastrellieraRepo.save(rastrelliera5);
 
+	}
 }

@@ -97,16 +97,16 @@ public class CorsaService {
 		int numNotte = 0;
 
 		PieResponse  notte = new PieResponse();
-		notte.setFasciaOraria("00:00 - 06:00");
+		notte.setName("00:00 - 06:00");
 
 		PieResponse mattina = new PieResponse();
-		mattina.setFasciaOraria("06:00 - 12:00");
+		mattina.setName("06:00 - 12:00");
 
 		PieResponse pomeriggio = new PieResponse();
-		pomeriggio.setFasciaOraria("12:00 - 18:00");
+		pomeriggio.setName("12:00 - 18:00");
 
 		PieResponse sera = new PieResponse();
-		sera.setFasciaOraria("18:00 - 24:00");
+		sera.setName("18:00 - 24:00");
 
 		for (Corsa c : corsaRepo.findAll()){
 			if(c.getInizioCorsa().getHour() <= LocalTime.parse("06:00").getHour())
@@ -121,10 +121,10 @@ public class CorsaService {
 				numSera++;	
 		}
 		
-		notte.setValore(numNotte);
-		mattina.setValore(numMattina);
-		pomeriggio.setValore(numPomeriggio);
-		sera.setValore(numSera);
+		notte.setY(numNotte);
+		mattina.setY(numMattina);
+		pomeriggio.setY(numPomeriggio);
+		sera.setY(numSera);
 		
 		listPieResponse.add(notte);
 		listPieResponse.add(mattina);

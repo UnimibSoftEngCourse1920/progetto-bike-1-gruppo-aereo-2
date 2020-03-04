@@ -3,6 +3,7 @@ package edu.progetto.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import edu.progetto.entity.Bici;
 import edu.progetto.request.IdRequest;
+import edu.progetto.response.MessageResponse;
 import edu.progetto.response.ReallocationResponse;
 import edu.progetto.service.BiciService;
 import edu.progetto.service.RastrellieraService;
@@ -29,9 +31,9 @@ public class ManutenzioneController {
 	private BiciService biciService;
 
 	@GetMapping("/rialloca")
-	public String riallocaRastrelliere() {
+	public ResponseEntity<MessageResponse> riallocaRastrelliere() {
 		rastrellieraService.rialloca();
-		return "Rastrelliere riallocate con successo";
+		return ResponseEntity.ok(new MessageResponse("Rastrelliere riallocate con successo"));
 	}
 
 	@GetMapping("/rastrelliere-bici")
@@ -46,9 +48,9 @@ public class ManutenzioneController {
 	}
 	
 	@PostMapping("/ripara")
-	public String riparaBici(IdRequest idRequest) {
+	public ResponseEntity<MessageResponse> riparaBici(IdRequest idRequest) {
 		this.biciService.riparaBici(idRequest.getId());
-		return "Bici nuovamente disponibile";
+		return ResponseEntity.ok(new MessageResponse("Bici nuovamente disponibile"));
 	}
 	
 
