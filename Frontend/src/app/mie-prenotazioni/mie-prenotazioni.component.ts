@@ -19,15 +19,14 @@ export class MiePrenotazioniComponent implements OnInit {
     this._bikeService.postMiePrenotazioni(this._service.getUser())
       .subscribe(
         res => this.prenotazioni = res,
-        err => this._router.navigate(['/login'])
+        err => console.log(err)
       )
   }
 
-  inizia(stato) {
-    this._bikeService.inizia(stato)
+  inizia(id) {
+    this._bikeService.inizia(id)
       .subscribe(
         res => {
-          alert(res.message)
            this._bikeService.postMiePrenotazioni(this._service.getUser())
             .subscribe(
               res => this.prenotazioni = res,
@@ -38,8 +37,8 @@ export class MiePrenotazioniComponent implements OnInit {
       )
   }
 
-  termina(stato) {
-    this._bikeService.termina(stato)
+  termina(id) {
+    this._bikeService.termina(id)
       .subscribe(
         res => {
         alert(res.message)

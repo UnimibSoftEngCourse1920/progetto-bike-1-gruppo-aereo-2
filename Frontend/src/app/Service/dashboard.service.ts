@@ -6,8 +6,8 @@ import { HttpClient } from '@angular/common/http'
 })
 export class DashboardService {
 
-  private tortaApi = '';
-  private barApi = 'http://localhost:8080/dashboard/boh';
+  private tortaApi = 'http://localhost:8080/dashboard/pie';
+  private barApi = 'http://localhost:8080/dashboard/histogram';
 
   constructor(private http: HttpClient) { }
 

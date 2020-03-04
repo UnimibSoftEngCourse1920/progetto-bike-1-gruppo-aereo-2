@@ -12,6 +12,9 @@ import { LoginService } from './Service/login.service';
 import { TokenService } from './Service/token.service';
 import { BikeService } from './Service/bike.service';
 import { ContoService } from './Service/conto.service';
+import { AbbonamentiService } from './Service/abbonamenti.service';
+import { DashboardService } from './Service/dashboard.service';
+import { ManutenzioneService } from './Service/manutenzione.service';
 
 import { RegistrationComponent } from './registration/registration.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -21,6 +24,7 @@ import { ContoComponent } from './conto/conto.component';
 import { HomeComponent } from './home/home.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ManutenzioneComponent } from './manutenzione/manutenzione.component';
+import { AbbonamentiComponent } from './abbonamenti/abbonamenti.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +37,7 @@ import { ManutenzioneComponent } from './manutenzione/manutenzione.component';
     HomeComponent,
     DashboardComponent,
     ManutenzioneComponent,
+    AbbonamentiComponent,
   ],
   imports: [
     BrowserModule,
@@ -42,7 +47,8 @@ import { ManutenzioneComponent } from './manutenzione/manutenzione.component';
     BrowserAnimationsModule
   ],
   providers: [LoginService, AdminGuard,
-    BikeService, ContoService,
+    BikeService, ContoService, AbbonamentiService,
+    DashboardService, ManutenzioneService,
     UserGuard, {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenService,

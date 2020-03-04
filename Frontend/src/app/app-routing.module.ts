@@ -10,6 +10,7 @@ import { ContoComponent } from './conto/conto.component';
 import { HomeComponent } from './home/home.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ManutenzioneComponent } from './manutenzione/manutenzione.component';
+import { AbbonamentiComponent } from './abbonamenti/abbonamenti.component';
 
 
 
@@ -30,6 +31,11 @@ const routes: Routes = [{
 {
   path: '',
   component: HomeComponent
+},
+{
+  path: 'abbonamenti',
+  //canActivate: [UserGuard],
+  component: AbbonamentiComponent
 },
 {
   path: 'prenotazione',

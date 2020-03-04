@@ -8,10 +8,10 @@ export class ManutenzioneService {
 
   constructor(private http: HttpClient) { }
 
-  private _riparaBiciAPI = '';
-  private _riallocaAPI = '';
-  private _getRastrelliereAPI = '';
-  private _getBiciAPI = '';
+  private _riparaBiciAPI = 'http://localhost:8080/manutenzione/ripara';
+  private _riallocaAPI = 'http://localhost:8080/manutenzione/rialloca';
+  private _getRastrelliereAPI = 'http://localhost:8080/manutenzione/rastrelliere-bici';
+  private _getBiciAPI = 'http://localhost:8080/manutenzione/bici';
 
   getBiciDaRiparare() {
     return this.http.get<any>(this._getBiciAPI)

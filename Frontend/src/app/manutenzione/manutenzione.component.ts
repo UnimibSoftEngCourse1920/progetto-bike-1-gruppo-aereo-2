@@ -32,7 +32,7 @@ export class ManutenzioneComponent implements OnInit {
         res => { alert(res.message)
           this._manutenzioneService.getBiciDaRiparare()
           .subscribe(
-            res => this.biciDaRiparare = res,
+            res2 => this.biciDaRiparare = res2,
           )
         },
         err => alert(err.message)
@@ -42,15 +42,13 @@ export class ManutenzioneComponent implements OnInit {
   rialloca() {
     this._manutenzioneService.rialloca()
       .subscribe(
-        res => {
+        res => { alert(res)
           this._manutenzioneService.getRastrelliere()
           .subscribe(
-            res => this.rastrelliere = res,
-            err => { }
+            res2 => this.rastrelliere = res2,
           )
-        },
-        err => alert(err.message)
-      )
+        }
+              )
   }
 
 }

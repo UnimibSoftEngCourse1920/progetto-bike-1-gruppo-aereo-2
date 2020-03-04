@@ -45,11 +45,11 @@ export class BikeService {
   }
 
   termina(id) {
-    return this.http.post<any>(this._terminaPrenotazioneAPI, { id: id })
+    return this.http.put<any>(this._terminaPrenotazioneAPI, { id: id })
   }
 
   postMiePrenotazioni(user) {
-    return this.http.post<any>(this._miePrenotazioniAPI, user)
+    return this.http.post<any>(this._miePrenotazioniAPI, {username: user})
   }
 
   prenota(prenotazione) {
