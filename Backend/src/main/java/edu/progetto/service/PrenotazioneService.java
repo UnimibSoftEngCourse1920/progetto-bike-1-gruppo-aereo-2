@@ -46,7 +46,7 @@ public class PrenotazioneService {
 		try {
 			Bici bici = biciService.getBici(reservationRequest.getIdBici());
 			if(bici.isDisponibile()) {
-				if (contoService.getSaldoDisponibile(reservationRequest.getUsername()) <= reservationRequest.getImporto()) {
+				if (contoService.getSaldoDisponibile(reservationRequest.getUsername()) >= reservationRequest.getImporto()) {
 					Prenotazione prenotazione = new Prenotazione();
 					prenotazione.setCliente(clienteService.findByUsername(reservationRequest.getUsername()));
 					prenotazione.setRastrellieraPartenza(rastrellieraService.findByPosizione(
