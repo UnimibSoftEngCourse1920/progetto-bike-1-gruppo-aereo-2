@@ -6,13 +6,13 @@ import { HttpClient } from '@angular/common/http'
 })
 export class DashboardService {
 
-  private tortaApi = '';
-  private lineApi = '';
+  private tortaApi = 'http://localhost:8080/dashboard/pie';
+  private barApi = 'http://localhost:8080/dashboard/histogram';
 
   constructor(private http: HttpClient) { }
 
   getGraficoLinee() {
-    return this.http.get<any>(this.lineApi)
+    return this.http.get<any>(this.barApi)
   }
 
   getGraficoTorta() {

@@ -6,15 +6,15 @@ import { LoginService } from './login.service'
   providedIn: 'root'
 })
 export class ContoService {
-  private _ricaricaAPI = "http://localhost:8080/ricarica";
-  private _contoAPI = "http://localhost:8080/ricarica";
+  private _ricaricaAPI = "http://localhost:8080/conto/ricarica";
+  private _contoAPI = "http://localhost:8080/conto/saldo";
 
 
   constructor(private http: HttpClient,
     private _service: LoginService) { }
 
   ricarica(importo) {
-    return this.http.post<any>(this._ricaricaAPI, {importo: importo, username: this._service.getUser()})
+    return this.http.post<any>(this._ricaricaAPI, {username: this._service.getUser(), importo: importo})
   }
 
   getConto(){

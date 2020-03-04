@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { BikeService } from '../Service/bike.service';
-import { HttpErrorResponse } from '@angular/common/http';
 import { LoginService } from '../Service/login.service'
 
 @Component({
@@ -20,29 +19,36 @@ export class MiePrenotazioniComponent implements OnInit {
     this._bikeService.postMiePrenotazioni(this._service.getUser())
       .subscribe(
         res => this.prenotazioni = res,
-        err => {
-          if (err instanceof HttpErrorResponse) {
-            if (err.status === 401) {
-              this._router.navigate(['/login'])
-            }
-          }
-        }
+        err => console.log(err)
       )
   }
 
-  inizia(stato) {
-    this._bikeService.inizia(stato)
+  inizia(id) {
+    this._bikeService.inizia(id)
       .subscribe(
-        res => this._router.navigate(['/mie-prenotazioni']),
-        err => this._router.navigate(['/mie-prenotazioni'])
+        res => {
+           this._bikeService.postMiePrenotazioni(this._service.getUser())
+            .subscribe(
+              res => this.prenotazioni = res,
+              err => alert(err.message)
+            )
+          },
+        err => console.log(err)
       )
   }
 
-  termina(stato) {
-    this._bikeService.termina(stato)
+  termina(id) {
+    this._bikeService.termina(id)
       .subscribe(
-        res => this._router.navigate(['/mie-prenotazioni']),
-        err => this._router.navigate(['/mie-prenotazioni'])
+        res => {
+        alert(res.message)
+         this._bikeService.postMiePrenotazioni(this._service.getUser())
+          .subscribe(
+            res => this.prenotazioni = res,
+            err => alert(err.message)
+          )
+        },
+        err => alert(err.message)
       )
   }
 }

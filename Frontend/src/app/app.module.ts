@@ -12,49 +12,47 @@ import { LoginService } from './Service/login.service';
 import { TokenService } from './Service/token.service';
 import { BikeService } from './Service/bike.service';
 import { ContoService } from './Service/conto.service';
+import { AbbonamentiService } from './Service/abbonamenti.service';
+import { DashboardService } from './Service/dashboard.service';
+import { ManutenzioneService } from './Service/manutenzione.service';
 
 import { RegistrationComponent } from './registration/registration.component';
-import { ModalComponent } from './modal/modal.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatButtonModule } from '@angular/material/button';
-import { MatDialogModule } from '@angular/material/dialog';
 import { PrenotazioneComponent } from './prenotazione/prenotazione.component';
 import { MiePrenotazioniComponent } from './mie-prenotazioni/mie-prenotazioni.component';
 import { ContoComponent } from './conto/conto.component';
 import { HomeComponent } from './home/home.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ManutenzioneComponent } from './manutenzione/manutenzione.component';
+import { AbbonamentiComponent } from './abbonamenti/abbonamenti.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegistrationComponent,
-    ModalComponent,
     PrenotazioneComponent,
     MiePrenotazioniComponent,
     ContoComponent,
     HomeComponent,
     DashboardComponent,
     ManutenzioneComponent,
+    AbbonamentiComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     FormsModule,
     AppRoutingModule,
-    MatButtonModule,
-    MatDialogModule,
     BrowserAnimationsModule
   ],
   providers: [LoginService, AdminGuard,
-    BikeService, ContoService,
+    BikeService, ContoService, AbbonamentiService,
+    DashboardService, ManutenzioneService,
     UserGuard, {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenService,
       multi: true
-    }], bootstrap: [AppComponent],
-  entryComponents: [ModalComponent]
-
+    }], bootstrap: [AppComponent]
 })
 export class AppModule { }

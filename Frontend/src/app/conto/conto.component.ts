@@ -11,10 +11,11 @@ export class ContoComponent implements OnInit {
 
   constructor(private _conto: ContoService) { }
   handler: any = null;
-  conto = {};
+  conto = 0;
 
   ngOnInit() {
     this.loadStripe();
+    this.getConto();
   }
 
   ricarica(importo) {
@@ -24,8 +25,8 @@ export class ContoComponent implements OnInit {
       locale: 'auto',
       token: (token: any) => {
         this._conto.ricarica(importo).subscribe(
-          res => alert('Ricarica!!'),
-          err => alert('No!!')
+          res => alert(res.message),
+          err => alert(err.message)
         )
       }
     });
@@ -55,11 +56,11 @@ export class ContoComponent implements OnInit {
     }
   }
 
-  getConto(){
+  getConto() {
     this._conto.getConto()
-    .subscribe(
-      res => this.conto=res.importo,
-      err => console.log(err)
-    )
+      .subscribe(
+        res => this.conto = res,
+        err => console.log(err)
+      )
   }
 }
