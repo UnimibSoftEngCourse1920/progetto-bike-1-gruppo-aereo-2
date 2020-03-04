@@ -41,7 +41,7 @@ export class MiePrenotazioniComponent implements OnInit {
   termina(stato) {
     this._bikeService.termina(stato)
       .subscribe(
-        res => this._router.navigate(['/mie-prenotazioni']),
+        res => alert(res.message),
         err => this._router.navigate(['/mie-prenotazioni'])
       )
   }

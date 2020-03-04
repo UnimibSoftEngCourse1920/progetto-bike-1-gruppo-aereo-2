@@ -34,12 +34,14 @@ export class PrenotazioneComponent implements OnInit {
 
   postPrenotazioni() {
     if (this._bikeService.validaFiltri(this.filters.oraInizio)) {
-      console.log(JSON.stringify({ posizione: this.filters.rastrellieraInizio }))
-      this._bikeService.postPrenotazioni({ posizione: this.filters.rastrellieraInizio })
+      this._bikeService.postPrenotazioni({ruolo: localStorage.getItem('ruolo'),
+      posizioneInizio: this.filters.rastrellieraInizio, oraInizio: this.filters.oraInizio, 
+      oraFine: this.filters.oraFine })
         .subscribe(
           res => {
-            this.importo = this._bikeService.calcolaImporto(this.filters.oraInizio, this.filters.oraFine)
-            this.bici = res
+            console.log(res)
+            this.bici = res.listaBici
+            this.importo = res.importo
           },
           err => this._router.navigate(['/prenotazione'])
         )
@@ -56,7 +58,8 @@ export class PrenotazioneComponent implements OnInit {
     }
     this._bikeService.prenota(prenotazione)
       .subscribe(
-        res => this.postPrenotazioni(),
+        res => {alert(res.message)
+          this.postPrenotazioni()},
         err => this._router.navigate(['/prenotazione'])
       )
   }

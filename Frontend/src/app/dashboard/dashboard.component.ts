@@ -49,9 +49,7 @@ export class DashboardComponent implements OnInit {
       },
       data: [{
         type: "column",
-        dataPoints: [
-          this.graficoLinee
-        ]
+        dataPoints: this.graficoLinee
       }]
     });
       

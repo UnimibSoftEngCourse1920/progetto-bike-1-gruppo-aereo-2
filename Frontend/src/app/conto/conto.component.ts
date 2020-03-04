@@ -11,10 +11,11 @@ export class ContoComponent implements OnInit {
 
   constructor(private _conto: ContoService) { }
   handler: any = null;
-  conto = {};
+  conto = 0;
 
   ngOnInit() {
     this.loadStripe();
+    this.getConto();
   }
 
   ricarica(importo) {
@@ -58,7 +59,7 @@ export class ContoComponent implements OnInit {
   getConto(){
     this._conto.getConto()
     .subscribe(
-      res => this.conto=res.importo,
+      res => this.conto=res,
       err => console.log(err)
     )
   }

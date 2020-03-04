@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
 import { LoginService } from './login.service'
+import { getLocaleDateTimeFormat } from '@angular/common';
 @Injectable({
   providedIn: 'root'
 })
 export class BikeService {
-  private _prenotazioniAPI = "http://localhost:8080/rastrelliere/bici";
+  private _prenotazioniAPI = "http://localhost:8080/prenotazioni/filtra";
   private _miePrenotazioniAPI = "http://localhost:8080/prenotazioni/mie";
   private _terminaPrenotazioneAPI = "http://localhost:8080/finisci-corsa";
   private _iniziaPrenotazioneAPI = "http://localhost:8080/inizia-corsa";
@@ -15,8 +16,8 @@ export class BikeService {
   constructor(private http: HttpClient,
     private _service: LoginService) { }
 
-  postPrenotazioni(rastrelliera) {
-    return this.http.post<any>(this._prenotazioniAPI, JSON.stringify(rastrelliera))
+  postPrenotazioni(filtri) {
+    return this.http.post<any>(this._prenotazioniAPI, filtri)
   }
 
   getRastrelliere() {
@@ -55,17 +56,6 @@ export class BikeService {
 
   }
 
-  calcolaImporto(inizio, fine) {
-    if (this._service.getRuolo() == 'ROLE_GENERICO') {
-      let inzioOra = +inizio.substring(0, 2)
-      let inzioMinuti = +inizio.substring(3, 5)
-      let fineOra = +fine.substring(0, 2)
-      let fineMinuti = +fine.substring(3, 5)
-      return (((fineOra - inzioOra) * 60 + fineMinuti - inzioMinuti) * 0.1).toFixed(2)
-    }
-    return 0.0.toFixed(2);
-  }
-
   inCorso(stato) {
     if (stato == 'IN_CORSO')
       return true
@@ -73,9 +63,14 @@ export class BikeService {
       return false
   }
 
-  daIniziare(stato, oraInizio) {
-    console.log(oraInizio)
-    if (stato == 'DA_INIZIARE'  )
+  daIniziare(stato, oraPrenotazione) {
+    let dataCorrente = new Date()
+    let oraInizio= + oraPrenotazione.substring(11,13)
+    let minutiInizio= + oraPrenotazione.substring(14,16)
+    let oraCorrente= + dataCorrente.getHours()
+    let minutiCorrente= + dataCorrente.getMinutes()
+
+    if (stato == 'DA_INIZIARE' && ((oraInizio < oraCorrente) || (oraInizio==oraCorrente && minutiInizio <= minutiCorrente) ))
       return true
     else
       return false
