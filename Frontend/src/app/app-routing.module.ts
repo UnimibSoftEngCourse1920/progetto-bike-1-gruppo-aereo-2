@@ -3,13 +3,13 @@ import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { UserGuard } from './Guardie/user.guard';
 import { AdminGuard } from './Guardie/admin.guard';
-import { ModalComponent } from './modal/modal.component'
 import { RegistrationComponent } from './registration/registration.component'
 import { PrenotazioneComponent } from './prenotazione/prenotazione.component'
 import { MiePrenotazioniComponent } from './mie-prenotazioni/mie-prenotazioni.component';
 import { ContoComponent } from './conto/conto.component';
 import { HomeComponent } from './home/home.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { ManutenzioneComponent } from './manutenzione/manutenzione.component';
 
 
 
@@ -42,13 +42,14 @@ const routes: Routes = [{
   component: ContoComponent
 },
 {
+  path: 'manutenzione',
+  //canActivate: [AdminGuard],
+  component: ManutenzioneComponent
+},
+{
   path: 'dashboard',
   //canActivate: [AdminGuard],
   component: DashboardComponent
-},
-{
-  path: 'modal',
-  component: ModalComponent
 }
 ];
 

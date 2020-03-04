@@ -1,11 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { BikeService } from '../Service/bike.service';
-import { HttpErrorResponse } from '@angular/common/http';
-import { LoginService } from '../Service/login.service';
 import { IFilter } from '../Interface/IFilter';
-import { ModalComponent } from '../modal/modal.component'
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-prenotazione',
@@ -20,55 +16,47 @@ export class PrenotazioneComponent implements OnInit {
   importo = {};
 
   constructor(private _router: Router,
-    private _bikeService: BikeService,
-    private matDialog: MatDialog,
-    private _service: LoginService) { }
+    private _bikeService: BikeService) { }
   ngOnInit() {
     this._bikeService.getRastrelliere()
       .subscribe(
-        res => this.rastrelliere = res,
-        err => {
-        }
+        res => this.rastrelliere = res
       )
   }
 
   postPrenotazioni() {
-    if (this._bikeService.validaFiltri(this.filters.oraInizio)) {
-      this._bikeService.postPrenotazioni({ruolo: localStorage.getItem('ruolo'),
-      posizioneInizio: this.filters.rastrellieraInizio, oraInizio: this.filters.oraInizio, 
-      oraFine: this.filters.oraFine })
+    if (this._bikeService.validaFiltri(this.filters.oraInizio, this.filters.oraFine)) {
+      let filtri = {
+        ruolo: localStorage.getItem('ruolo'),
+        posizioneInizio: this.filters.rastrellieraInizio, oraInizio: this.filters.oraInizio,
+        oraFine: this.filters.oraFine
+      }
+      this._bikeService.postPrenotazioni(filtri)
         .subscribe(
           res => {
-            console.log(res)
             this.bici = res.listaBici
             this.importo = res.importo
           },
           err => this._router.navigate(['/prenotazione'])
         )
     } else {
-      localStorage.setItem("modalMessage", "Errore nell'inserimento dei filtri, seguire le istruzioni in calce")
-      this.openModal()
+      alert("Errore nell'inserimento dei filtri")
     }
   }
 
   prenota(bici_id) {
     let prenotazione = {
       posizionePartenza: this.filters.rastrellieraInizio, posizioneArrivo: this.filters.rastrellieraInizio,
-      username: localStorage.getItem("username"), idBici: bici_id, oraInizio: this.filters.oraInizio, oraFine: this.filters.oraFine, importo: this.importo
+      username: localStorage.getItem("username"), idBici: bici_id, oraInizio: this.filters.oraInizio,
+      oraFine: this.filters.oraFine, importo: this.importo
     }
     this._bikeService.prenota(prenotazione)
       .subscribe(
-        res => {alert(res.message)
-          this.postPrenotazioni()},
-        err => this._router.navigate(['/prenotazione'])
+        res => {
+          alert(res.message)
+          this.postPrenotazioni()
+        },
+        err => alert("Prenotazione non avvenuta")
       )
   }
-
-  openModal() {
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.disableClose = false;
-    dialogConfig.id = "modal-component";
-    this.matDialog.open(ModalComponent, dialogConfig);
-  }
-
 }

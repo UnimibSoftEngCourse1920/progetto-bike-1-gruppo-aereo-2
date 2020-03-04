@@ -14,10 +14,7 @@ import { BikeService } from './Service/bike.service';
 import { ContoService } from './Service/conto.service';
 
 import { RegistrationComponent } from './registration/registration.component';
-import { ModalComponent } from './modal/modal.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatButtonModule } from '@angular/material/button';
-import { MatDialogModule } from '@angular/material/dialog';
 import { PrenotazioneComponent } from './prenotazione/prenotazione.component';
 import { MiePrenotazioniComponent } from './mie-prenotazioni/mie-prenotazioni.component';
 import { ContoComponent } from './conto/conto.component';
@@ -30,7 +27,6 @@ import { ManutenzioneComponent } from './manutenzione/manutenzione.component';
     AppComponent,
     LoginComponent,
     RegistrationComponent,
-    ModalComponent,
     PrenotazioneComponent,
     MiePrenotazioniComponent,
     ContoComponent,
@@ -43,8 +39,6 @@ import { ManutenzioneComponent } from './manutenzione/manutenzione.component';
     HttpClientModule,
     FormsModule,
     AppRoutingModule,
-    MatButtonModule,
-    MatDialogModule,
     BrowserAnimationsModule
   ],
   providers: [LoginService, AdminGuard,
@@ -53,8 +47,6 @@ import { ManutenzioneComponent } from './manutenzione/manutenzione.component';
       provide: HTTP_INTERCEPTORS,
       useClass: TokenService,
       multi: true
-    }], bootstrap: [AppComponent],
-  entryComponents: [ModalComponent]
-
+    }], bootstrap: [AppComponent]
 })
 export class AppModule { }

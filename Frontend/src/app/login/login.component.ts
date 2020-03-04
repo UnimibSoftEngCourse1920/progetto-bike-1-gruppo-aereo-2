@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
           this._service.saveToken(res.jwt)
           this._router.navigate(['/prenotazione'])
         },
-        err => console.log(err)
+        err => alert("username o password errati")
       )
   }
 

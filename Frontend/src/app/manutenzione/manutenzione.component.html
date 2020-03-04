@@ -1,1 +1,38 @@
-<p>manutenzione works!</p>
+<div id="n" class="jumbotron">
+    <div id="wrapper" class="container-fluid">
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Tipologia</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let one_bici of bici">
+                    <th scope="row">{{one_bici.id}}</th>
+                    <td>{{one_bici.tipologia}}</td>
+                    <td> <button class="btn btn-success" (click)="ripara(one_bici.id)" style="margin-left: 20px;">Inizia</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div id="n" class="jumbotron">
+    <div id="wrapper" class="container-fluid">
+        <button type="button" (click)="rialloca()" class="btn btn-primary btn-lg btn-block">Rialloca</button>
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Rastrelliera</th>
+                    <th scope="col">Tipologia</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let rastrelliera of rastrelliere">
+                    <th scope="row">{{rastrelliera.nome}}</th>
+                    <td>{{rastrelliera.numero}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

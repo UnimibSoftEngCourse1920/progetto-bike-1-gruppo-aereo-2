@@ -12,35 +12,45 @@ export class ManutenzioneComponent implements OnInit {
   constructor(private _router: Router,
     private _manutenzioneService: ManutenzioneService) { }
 
-  prenotazioni = [];
+  rastrelliere = [];
+  biciDaRiparare = []
 
   ngOnInit() {
     this._manutenzioneService.getRastrelliere()
       .subscribe(
-        res => this.prenotazioni = res,
-        err => { }
+        res => this.rastrelliere = res,
       )
-      this._manutenzioneService.getBiciDaRiparare()
+    this._manutenzioneService.getBiciDaRiparare()
       .subscribe(
-        res => this.prenotazioni = res,
-        err => { }
-      )
-  }
-/*
-  inizia(stato) {
-    this._bikeService.inizia(stato)
-      .subscribe(
-        res => this._router.navigate(['/mie-prenotazioni']),
-        err => this._router.navigate(['/mie-prenotazioni'])
+        res => this.biciDaRiparare = res,
       )
   }
 
-  termina(stato) {
-    this._bikeService.termina(stato)
+  ripara(idBici) {
+    this._manutenzioneService.ripara(idBici)
       .subscribe(
-        res => this._router.navigate(['/mie-prenotazioni']),
-        err => this._router.navigate(['/mie-prenotazioni'])
+        res => { alert(res.message)
+          this._manutenzioneService.getBiciDaRiparare()
+          .subscribe(
+            res => this.biciDaRiparare = res,
+          )
+        },
+        err => alert(err.message)
       )
-  }*/
+  }
+
+  rialloca() {
+    this._manutenzioneService.rialloca()
+      .subscribe(
+        res => {
+          this._manutenzioneService.getRastrelliere()
+          .subscribe(
+            res => this.rastrelliere = res,
+            err => { }
+          )
+        },
+        err => alert(err.message)
+      )
+  }
 
 }

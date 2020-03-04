@@ -7,12 +7,12 @@ import { HttpClient } from '@angular/common/http'
 export class DashboardService {
 
   private tortaApi = '';
-  private lineApi = '';
+  private barApi = 'http://localhost:8080/dashboard/boh';
 
   constructor(private http: HttpClient) { }
 
   getGraficoLinee() {
-    return this.http.get<any>(this.lineApi)
+    return this.http.get<any>(this.barApi)
   }
 
   getGraficoTorta() {
