@@ -2,6 +2,7 @@ package edu.progetto.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.persistence.EntityNotFoundException;
 
@@ -10,12 +11,14 @@ import org.springframework.stereotype.Service;
 
 import edu.progetto.entity.Bici;
 import edu.progetto.entity.Prenotazione;
+import edu.progetto.entity.Rastrelliera;
 import edu.progetto.entity.Ruolo;
 import edu.progetto.entity.StatoPrenotazione;
 import edu.progetto.repository.PrenotazioneRepository;
 import edu.progetto.request.FiltersRequest;
 import edu.progetto.request.ReservationRequest;
 import edu.progetto.response.FiltersResponse;
+import edu.progetto.response.HistogramResponse;
 import edu.progetto.response.ReservationResponse;
 
 @Service
@@ -45,26 +48,29 @@ public class PrenotazioneService {
 		try {
 			Bici bici = biciService.getBici(reservationRequest.getIdBici());
 			if(bici.isDisponibile()) {
-				Prenotazione prenotazione = new Prenotazione();
-				prenotazione.setCliente(clienteService.findByUsername(reservationRequest.getUsername()));
-				prenotazione.setRastrellieraPartenza(rastrellieraService.findByPosizione(
-						reservationRequest.getPosizionePartenza()));
-				prenotazione.setRastrellieraArrivo(rastrellieraService.findByPosizione(
-						reservationRequest.getPosizioneArrivo()));
-				prenotazione.setOraInizio(utilService.calcolaData(reservationRequest.getOraInizio()));
-				prenotazione.setOraFine(utilService.calcolaData(reservationRequest.getOraFine()));
-				prenotazione.setStatoPrenotazione(StatoPrenotazione.DA_INIZIARE);
-				prenotazione.setImporto(reservationRequest.getImporto());
+				if (contoService.getSaldoDisponibile(reservationRequest.getUsername()) <= reservationRequest.getImporto()) {
+					Prenotazione prenotazione = new Prenotazione();
+					prenotazione.setCliente(clienteService.findByUsername(reservationRequest.getUsername()));
+					prenotazione.setRastrellieraPartenza(rastrellieraService.findByPosizione(
+							reservationRequest.getPosizionePartenza()));
+					prenotazione.setRastrellieraArrivo(rastrellieraService.findByPosizione(
+							reservationRequest.getPosizioneArrivo()));
+					prenotazione.setOraInizio(utilService.calcolaData(reservationRequest.getOraInizio()));
+					prenotazione.setOraFine(utilService.calcolaData(reservationRequest.getOraFine()));
+					prenotazione.setStatoPrenotazione(StatoPrenotazione.DA_INIZIARE);
+					prenotazione.setImporto(reservationRequest.getImporto());
 
-				bici.setDisponibile(false);
-				biciService.updateBici(reservationRequest.getIdBici(), bici);
+					bici.setDisponibile(false);
+					biciService.updateBici(reservationRequest.getIdBici(), bici);
 
-				prenotazione.setBici(bici);
-				prenotazioneRepo.save(prenotazione);
+					prenotazione.setBici(bici);
+					prenotazioneRepo.save(prenotazione);
 
-				contoService.addebita(reservationRequest.getUsername(), reservationRequest.getImporto());
+					contoService.addebita(reservationRequest.getUsername(), reservationRequest.getImporto());
 
-				return "Prenotazione effettuata con successo";
+					return "Prenotazione effettuata con successo";
+				}
+				return "Il saldo non è sufficiente per effettuare la prenotazione";
 			}
 			return "Bici già prenotata";
 		}
@@ -113,7 +119,7 @@ public class PrenotazioneService {
 		prenotazioneRepo.findById(id);
 		prenotazioneRepo.save(p);
 	}
-	
+
 	public FiltersResponse searchFilters(FiltersRequest filtersRequest) {
 		FiltersResponse filtersResponse = new FiltersResponse();
 		filtersResponse.setListaBici(rastrellieraService.getAllBiciDisponibili(
@@ -123,5 +129,9 @@ public class PrenotazioneService {
 		else 
 			filtersResponse.setImporto(utilService.calcolaImporto(filtersRequest.getOraInizio(),filtersRequest.getOraFine()));
 		return filtersResponse;
+	}
+	
+	public List<HistogramResponse> countByRastrellieraPartenza(){
+		return prenotazioneRepo.countByRastrellieraPartenza();
 	}
 }
