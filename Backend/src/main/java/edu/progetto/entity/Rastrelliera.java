@@ -1,5 +1,6 @@
 package edu.progetto.entity;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +14,9 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "rastrelliera")
-public class Rastrelliera {
+public class Rastrelliera implements Serializable {
+
+	private static final long serialVersionUID = -1866764767306444352L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
