@@ -13,9 +13,13 @@ public interface PrenotazioneRepository extends CrudRepository<Prenotazione,Inte
 	public List<Prenotazione> findByCliente(Cliente cliente);
 	
 	@Query(value="SELECT " +
-	        "    new edu.progetto.response.HistogramResponse(r.posizione, COUNT(*)) " +
+	        "    new edu.progetto.response.HistogramResponse(COUNT(*), r.posizione) " +
 	        "FROM " +
 	        " Prenotazione p INNER JOIN p.rastrellieraPartenza r "+
 	        "GROUP BY r.posizione", nativeQuery = false)
 	public List<HistogramResponse> countByRastrellieraPartenza();
+	
+	
+	
+	
 }
