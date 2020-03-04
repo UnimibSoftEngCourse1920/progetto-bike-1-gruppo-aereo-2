@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import edu.progetto.entity.Bici;
 import edu.progetto.entity.Rastrelliera;
 import edu.progetto.repository.RastrellieraRepository;
+import edu.progetto.response.ReallocationResponse;
 
 @Service
 public class RastrellieraService {
@@ -37,7 +38,7 @@ public class RastrellieraService {
 
 		return vieRastrelliere;
 	}
-	
+
 	public Rastrelliera findByPosizione(String posizione) {
 		return rastrellieraRepo.findByPosizione(posizione);
 	}
@@ -80,17 +81,14 @@ public class RastrellieraService {
 				orElseThrow(() -> new EntityNotFoundException());
 	}
 
-	
 
-
-
-
-
-
-
-
-
-
-
-
+	public List<ReallocationResponse> getPosizioneNumBici(){
+		List<ReallocationResponse> listReallocationResp = new ArrayList<>();
+		for(Rastrelliera r : rastrellieraRepo.findAll()) {
+			ReallocationResponse reallocationResponse = new
+					ReallocationResponse(r.getPosizione(),r.getListaBici().size());
+			listReallocationResp.add(reallocationResponse);
+		}
+		return listReallocationResp;
+	}
 }

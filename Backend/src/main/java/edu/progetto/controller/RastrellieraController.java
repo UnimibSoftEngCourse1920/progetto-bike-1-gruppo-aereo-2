@@ -3,14 +3,10 @@ package edu.progetto.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import edu.progetto.entity.Bici;
 import edu.progetto.entity.Rastrelliera;
 import edu.progetto.service.RastrellieraService;
 
@@ -31,15 +27,4 @@ public class RastrellieraController {
 	public List<Rastrelliera> getAllRastrelliere(){
 		return rastrellieraService.getAllRastrelliere();
 	}
-	
-	
-	@GetMapping("/rastrelliere/rialloca")
-	@PreAuthorize("hasRole('ADMIN')")
-	public String riallocaRastrelliere() {
-		rastrellieraService.rialloca();
-		return "Rastrelliere riallocate con successo";
-	}
-	
-	
-	
 }

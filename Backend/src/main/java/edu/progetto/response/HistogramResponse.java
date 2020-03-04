@@ -6,17 +6,17 @@ public class HistogramResponse implements Serializable{
 
 	private static final long serialVersionUID = 5080173510031235561L;
 
-	private String label;
-	
 	private long y;
+	
+	private String label;
 	
 	public HistogramResponse() {
 		
 	}
 	
-	public HistogramResponse(String label, long y) {
-		this.label = label;
+	public HistogramResponse(long y,String label) {
 		this.y = y;
+		this.label = label;
 	}
 
 	public String getLabel() {

@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import edu.progetto.entity.Corsa;
-import edu.progetto.request.JourneyRequest;
+import edu.progetto.request.IdRequest;
 import edu.progetto.response.MessageResponse;
 import edu.progetto.service.CorsaService;
 
@@ -26,13 +26,13 @@ public class CorsaController {
 
 
 	@PostMapping("/inizia-corsa")
-	public LocalDateTime iniziaCorsa(@RequestBody JourneyRequest journeyRequest) {
-		return corsaService.iniziaCorsa(journeyRequest.getIdPrenotazione());
+	public LocalDateTime iniziaCorsa(@RequestBody IdRequest journeyRequest) {
+		return corsaService.iniziaCorsa(journeyRequest.getId());
 	}
 
 	@PutMapping("/finisci-corsa")
-	public ResponseEntity<MessageResponse> finisciCorsa(@RequestBody JourneyRequest journeyRequest) {
-		return ResponseEntity.ok(new MessageResponse(corsaService.finisciCorsa(journeyRequest.getIdPrenotazione())));
+	public ResponseEntity<MessageResponse> finisciCorsa(@RequestBody IdRequest journeyRequest) {
+		return ResponseEntity.ok(new MessageResponse(corsaService.finisciCorsa(journeyRequest.getId())));
 	}
 
 	@GetMapping("/corse-tutte")
