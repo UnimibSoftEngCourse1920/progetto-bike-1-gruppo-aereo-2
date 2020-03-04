@@ -2,7 +2,6 @@ package edu.progetto.service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import javax.persistence.EntityNotFoundException;
 
@@ -11,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import edu.progetto.entity.Bici;
 import edu.progetto.entity.Prenotazione;
-import edu.progetto.entity.Rastrelliera;
 import edu.progetto.entity.Ruolo;
 import edu.progetto.entity.StatoPrenotazione;
 import edu.progetto.repository.PrenotazioneRepository;

@@ -42,5 +42,22 @@ public class BiciService {
 	
 	public void deleteBici(Integer id) {
 		biciRepo.deleteById(id);
+	}
+
+	public List<Bici> getBiciDaRiparare() {
+		List<Bici> bici = new ArrayList<>();
+		for (Bici b : biciRepo.findAll()){
+			if(b.getStatoBici() <= 2)
+				bici.add(b);
+		}
+		return bici;
+	}
+
+	public void riparaBici(Integer id) {
+		Bici bici = this.getBici(id);
+		bici.setStatoBici(5);
+		bici.setDisponibile(true);
+		biciRepo.save(bici);
+		
 	}	
 }
