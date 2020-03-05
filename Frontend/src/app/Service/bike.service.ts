@@ -17,11 +17,21 @@ export class BikeService {
     private _service: LoginService) { }
 
   postPrenotazioni(filtri) {
+    console.log(filtri)
     return this.http.post<any>(this._prenotazioniAPI, filtri)
   }
 
   getRastrelliere() {
     return this.http.get<any>(this._rastrelliereAPI)
+  }
+
+  validaPrenota(){
+      let currentDate = new Date()
+      let currentHours = + currentDate.getHours
+      if (currentHours == 0) {
+        return false
+      }
+      return true
   }
 
   validaFiltri(oraInizio, oraFine) {
@@ -65,10 +75,11 @@ export class BikeService {
 
   daIniziare(stato, oraPrenotazione) {
     let dataCorrente = new Date()
-    let oraInizio = + oraPrenotazione.substring(11, 13)
-    let minutiInizio = + oraPrenotazione.substring(14, 16)
+    let oraInizio = + oraPrenotazione.substring(9, 11)
+    let minutiInizio = + oraPrenotazione.substring(12, 14)
     let oraCorrente = + dataCorrente.getHours()
     let minutiCorrente = + dataCorrente.getMinutes()
+    console.log(minutiInizio)
 
     if (stato == 'DA_INIZIARE' && ((oraInizio < oraCorrente) || (oraInizio == oraCorrente && minutiInizio <= minutiCorrente)))
       return true

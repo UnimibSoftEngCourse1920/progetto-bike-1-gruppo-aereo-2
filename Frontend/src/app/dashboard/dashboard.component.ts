@@ -54,7 +54,6 @@ export class DashboardComponent implements OnInit {
         dataPoints: dati
       }]
     });
-      console.log(dati)
     chart.render();
   }
 }

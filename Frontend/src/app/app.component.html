@@ -12,7 +12,7 @@
                 <a class="nav-link" routerLink="/registration" *ngIf="!_service.loggedIn()">Registration</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" routerLink="/">Home</a>
+                <a class="nav-link" routerLink="/home" *ngIf="_service.isUser()">Home</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" routerLink="/prenotazione" *ngIf="_service.isUser()">Prenotazione</a>

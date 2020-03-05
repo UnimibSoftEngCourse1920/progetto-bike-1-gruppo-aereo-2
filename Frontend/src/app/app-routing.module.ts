@@ -21,7 +21,7 @@ const routes: Routes = [{
 },
 {
   path: 'mie-prenotazioni',
-    //canActivate: [UserGuard],
+  canActivate: [UserGuard],
   component: MiePrenotazioniComponent
 },
 {
@@ -29,32 +29,33 @@ const routes: Routes = [{
   component: RegistrationComponent
 },
 {
-  path: '',
+  path: 'home',
+  canActivate: [UserGuard],
   component: HomeComponent
 },
 {
   path: 'abbonamenti',
-  //canActivate: [UserGuard],
+  canActivate: [UserGuard],
   component: AbbonamentiComponent
 },
 {
   path: 'prenotazione',
-  //canActivate: [UserGuard],
+  canActivate: [UserGuard],
   component: PrenotazioneComponent
 },
 {
   path: 'conto',
-  //canActivate: [UserGuard],
+  canActivate: [UserGuard],
   component: ContoComponent
 },
 {
   path: 'manutenzione',
-  //canActivate: [AdminGuard],
+  canActivate: [AdminGuard],
   component: ManutenzioneComponent
 },
 {
   path: 'dashboard',
-  //canActivate: [AdminGuard],
+  canActivate: [AdminGuard],
   component: DashboardComponent
 }
 ];

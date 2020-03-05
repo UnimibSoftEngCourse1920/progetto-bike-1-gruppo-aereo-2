@@ -19,12 +19,12 @@
 </div>
 <div id="n" class="jumbotron">
     <div id="wrapper" class="container-fluid">
-        <button type="button" (click)="rialloca()" class="btn btn-primary btn-lg btn-block">Rialloca</button>
+        <button type="button" (click)="rialloca()" *ngIf="this._manutenzioneService.validaRialloca()" class="btn btn-primary btn-lg btn-block">Rialloca</button>
         <table class="table">
             <thead class="thead-dark">
                 <tr>
                     <th scope="col">Rastrelliera</th>
-                    <th scope="col">Tipologia</th>
+                    <th scope="col">Numero bici</th>
                 </tr>
             </thead>
             <tbody>

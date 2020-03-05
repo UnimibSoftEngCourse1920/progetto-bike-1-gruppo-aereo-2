@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { BikeService } from '../Service/bike.service';
+import { LoginService } from '../Service/login.service';
 import { IFilter } from '../Interface/IFilter';
 
 @Component({
@@ -16,7 +17,8 @@ export class PrenotazioneComponent implements OnInit {
   importo = {};
 
   constructor(private _router: Router,
-    private _bikeService: BikeService) { }
+    private _bikeService: BikeService,
+    private _loginService: LoginService) { }
   ngOnInit() {
     this._bikeService.getRastrelliere()
       .subscribe(
@@ -27,7 +29,7 @@ export class PrenotazioneComponent implements OnInit {
   postPrenotazioni() {
     if (this._bikeService.validaFiltri(this.filters.oraInizio, this.filters.oraFine)) {
       let filtri = {
-        ruolo: localStorage.getItem('ruolo'),
+        username: this._loginService.getUser(),
         posizioneInizio: this.filters.rastrellieraInizio, oraInizio: this.filters.oraInizio,
         oraFine: this.filters.oraFine
       }
@@ -36,6 +38,9 @@ export class PrenotazioneComponent implements OnInit {
           res => {
             this.bici = res.listaBici
             this.importo = res.importo
+            if(!this._bikeService.validaPrenota()){
+              alert("Non puoi prenotare dalle 00:00h alle 01:00h")
+            }
           },
           err => this._router.navigate(['/prenotazione'])
         )
@@ -43,11 +48,10 @@ export class PrenotazioneComponent implements OnInit {
       alert("Errore nell'inserimento dei filtri")
     }
   }
-
   prenota(bici_id) {
     let prenotazione = {
       posizionePartenza: this.filters.rastrellieraInizio, posizioneArrivo: this.filters.rastrellieraInizio,
-      username: localStorage.getItem("username"), idBici: bici_id, oraInizio: this.filters.oraInizio,
+      username: this._loginService.getUser(), idBici: bici_id, oraInizio: this.filters.oraInizio,
       oraFine: this.filters.oraFine, importo: this.importo
     }
     this._bikeService.prenota(prenotazione)

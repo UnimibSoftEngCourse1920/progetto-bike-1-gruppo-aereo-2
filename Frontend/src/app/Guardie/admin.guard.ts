@@ -11,10 +11,8 @@ export class AdminGuard implements CanActivate {
 
   canActivate(): boolean {
     if (this._service.isAdmin()) {
-      console.log('true')
       return true
     } else {
-      console.log('false')
       this._router.navigate(['/login'])
       return false
     }

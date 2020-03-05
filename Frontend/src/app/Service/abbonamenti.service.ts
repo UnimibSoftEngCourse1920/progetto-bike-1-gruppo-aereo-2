@@ -10,10 +10,10 @@ export class AbbonamentiService {
   constructor(private http: HttpClient,
     private _service: LoginService) { }
 
-  private _abbonamentiAPI='';
+  private _abbonamentiAPI='http://localhost:8080/abbonamento/ricarica';
 
   abbonati(tipoAbbonamento){
-    return this.http.put<any>(this._abbonamentiAPI, {username: this._service.getUser(), tipoAbbonamento: tipoAbbonamento})
+    return this.http.post<any>(this._abbonamentiAPI, {username: this._service.getUser(), tipo: tipoAbbonamento})
 
   }
 }

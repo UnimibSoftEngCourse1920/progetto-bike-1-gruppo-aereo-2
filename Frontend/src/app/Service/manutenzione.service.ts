@@ -29,9 +29,15 @@ export class ManutenzioneService {
     return this.http.get<any>(this._riallocaAPI)
   }
 
+
   validaRialloca() {
-    let data = new Date();
-    return true
+    let currentDate = new Date()
+    let currentHours = + currentDate.getHours
+    if (currentHours == 0) {
+      return true
+    }
+    return false
+
   }
 
 }
