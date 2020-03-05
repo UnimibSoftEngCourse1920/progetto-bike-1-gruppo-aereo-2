@@ -136,29 +136,29 @@ public class DbInitializer implements CommandLineRunner {
 		rastrelliera1.addBici(bici4);
 		rastrelliera1.addBici(bici5);
 		
-		rastrelliera1.addBici(bici6);
-		rastrelliera1.addBici(bici7);
-		rastrelliera1.addBici(bici8);
-		rastrelliera1.addBici(bici9);
-		rastrelliera1.addBici(bici10);
+		rastrelliera2.addBici(bici6);
+		rastrelliera2.addBici(bici7);
+		rastrelliera2.addBici(bici8);
+		rastrelliera2.addBici(bici9);
+		rastrelliera2.addBici(bici10);
 		
-		rastrelliera1.addBici(bici11);
-		rastrelliera1.addBici(bici12);
-		rastrelliera1.addBici(bici13);
-		rastrelliera1.addBici(bici14);
-		rastrelliera1.addBici(bici15);
+		rastrelliera3.addBici(bici11);
+		rastrelliera3.addBici(bici12);
+		rastrelliera3.addBici(bici13);
+		rastrelliera3.addBici(bici14);
+		rastrelliera3.addBici(bici15);
 		
-		rastrelliera1.addBici(bici16);
-		rastrelliera1.addBici(bici17);
-		rastrelliera1.addBici(bici18);
-		rastrelliera1.addBici(bici19);
-		rastrelliera1.addBici(bici20);
+		rastrelliera4.addBici(bici16);
+		rastrelliera4.addBici(bici17);
+		rastrelliera4.addBici(bici18);
+		rastrelliera4.addBici(bici19);
+		rastrelliera4.addBici(bici20);
 		
-		rastrelliera1.addBici(bici21);
-		rastrelliera1.addBici(bici22);
-		rastrelliera1.addBici(bici23);
-		rastrelliera1.addBici(bici24);
-		rastrelliera1.addBici(bici25);
+		rastrelliera5.addBici(bici21);
+		rastrelliera5.addBici(bici22);
+		rastrelliera5.addBici(bici23);
+		rastrelliera5.addBici(bici24);
+		rastrelliera5.addBici(bici25);
 		
 		this.rastrellieraRepo.save(rastrelliera1);
 		this.rastrellieraRepo.save(rastrelliera2);

@@ -67,9 +67,9 @@ public class CorsaService {
 		LocalDateTime fineCorsa = utilService.getData();
 		corsa.setFineCorsa(fineCorsa);
 		corsaRepo.save(corsa);
-
+		
 		Double importoFineCorsa = utilService.calcolaImporto(p.getOraFine(), fineCorsa);
-		if (importoFineCorsa > 0.0 && !p.getCliente().getRuolo().equals(Ruolo.ROLE_PERSONALE)) {
+		if (importoFineCorsa > 0.0 && !p.getCliente().getRuolo().equals(Ruolo.ROLE_PERSONALE) ) {
 			contoService.addebita(p.getCliente().getUsername(), importoFineCorsa);
 			return "Ti è stato addebitata una sanzione di " + df2.format(importoFineCorsa) +
 					"€ perchè hai ritardato la consegna prevista alle: "+p.getOraFine()+

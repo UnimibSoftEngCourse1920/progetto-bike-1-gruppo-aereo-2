@@ -10,14 +10,14 @@ public class ReservationResponse implements Serializable{
 	private Integer idPrenotazione;
 	private String posizioneInizio;
 	private String posizioneFine;
-	private LocalDateTime oraInizio;
-	private LocalDateTime oraFine;
+	private String oraInizio;
+	private String oraFine;
 	private String statoPrenotazione;
 	private Integer idBici;
 	private Double importo;
 
-	public ReservationResponse(Integer idPrenotazione, String posizioneInizio, String posizioneFine, LocalDateTime oraInizio,
-			LocalDateTime oraFine, Integer idBici, Double importo) {
+	public ReservationResponse(Integer idPrenotazione, String posizioneInizio, String posizioneFine, String oraInizio,
+			String oraFine, Integer idBici, Double importo) {
 		this.idPrenotazione = idPrenotazione;
 		this.posizioneInizio = posizioneInizio;
 		this.posizioneFine = posizioneFine;
@@ -47,16 +47,16 @@ public class ReservationResponse implements Serializable{
 	public void setPosizioneFine(String posizioneFine) {
 		this.posizioneFine = posizioneFine;
 	}
-	public LocalDateTime getOraInizio() {
+	public String getOraInizio() {
 		return oraInizio;
 	}
-	public void setOraInizio(LocalDateTime oraInizio) {
+	public void setOraInizio(String oraInizio) {
 		this.oraInizio = oraInizio;
 	}
-	public LocalDateTime getOraFine() {
+	public String getOraFine() {
 		return oraFine;
 	}
-	public void setOraFine(LocalDateTime oraFine) {
+	public void setOraFine(String oraFine) {
 		this.oraFine = oraFine;
 	}
 

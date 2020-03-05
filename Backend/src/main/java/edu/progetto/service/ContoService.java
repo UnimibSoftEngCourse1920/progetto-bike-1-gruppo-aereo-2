@@ -1,8 +1,12 @@
 package edu.progetto.service;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import edu.progetto.entity.Cliente;
 import edu.progetto.entity.Conto;
 import edu.progetto.repository.ClienteRepository;
 import edu.progetto.repository.ContoRepository;
@@ -33,15 +37,26 @@ public class ContoService {
 		conto.setSaldo(conto.getSaldo() - importo);
 		this.updateConto(conto.getId(),conto);
 	}
+	
+	public Conto findByCliente(Cliente cliente) {
+		return contoRepo.findByCliente(cliente);
+	}
 
 
 	public Double getSaldoDisponibile(String username) {
 		Conto conto = contoRepo.findByCliente(clienteRepo.findByUsername(username));
-		return conto.getSaldo();
+		return BigDecimal.valueOf(conto.getSaldo())
+	            .setScale(3, RoundingMode.HALF_UP)
+	            .doubleValue();
 	}
 	
 	public void addConto(Conto c) {
 		contoRepo.save(c);
+	}
+
+
+	public void addebita(Cliente cliente, Double costo) {
+		this.addebita(cliente.getUsername(), costo);
 	}
 	
 	

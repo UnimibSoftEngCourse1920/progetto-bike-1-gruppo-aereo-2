@@ -1,5 +1,6 @@
 package edu.progetto.service;
 
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,7 +9,9 @@ import javax.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import edu.progetto.entity.Abbonamento;
 import edu.progetto.entity.Bici;
+import edu.progetto.entity.Cliente;
 import edu.progetto.entity.Prenotazione;
 import edu.progetto.entity.Ruolo;
 import edu.progetto.entity.StatoPrenotazione;
@@ -40,6 +43,9 @@ public class PrenotazioneService {
 	@Autowired
 	ContoService contoService;
 
+	@Autowired
+	AbbonamentoService abbonamentoService;
+
 
 
 	public String prenotaBici(ReservationRequest reservationRequest) {
@@ -68,7 +74,8 @@ public class PrenotazioneService {
 
 					return "Prenotazione effettuata con successo";
 				}
-				return "Il saldo non è sufficiente per effettuare la prenotazione";
+				return "Il saldo attuale sul conto non è sufficiente per effettuare la prenotazione"
+				+ " ricarica il conto per poter prenotare";
 			}
 			return "Bici già prenotata";
 		}
@@ -95,8 +102,8 @@ public class PrenotazioneService {
 			prenotazioneResponse.setIdPrenotazione(p.getId());
 			prenotazioneResponse.setPosizioneInizio(p.getRastrellieraPartenza().getPosizione());
 			prenotazioneResponse.setPosizioneFine(p.getRastrellieraArrivo().getPosizione());
-			prenotazioneResponse.setOraInizio(p.getOraInizio());
-			prenotazioneResponse.setOraFine(p.getOraFine());
+			prenotazioneResponse.setOraInizio(p.getOraInizio().format(DateTimeFormatter.ofPattern("dd/MM/yy HH:mm")));
+			prenotazioneResponse.setOraFine(p.getOraFine().format(DateTimeFormatter.ofPattern("dd/MM/yy HH:mm")));
 			prenotazioneResponse.setStatoPrenotazione(p.getStatoPrenotazione().toString());
 			prenotazioneResponse.setIdBici(p.getBici().getId());
 			prenotazioneResponse.setImporto(p.getImporto());
@@ -120,15 +127,24 @@ public class PrenotazioneService {
 
 	public FiltersResponse searchFilters(FiltersRequest filtersRequest) {
 		FiltersResponse filtersResponse = new FiltersResponse();
+		Cliente cliente = clienteService.findByUsername(filtersRequest.getUsername());
+		boolean abbonamentoIsValido;
+		try {
+			Abbonamento abbonamento = abbonamentoService.findAbbonamentoByCliente(cliente);
+			abbonamentoIsValido = abbonamentoService.isValido(abbonamento);
+		}
+		catch(Exception e) {
+			abbonamentoIsValido = false;
+		}
 		filtersResponse.setListaBici(rastrellieraService.getAllBiciDisponibili(
 				filtersRequest.getPosizioneInizio()));
-		if(filtersRequest.getRuolo().equals(Ruolo.ROLE_PERSONALE.toString()))
+		if(cliente.getRuolo().equals(Ruolo.ROLE_PERSONALE) || abbonamentoIsValido )
 			filtersResponse.setImporto(0.00);
 		else 
 			filtersResponse.setImporto(utilService.calcolaImporto(filtersRequest.getOraInizio(),filtersRequest.getOraFine()));
 		return filtersResponse;
 	}
-	
+
 	public List<HistogramResponse> countByRastrellieraPartenza(){
 		return prenotazioneRepo.countByRastrellieraPartenza();
 	}

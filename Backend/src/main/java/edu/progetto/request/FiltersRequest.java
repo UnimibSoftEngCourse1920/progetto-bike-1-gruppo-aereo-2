@@ -6,7 +6,7 @@ public class FiltersRequest implements Serializable{
 
 	private static final long serialVersionUID = -6814726609941812230L;
 
-	private String ruolo;
+	private String username;
 	
 	private String posizioneInizio;
 
@@ -18,8 +18,8 @@ public class FiltersRequest implements Serializable{
 
 	}
 
-	public FiltersRequest(String ruolo, String posizioneInizio, String oraInizio, String oraFine) {
-		this.ruolo = ruolo;
+	public FiltersRequest(String username, String posizioneInizio, String oraInizio, String oraFine) {
+		this.username = username;
 		this.posizioneInizio = posizioneInizio;
 		this.oraInizio = oraInizio;
 		this.oraFine = oraFine;
@@ -27,12 +27,12 @@ public class FiltersRequest implements Serializable{
 	
 	
 
-	public String getRuolo() {
-		return ruolo;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setRuolo(String ruolo) {
-		this.ruolo = ruolo;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public String getPosizioneInizio() {
