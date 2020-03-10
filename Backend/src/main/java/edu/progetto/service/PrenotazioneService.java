@@ -19,7 +19,6 @@ import edu.progetto.repository.PrenotazioneRepository;
 import edu.progetto.request.FiltersRequest;
 import edu.progetto.request.ReservationRequest;
 import edu.progetto.response.FiltersResponse;
-import edu.progetto.response.HistogramResponse;
 import edu.progetto.response.ReservationResponse;
 
 @Service
@@ -143,9 +142,5 @@ public class PrenotazioneService {
 		else 
 			filtersResponse.setImporto(utilService.calcolaImporto(filtersRequest.getOraInizio(),filtersRequest.getOraFine()));
 		return filtersResponse;
-	}
-
-	public List<HistogramResponse> countByRastrellieraPartenza(){
-		return prenotazioneRepo.countByRastrellieraPartenza();
 	}
 }

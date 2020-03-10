@@ -1,7 +1,6 @@
 package edu.progetto.response;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
 
 public class ReservationResponse implements Serializable{
 
