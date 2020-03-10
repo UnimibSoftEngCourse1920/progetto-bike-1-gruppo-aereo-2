@@ -70,7 +70,7 @@ public class DbInitializer implements CommandLineRunner {
 		
 		Bici bici1 = new Bici(true,5,TipologiaBici.CITTA);
 		Bici bici2 = new Bici(true,5,TipologiaBici.DA_CORSA);
-		Bici bici3 = new Bici(true,5,TipologiaBici.MOUNTAIN_BIKE);
+		Bici bici3 = new Bici(true,3,TipologiaBici.MOUNTAIN_BIKE);
 		Bici bici4 = new Bici(true,4,TipologiaBici.CITTA);
 		Bici bici5 = new Bici(true,4,TipologiaBici.CITTA);
 		

@@ -19,7 +19,7 @@ public class ClienteService {
 	private ClienteRepository clienteRepository;
 	
 	
-	public List<Cliente> getAllclienti() {
+	public List<Cliente> getAllClienti() {
 		List<Cliente> clienti= new ArrayList<>();
 		for (Cliente c : clienteRepository.findAll()){
 			clienti.add(c);
@@ -36,8 +36,9 @@ public class ClienteService {
 		return clienteRepository.findByUsername(username);
 	}
 
-	public void addCliente(Cliente c) {
+	public Cliente addCliente(Cliente c) {
 		clienteRepository.save(c);
+		return c;
 	}
 
 	public void updateCliente(Integer id, Cliente c) {

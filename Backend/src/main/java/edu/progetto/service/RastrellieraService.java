@@ -61,9 +61,9 @@ public class RastrellieraService {
 
 	public void rialloca() {
 		for (Rastrelliera r : rastrellieraRepo.findAll())
-			if (r.getListaBici().size() > 2) 
+			if (r.getListaBici().size() > 5) 
 				for(Rastrelliera r2 : rastrellieraRepo.findAll()) 
-					if (r2.getListaBici().size() < 2) {
+					if (r2.getListaBici().size() < 5) {
 						spostaBici(r, r2, r.getListaBici().get(0));
 					}
 	}
