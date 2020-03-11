@@ -93,7 +93,7 @@ public class PrenotazioneService {
 	}
 
 	public List<ReservationResponse> getPrenotazioniByUsername(String username) {
-		List<Prenotazione> miePrenotazione = prenotazioneRepo.findByCliente
+		List<Prenotazione> miePrenotazione = prenotazioneRepo.findByClienteOrderByOraInizio
 				(clienteService.findByUsername(username));
 		List<ReservationResponse> listPrenotazioneResponse = new ArrayList<>();
 		for(Prenotazione p : miePrenotazione) {

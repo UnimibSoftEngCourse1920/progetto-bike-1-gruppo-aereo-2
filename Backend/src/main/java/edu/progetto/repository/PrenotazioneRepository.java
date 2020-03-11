@@ -10,7 +10,8 @@ import edu.progetto.entity.Prenotazione;
 import edu.progetto.response.HistogramResponse;
 
 public interface PrenotazioneRepository extends CrudRepository<Prenotazione,Integer>{
-	public List<Prenotazione> findByCliente(Cliente cliente);
+	
+	public List<Prenotazione> findByClienteOrderByOraInizio(Cliente cliente);
 	
 	@Query(value="SELECT " +
 	        "    new edu.progetto.response.HistogramResponse(COUNT(*), r.posizione) " +

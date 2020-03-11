@@ -36,9 +36,8 @@ public class ClienteService {
 		return clienteRepository.findByUsername(username);
 	}
 
-	public Cliente addCliente(Cliente c) {
+	public void addCliente(Cliente c) {
 		clienteRepository.save(c);
-		return c;
 	}
 
 	public void updateCliente(Integer id, Cliente c) {
