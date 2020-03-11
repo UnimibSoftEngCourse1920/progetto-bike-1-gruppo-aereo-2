@@ -1,0 +1,11 @@
+#firstWidget {
+    padding: 5%;
+    float: left;
+    width: 500px;
+}
+
+#secondWidget {
+    float: left;
+    width: 500px;
+    padding: 5%;
+}

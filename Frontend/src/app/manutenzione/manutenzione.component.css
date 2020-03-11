@@ -1,0 +1,11 @@
+#firstTable {
+    padding: 5%;
+    float: left;
+    width: 500px;
+}
+
+#secondTable {
+    float: left;
+    width: 500px;
+    padding: 5%;
+}

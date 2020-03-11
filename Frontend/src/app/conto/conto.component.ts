@@ -63,4 +63,12 @@ export class ContoComponent implements OnInit {
         err => console.log(err)
       )
   }
+
+  abbonati(tipoAbbonamento){
+    this._conto.abbonati(tipoAbbonamento)
+    .subscribe(
+      res => alert(res.message),
+      err => alert(err.message)
+    )
+  }
 }
