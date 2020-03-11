@@ -30,9 +30,6 @@
                 <a class="nav-link" routerLink="/conto" *ngIf="_service.isUser()">Conto</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" routerLink="/abbonamenti" *ngIf="_service.isUser()">Abbonamenti</a>
-            </li>
-            <li class="nav-item">
                 <a class="nav-link" *ngIf="_service.loggedIn()" style="cursor:pointer" (click)="_service.logout()">Logout</a>
             </li>
         </ul>

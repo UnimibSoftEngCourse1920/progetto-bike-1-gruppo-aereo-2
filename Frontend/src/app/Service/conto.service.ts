@@ -8,7 +8,7 @@ import { LoginService } from './login.service'
 export class ContoService {
   private _ricaricaAPI = "http://localhost:8080/conto/ricarica";
   private _contoAPI = "http://localhost:8080/conto/saldo";
-
+  private _abbonamentiAPI='http://localhost:8080/abbonamento/ricarica';
 
   constructor(private http: HttpClient,
     private _service: LoginService) { }
@@ -21,4 +21,8 @@ export class ContoService {
     return this.http.post<any>(this._contoAPI, {username: this._service.getUser()})
   }
   
+  abbonati(tipoAbbonamento){
+    return this.http.post<any>(this._abbonamentiAPI, {username: this._service.getUser(), tipo: tipoAbbonamento})
+
+  }
 }

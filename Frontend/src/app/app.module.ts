@@ -24,7 +24,6 @@ import { ContoComponent } from './conto/conto.component';
 import { HomeComponent } from './home/home.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ManutenzioneComponent } from './manutenzione/manutenzione.component';
-import { AbbonamentiComponent } from './abbonamenti/abbonamenti.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +36,6 @@ import { AbbonamentiComponent } from './abbonamenti/abbonamenti.component';
     HomeComponent,
     DashboardComponent,
     ManutenzioneComponent,
-    AbbonamentiComponent,
   ],
   imports: [
     BrowserModule,
