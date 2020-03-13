@@ -1,0 +1,13 @@
+#formPadding{
+    margin: auto;
+    width: 50%;
+    padding: 5% 12%;
+}
+  
+input {
+text-align: justify;
+}
+
+ #special {
+    width: 50%;
+ }

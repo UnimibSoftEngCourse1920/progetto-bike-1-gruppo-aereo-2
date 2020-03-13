@@ -1,0 +1,39 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" routerLink="/">UnimiBike</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav right">
+            <li class="nav-item ">
+                <a class="nav-link" routerLink="/login" *ngIf="!_service.loggedIn()">Login</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/registration" *ngIf="!_service.loggedIn()">Registration</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/home" *ngIf="_service.isUser()">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/prenotazione" *ngIf="_service.isUser()">Prenotazione</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/mie-prenotazioni" *ngIf="_service.isUser()">Mie Prenotazioni</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/manutenzione" *ngIf="_service.isAdmin()">Manutenzione</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/dashboard" *ngIf="_service.isAdmin()">Dashboard</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/conto" *ngIf="_service.isUser()">Conto</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" *ngIf="_service.loggedIn()" style="cursor:pointer" (click)="_service.logout()">Logout</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<router-outlet></router-outlet>
