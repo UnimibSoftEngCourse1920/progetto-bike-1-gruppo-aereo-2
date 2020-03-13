@@ -13,7 +13,7 @@ import { ManutenzioneComponent } from './manutenzione/manutenzione.component';
 
 
 
-
+ 
 const routes: Routes = [{
   path: 'login',
   component: LoginComponent
@@ -29,7 +29,6 @@ const routes: Routes = [{
 },
 {
   path: 'home',
-  canActivate: [UserGuard],
   component: HomeComponent
 },
 {
@@ -53,9 +52,10 @@ const routes: Routes = [{
   component: DashboardComponent
 }
 ];
-
+ 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { useHash: true})],
+ 
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

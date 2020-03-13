@@ -1,14 +1,17 @@
 /* GLOBAL STYLES
 -------------------------------------------------- */
 
+html {
+    font-size: 16px;
+  }
+
+  button:focus, button:active, input:focus, input:active, input:checked, a:focus, a:active {
+     outline: none !important;
+     box-shadow: none!important;
+     border-color:none !important;
+  }
 
 /* Padding below the footer and lighter body text */
-
-body {
-    padding-top: 3rem;
-    padding-bottom: 3rem;
-    color: #5a5a5a;
-}
 
 
 /* CUSTOMIZE THE CAROUSEL
@@ -25,10 +28,17 @@ body {
 /* Since positioning the image, we need to help out the caption */
 
 .carousel-caption {
-    bottom: 3rem;
+    bottom: 3.4rem;
     z-index: 10;
+    margin-bottom: 6rem;
+    color:greenyellow;
+
 }
 
+.carousel-caption p{
+    color: white;
+
+}
 
 /* Declare heights because of positioning of img element */
 
@@ -44,6 +54,30 @@ body {
     height: 32rem;
 }
 
+ .btn-secondary{
+    background-color: darkgreen;
+    border-color: none;
+    border-radius: 0.3rem;
+    color:white;
+    cursor:pointer;
+    border: 2px solid white;
+
+}
+
+a.btn-secondary:hover {
+    background-color: white;
+    transition-property: color;
+    transition-duration: 500ms, 500ms;
+    transition-timing-function: ease;
+    -webkit-transition: background-color 500ms ease;
+      -moz-transition: background-color 500ms ease;
+      -o-transition: background-color 500ms ease;
+      -ms-transition: background-color 500ms ease;
+      transition: background-color 500ms ease;
+      border: 2px solid darkgreen !important;
+color: darkgreen;}
+
+
 
 /* MARKETING CONTENT
   -------------------------------------------------- */
@@ -58,11 +92,22 @@ body {
 
 .marketing h2 {
     font-weight: 400;
+	color:lightgreen;
 }
 
 .marketing .col-lg-4 p {
     margin-right: .75rem;
     margin-left: .75rem;
+}
+
+.img-fluid{
+    height: auto;
+    width: auto;
+}
+.carousel-item .img-fluid {
+   object-position: inherit;
+   
+    
 }
 
 
@@ -84,6 +129,7 @@ body {
 }
 
 
+
 /* RESPONSIVE CSS
   -------------------------------------------------- */
 
@@ -101,6 +147,6 @@ body {
 
 @media (min-width: 62em) {
     .featurette-heading {
-        margin-top: 7rem;
+        margin-top: 4rem;
     }
 }

@@ -1,0 +1,16 @@
+.bg-dark {
+	background-color:darkslategrey !important;}
+
+	.container-fluid{
+		background-color: darkslategray !important;
+		color:white;
+		
+
+		
+	}
+
+	.navbar-brand img {
+		width: 2rem;
+		height: auto;
+	}
+	
