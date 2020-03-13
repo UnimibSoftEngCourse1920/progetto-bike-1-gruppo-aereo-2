@@ -25,7 +25,8 @@ export class ContoComponent implements OnInit {
       locale: 'auto',
       token: (token: any) => {
         this._conto.ricarica(importo).subscribe(
-          res => {alert(res.message),this.getConto()},
+          res => {alert(res.message)
+            this.getConto()},
           err => alert(err.message)
         )
       }
@@ -67,7 +68,8 @@ export class ContoComponent implements OnInit {
   abbonati(tipoAbbonamento){
     this._conto.abbonati(tipoAbbonamento)
     .subscribe(
-      res => alert(res.message),
+      res => {alert(res.message) 
+        this.getConto()},
       err => alert(err.message)
     )
   }

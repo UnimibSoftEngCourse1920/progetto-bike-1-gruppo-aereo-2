@@ -38,7 +38,7 @@ export class PrenotazioneComponent implements OnInit {
           res => {
             this.bici = res.listaBici
             this.importo = res.importo
-            if(!this._bikeService.validaPrenota()){
+            if (!this._bikeService.validaPrenota()) {
               alert("Non puoi prenotare dalle 00:00h alle 01:00h")
             }
           },
@@ -50,17 +50,21 @@ export class PrenotazioneComponent implements OnInit {
   }
   prenota(bici_id) {
     let prenotazione = {
-      posizionePartenza: this.filters.rastrellieraInizio, posizioneArrivo: this.filters.rastrellieraInizio,
+      posizionePartenza: this.filters.rastrellieraInizio, posizioneArrivo: this.filters.rastrellieraFine,
       username: this._loginService.getUser(), idBici: bici_id, oraInizio: this.filters.oraInizio,
       oraFine: this.filters.oraFine, importo: this.importo
     }
-    this._bikeService.prenota(prenotazione)
-      .subscribe(
-        res => {
-          alert(res.message)
-          this.postPrenotazioni()
-        },
-        err => alert("Prenotazione non avvenuta")
-      )
+    if (this._bikeService.confermaPrenota(this.filters.oraInizio)) {
+      this._bikeService.prenota(prenotazione)
+        .subscribe(
+          res => {
+            alert(res.message)
+            this.postPrenotazioni()
+          },
+          err => alert("Prenotazione non avvenuta")
+        )
+    } else {
+      alert("Reinserisci filtri, non è più possibile prenotare all'ora selezionata")
+    }
   }
 }

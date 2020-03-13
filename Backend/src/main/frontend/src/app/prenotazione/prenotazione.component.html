@@ -35,10 +35,10 @@
         <table class="table table-striped table-sm">
             <thead>
                 <tr>
-                    <th>Id</th>
-                    <th>Tipologia</th>
-                    <th>Stato</th>
-                    <th>Importo</th>
+                    <th scope="col">Id</th>
+                    <th scope="col">Tipologia</th>
+                    <th scope="col">Stato</th>
+                    <th scope="col">Importo</th>
                 </tr>
             </thead>
             <tbody>
@@ -60,7 +60,12 @@
                             <div *ngSwitchCase="5">Condizioni Perfette</div>
                         </div>
                     </td>
-                    <td>{{importo}}</td>
+                    <td>
+                        <div class='row' [ngSwitch]="importo">
+                            <div *ngSwitchCase="0">Gratis</div>
+                            <div *ngSwitchDefault>{{importo}}</div>
+                        </div>
+                    </td>
                     <td> <button class="btn btn-success" *ngIf="this._bikeService.validaPrenota()" (click)="prenota(bici_one.id)" style="margin-left: 20px;">Prenota</button></td>
                 </tr>
             </tbody>
