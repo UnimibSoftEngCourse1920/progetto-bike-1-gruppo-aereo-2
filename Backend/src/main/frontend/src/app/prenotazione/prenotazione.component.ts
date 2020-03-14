@@ -37,7 +37,7 @@ export class PrenotazioneComponent implements OnInit {
         .subscribe(
           res => {
             this.bici = res.listaBici
-            this.importo = res.importo
+            this.importo = res.importo //modifica formato
             if (!this._bikeService.validaPrenota()) {
               alert("Non puoi prenotare dalle 00:00h alle 01:00h")
             }
@@ -45,7 +45,7 @@ export class PrenotazioneComponent implements OnInit {
           err => this._router.navigate(['/prenotazione'])
         )
     } else {
-      alert("Errore nell'inserimento dei filtri")
+      alert("Errore nell'inserimento dei filtri ricerca")
     }
   }
   prenota(bici_id) {

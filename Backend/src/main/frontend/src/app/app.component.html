@@ -1,9 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" routerLink="/home"> <img src="../assets/images/demo/Risorsa 8-logo.3.png"
-            alt="logo UnimiBike"></a>
-    <a class="navbar-brand mt-2" routerLink="/home"> UnimiBike</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <a class="navbar-brand" routerLink="/"> <img src="../assets/images/demo/Risorsa 8-logo.3.png" alt="logo UnimiBike"></a>
+    <a class="navbar-brand mt-2" routerLink="/"> UnimiBike</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse justify-content-end mx-4" id="navbarNav">
@@ -15,10 +13,10 @@
                 <a class="nav-link" routerLink="/registration" *ngIf="!_service.loggedIn()">Registration</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" routerLink="/home">Home</a>
+                <a class="nav-link" routerLink="/">Home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" routerLink="/prenotazione" *ngIf="_service.isUser()">Prenotazione</a>
+                <a class="nav-link" routerLink="/prenotazione" *ngIf="_service.isUser()">Trova una bici</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" routerLink="/mie-prenotazioni" *ngIf="_service.isUser()">Mie Prenotazioni</a>
@@ -33,11 +31,7 @@
                 <a class="nav-link" routerLink="/conto" *ngIf="_service.isUser()">Conto</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" routerLink="/abbonamenti" *ngIf="_service.isUser()">Abbonamenti</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" *ngIf="_service.loggedIn()" style="cursor:pointer"
-                    (click)="_service.logout()">Logout</a>
+                <a class="nav-link" *ngIf="_service.loggedIn()" style="cursor:pointer" (click)="_service.logout()">Logout</a>
             </li>
         </ul>
     </div>
@@ -51,9 +45,8 @@
         <div class="container text-center pt-4">
 
             <p>UnimiBike</p>
-            <p>Via Ateneo Nuovo 6, 20124 Milano<br>Tel: <a href="tel:02733202">02/733202</a><br>email:<a
-                    href="mailto:unimiBike@campus.unimib.it">unimiBike@campus.unimib.it</a><br>Codice Fiscale
-                97321620151</p>
+            <p>Via Ateneo Nuovo 6, 20124 Milano<br>Tel: <a href="tel:02733202">02/733202</a><br>email:<a href="mailto:unimiBike@campus.unimib.it">unimiBike@campus.unimib.it</a><br>Codice Fiscale 97321620151
+            </p>
 
         </div>
     </div>

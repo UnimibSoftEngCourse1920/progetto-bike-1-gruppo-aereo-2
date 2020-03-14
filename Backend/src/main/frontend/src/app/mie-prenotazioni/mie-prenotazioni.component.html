@@ -1,31 +1,64 @@
-<div class="container" id="addPadding">
-    <div class="table-responsive">
-        <table class="table table-striped table-sm">
-            <thead>
-                <tr>
-                    <th scope="col">Rastrelliera Inizio</th>
-                    <th scope="col">Rastrelliera Fine</th>
-                    <th scope="col">Ora Inizio</th>
-                    <th scope="col">Ora Fine</th>
-                    <th scope="col">Importo</th>
-                    <th scope="col">Stato</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let prenotazione of prenotazioni">
-                    <td>{{prenotazione.posizioneInizio}}</td>
-                    <td>{{prenotazione.posizioneFine}}</td>
-                    <td>{{prenotazione.oraInizio}}</td>
-                    <td>{{prenotazione.oraFine}}</td>
-                    <div class='row' [ngSwitch]="prenotazione.importo">
-                        <div *ngSwitchCase="0">Gratis</div>
-                        <div *ngSwitchDefault>{{prenotazione.importo}}</div>
-                    </div>
-                    <td *ngIf="!!_bikeService.passata(prenotazione.statoPrenotazione)">Passata</td>
-                    <td> <button class="btn btn-danger" (click)="termina(prenotazione.idPrenotazione)" *ngIf="!!_bikeService.inCorso(prenotazione.statoPrenotazione)" style="margin-left: 20px;">Termina</button></td>
-                    <td> <button class="btn btn-success" (click)="inizia(prenotazione.idPrenotazione)" *ngIf="!!_bikeService.daIniziare(prenotazione.statoPrenotazione, prenotazione.oraInizio)" style="margin-left: 20px;">Inizia</button></td>
-                </tr>
-            </tbody>
-        </table>
+<div class="limiter">
+    <div class="container-table100">
+        <div class="wrap-table100">
+            <div class="table100 ver1 m-b-110">
+                <div class="table100-head">
+                    <table>
+                        <thead>
+                            <tr class="row100 head">
+                                <th class="cell100 column1">Rastrelliera Inizio</th>
+                                <th class="cell100 column2">Rastrelliera Inizio</th>
+                                <th class="cell100 column3">Ora Inizio</th>
+                                <th class="cell100 column4">Ora Fine</th>
+                                <th class="cell100 column5">Importo</th>
+                                <th class="cell100 column6">Stato</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+
+                <div class="table100-body js-pscroll">
+                    <table>
+                        <tbody>
+                            <tr class="row100 body" *ngFor="let prenotazione of prenotazioni">
+                                <td class="cell100 column1">{{prenotazione.posizioneInizio}}</td>
+                                <td class="cell100 column2">{{prenotazione.posizioneFine}}</td>
+                                <td class="cell100 column3">{{prenotazione.oraInizio}}</td>
+                                <td class="cell100 column4">{{prenotazione.oraFine}}</td>
+                                <td class="cell100 column5">
+                                    <div class='row' [ngSwitch]="prenotazione.importo">
+                                        <div *ngSwitchCase="0">Gratis</div>
+                                        <div *ngSwitchDefault>{{prenotazione.importo}}</div>
+                                    </div>
+                                </td>
+                                <td class="cell100 column6" *ngIf="!!_bikeService.passata(prenotazione.statoPrenotazione)">
+                                    <div>Passata</div>
+                                </td>
+                                <td class="cell100 column6" *ngIf="!!_bikeService.inCorso(prenotazione.statoPrenotazione)"> <button class="btn btn-danger" (click)="termina(prenotazione.idPrenotazione)" style="margin-left: 20px;">Termina</button></td>
+                                <td class="cell100 column6" *ngIf="!!_bikeService.daIniziare(prenotazione.statoPrenotazione, prenotazione.oraInizio)"> <button class="btn btn-success" (click)="inizia(prenotazione.idPrenotazione)" style="margin-left: 20px;">Inizia</button></td>
+                            </tr>
+                            <tbody>
+                    </table>
+                </div>
+            </div>
+
+
+        </div>
     </div>
 </div>
+
+
+<script src="vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+<script src="vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+<script>
+    $('.js-pscroll').each(function() {
+        var ps = new PerfectScrollbar(this);
+
+        $(window).on('resize', function() {
+            ps.update();
+        })
+    });
+</script>
+<!--===============================================================================================-->
+<script src="js/main.js"></script>

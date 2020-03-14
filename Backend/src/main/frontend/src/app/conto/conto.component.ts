@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ContoService } from '../Service/conto.service'
+import { LoginService } from '../Service/login.service'
 
 
 @Component({
@@ -9,7 +10,8 @@ import { ContoService } from '../Service/conto.service'
 })
 export class ContoComponent implements OnInit {
 
-  constructor(private _conto: ContoService) { }
+  constructor(private _conto: ContoService,
+    private _service: LoginService) { }
   handler: any = null;
   conto = 0;
 

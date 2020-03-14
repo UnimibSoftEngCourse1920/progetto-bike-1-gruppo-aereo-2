@@ -28,7 +28,7 @@ const routes: Routes = [{
   component: RegistrationComponent
 },
 {
-  path: 'home',
+  path: '',
   component: HomeComponent
 },
 {
