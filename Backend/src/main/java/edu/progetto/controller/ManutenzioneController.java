@@ -8,6 +8,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -48,7 +49,7 @@ public class ManutenzioneController {
 	}
 	
 	@PostMapping("/ripara")
-	public ResponseEntity<MessageResponse> riparaBici(IdRequest idRequest) {
+	public ResponseEntity<MessageResponse> riparaBici(@RequestBody IdRequest idRequest) {
 		this.biciService.riparaBici(idRequest.getId());
 		return ResponseEntity.ok(new MessageResponse("Bici nuovamente disponibile"));
 	}
