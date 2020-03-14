@@ -29,7 +29,11 @@ export class DashboardComponent implements OnInit {
       animationEnabled: true,
       exportEnabled: true,
       title: {
-        text: "Utilizzo bici per rastrelliera"
+        text: "Utilizzo bici per rastrelliera",
+        fontFamily: "arial",
+        fontWeight: "bold",
+        fontColor: "black",
+        fontSize: "30"
       },
       data: [{
         type: "column",
@@ -44,7 +48,11 @@ export class DashboardComponent implements OnInit {
       animationEnabled: true,
       exportEnabled: true,
       title:{
-        text: "Utilizzo bici per fascia oraria"
+        text: "Utilizzo bici per fascia oraria",
+        fontFamily: "arial",
+        fontWeight: "bold",
+        fontColor: "black",
+        fontSize: "30"
       },
       data: [{
         type: "pie",

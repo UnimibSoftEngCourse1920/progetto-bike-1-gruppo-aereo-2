@@ -1,11 +1,9 @@
-#firstWidget {
-    padding: 5%;
-    float: left;
-    width: 500px;
-}
-
-#secondWidget {
-    float: left;
-    width: 500px;
-    padding: 5%;
+.textWidget {
+    border-radius: 3%;
+    background-color: lightgray;
+    text-align: start;
+    padding: 1.5rem;
+    font-family: Arial, Helvetica, sans-serif;
+    font-style: italic;
+    margin-top: 2rem;
 }
