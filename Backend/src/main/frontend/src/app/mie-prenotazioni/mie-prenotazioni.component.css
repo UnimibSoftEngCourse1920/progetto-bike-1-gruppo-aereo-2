@@ -71,16 +71,6 @@ input:focus {
     border-color: transparent !important;
 }
 
-button {
-    outline: none !important;
-    border: none;
-    background: transparent;
-}
-
-button:hover {
-    cursor: pointer;
-}
-
 iframe {
     border: none !important;
 }
@@ -135,7 +125,7 @@ iframe {
 
 .container-table100 {
     width: 100%;
-    min-height: 100vh;
+    min-height: 100%;
     background: #fff;
     display: -webkit-box;
     display: -webkit-flex;
@@ -154,6 +144,8 @@ iframe {
 
 .table100 {
     background-color: #fff;
+    position: relative;
+    padding-top: 60px;
 }
 
 table {
@@ -167,28 +159,33 @@ td {
 }
 
 .column1 {
-    width: 13%;
+    width: 16%;
     padding: 1%;
 }
 
 .column2 {
-    width: 13%;
+    width: 16%;
 }
 
 .column3 {
-    width: 13%;
+    width: 16%;
 }
 
 .column4 {
-    width: 13%;
+    width: 16%;
 }
 
 .column5 {
-    width: 13%;
+    width: 16%;
 }
 
 .column6 {
-    width: 13%;
+    width: 16%;
+    padding: 1%;
+}
+
+.column7 {
+    width: 16%;
     padding: 1%;
 }
 
@@ -200,11 +197,6 @@ td {
 .table100-body td {
     padding-top: 16px;
     padding-bottom: 16px;
-}
-
-.table100 {
-    position: relative;
-    padding-top: 60px;
 }
 
 .table100-head {
@@ -220,7 +212,7 @@ td {
 }
 
 .table100.ver1 th {
-    font-family: Lato-Bold;
+    font-family: Lato-Bold, sans-serif;
     font-size: 18px;
     color: #fff;
     line-height: 1.4;
@@ -228,7 +220,7 @@ td {
 }
 
 .table100.ver1 td {
-    font-family: Lato-Regular;
+    font-family: Lato-Regular, sans-serif;
     font-size: 15px;
     color: #808080;
     line-height: 1.4;
@@ -254,8 +246,4 @@ td {
 
 .table100.ver1 .ps__rail-y::before {
     background-color: #ebebeb;
-}
-
-.table100.ver1 .ps__rail-y .ps__thumb-y::before {
-    background-color: #cccccc;
 }

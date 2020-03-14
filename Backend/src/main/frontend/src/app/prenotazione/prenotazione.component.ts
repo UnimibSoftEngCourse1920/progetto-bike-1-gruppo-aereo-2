@@ -15,6 +15,7 @@ export class PrenotazioneComponent implements OnInit {
   filters: IFilter = { oraFine: '', oraInizio: '', rastrellieraFine: '', rastrellieraInizio: '' };
   bici = [];
   importo = {};
+  mostraTab = false
 
   constructor(private _router: Router,
     private _bikeService: BikeService,
@@ -28,6 +29,7 @@ export class PrenotazioneComponent implements OnInit {
 
   postPrenotazioni() {
     if (this._bikeService.validaFiltri(this.filters.oraInizio, this.filters.oraFine)) {
+      this.mostraTab=true
       let filtri = {
         username: this._loginService.getUser(),
         posizioneInizio: this.filters.rastrellieraInizio, oraInizio: this.filters.oraInizio,

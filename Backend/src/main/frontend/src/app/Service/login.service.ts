@@ -14,12 +14,10 @@ export class LoginService {
     private http: HttpClient) { }
 
   registration(user) {
-    console.log(user)
     return this.http.post<any>(this._registrationAPI, user)
   }
 
   login(user) {
-    console.log(user)
     return this.http.post<any>(this._loginAPI, user)
   }
 
@@ -71,6 +69,5 @@ export class LoginService {
   isPersonale() {
     if (this.getRuolo() == 'ROLE_PERSONALE')
       return true;
-    return false
-  }
+    }
 }

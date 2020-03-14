@@ -16,9 +16,7 @@ export class ManutenzioneComponent implements OnInit {
   biciDaRiparare = []
 
   ngOnInit() {
-    if(!this._manutenzioneService.validaRialloca()){
-      alert("Non è possibile riallocare le bici, potrai farlo dalle 00:00h alle 01:00h")
-    }
+
     this._manutenzioneService.getRastrelliere()
       .subscribe(
         res => this.rastrelliere = res,
@@ -43,6 +41,9 @@ export class ManutenzioneComponent implements OnInit {
   }
 
   rialloca() {
+    if(!this._manutenzioneService.validaRialloca()){
+      alert("Non è possibile riallocare le bici, potrai farlo dalle 00:00h alle 01:00h")
+    }else{
     this._manutenzioneService.rialloca()
       .subscribe(
         res => { alert(res)
@@ -53,5 +54,6 @@ export class ManutenzioneComponent implements OnInit {
         }
               )
   }
+}
 
 }

@@ -1,74 +1,122 @@
-<div class="container">
-    <div id="formPadding" class="container">
-        <form>
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label for="rastrellieraInizio">Rastrelliera Inizio</label>
-                    <select class="form-control" id="rastrellieraInizio" [(ngModel)]="filters.rastrellieraInizio" name="rastrellieraInizio">
-               <option></option>
-               <option *ngFor="let rastrelliera of rastrelliere">{{rastrelliera}}</option>
-            </select>
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="rastrellieraFine">Rastrelliera Fine</label>
-                    <select class="form-control" id="rastrellieraFine" [(ngModel)]="filters.rastrellieraFine" name="rastrellieraFine">
-               <option></option>
-               <option *ngFor="let rastrelliera of rastrelliere">{{rastrelliera}}</option>
-            </select>
+<div class="row mt-5 mb-5 pr-4 pb-2">
+    <div class="col-lg-6 pr-5 pl-5">
+        <div class="container register-form">
+            <div class="form">
+                <div class="form-content">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group pr-5 pb-4">
+                                <label for="rastrellieraInizio">Rastrelliera Inizio</label>
+                                <select class="form-control" id="rastrellieraInizio" [(ngModel)]="filters.rastrellieraInizio" name="rastrellieraInizio">
+                                    <option></option>
+                                    <option *ngFor="let rastrelliera of rastrelliere">{{rastrelliera}}</option>
+                                </select>
+                            </div>
+                            <div class="form-group pr-5 pb-4">
+                                <label for="rastrellieraFine">Rastrelliera Fine</label>
+                                <select class="form-control" id="rastrellieraFine" [(ngModel)]="filters.rastrellieraFine" name="rastrellieraFine">
+                                    <option></option>
+                                    <option *ngFor="let rastrelliera of rastrelliere">{{rastrelliera}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group pb-4">
+                                <label for="oraInizio">Ora Inizio</label>
+                                <input type="time" class="form-control" id="oraInizio" [(ngModel)]="filters.oraInizio" name="oraInizio" required="required">
+                            </div>
+                            <div class="form-group pb-4">
+                                <label for="oraFine">Ora Fine</label>
+                                <input type="time" class="form-control" id="oraFine" [(ngModel)]="filters.oraFine" name="oraFine" required="required">
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary" class="btnSubmit" (click)=postPrenotazioni()>Cerca</button>
                 </div>
             </div>
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label for="oraInizio">Ora Inizio</label>
-                    <input type="time" class="form-control" id="oraInizio" [(ngModel)]="filters.oraInizio" name="oraInizio" required="required">
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="oraFine">Ora Fine</label>
-                    <input type="time" class="form-control" id="oraFine" [(ngModel)]="filters.oraFine" name="oraFine" required="required">
-                </div>
-            </div>
-            <button class="btn btn-primary" type="submit" (click)=postPrenotazioni()>Cerca</button>
-        </form>
+        </div>
     </div>
-
-    <div class="table-responsive" id="addPadding">
-        <table class="table table-striped table-sm">
-            <thead>
-                <tr>
-                    <th scope="col">Id</th>
-                    <th scope="col">Tipologia</th>
-                    <th scope="col">Stato</th>
-                    <th scope="col">Importo</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let bici_one of bici">
-                    <td>{{bici_one.id}}</td>
-                    <td>
-                        <div class='row' [ngSwitch]="bici_one.tipologia">
-                            <div *ngSwitchCase="'MOUNTAIN_BIKE'">Mountain Bike</div>
-                            <div *ngSwitchCase="'DA_CORSA'">Da Corsa</div>
-                            <div *ngSwitchCase="'CITTA'">Città</div>
-                        </div>
-                    </td>
-                    <td>
-                        <div class='row' [ngSwitch]="bici_one.statoBici">
-                            <div *ngSwitchCase="1">Condizioni Sufficienti</div>
-                            <div *ngSwitchCase="2">Condizioni Buone</div>
-                            <div *ngSwitchCase="3">Condizioni Buone</div>
-                            <div *ngSwitchCase="4">Condizioni Ottime</div>
-                            <div *ngSwitchCase="5">Condizioni Perfette</div>
-                        </div>
-                    </td>
-                    <td>
-                        <div class='row' [ngSwitch]="importo">
-                            <div *ngSwitchCase="0">Gratis</div>
-                            <div *ngSwitchDefault>{{importo}}</div>
-                        </div>
-                    </td>
-                    <td> <button class="btn btn-success" *ngIf="this._bikeService.validaPrenota()" (click)="prenota(bici_one.id)" style="margin-left: 20px;">Prenota</button></td>
-                </tr>
-            </tbody>
-        </table>
+    <div class="col-lg-3  pl-5">
+        <div class="textWidget">
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Distinctio, reiciendis ullam. Ratione tenetur eum odit est minima consequatur dolore tempore perspiciatis! Ad eaque ipsam commodi delectus nesciunt minus, consectetur iste.</p>
+        </div>
     </div>
 </div>
+<div class="row">
+    <div class="limiter">
+        <div class="container-table100" *ngIf="mostraTab">
+            <div class="wrap-table100">
+                <div class="table100 ver1 m-b-110">
+                    <div class="table100-head">
+                        <table>
+                            <caption></caption>
+                            <thead>
+                                <tr class="row100 head">
+                                    <th scope="col" class="cell100 column1">Id</th>
+                                    <th scope="col" class="cell100 column2">Tipologia</th>
+                                    <th scope="col" class="cell100 column3">Stato</th>
+                                    <th scope="col" class="cell100 column4">Importo</th>
+                                    <th scope="col" class="cell100 column5"> </th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+
+                    <div class="table100-body js-pscroll">
+                        <table>
+                            <caption></caption>
+                            <thead>
+                                <th scope="col"></th>
+                                <th scope="col"></th>
+                                <th scope="col"></th>
+                                <th scope="col"></th>
+                                <th scope="col"></th>
+                            </thead>
+                            <tbody>
+                                <tr class="row100 body" *ngFor="let bici_one of bici">
+
+                                    <td class="cell100 column1">{{bici_one.id}}</td>
+                                    <td class="cell100 column2">
+                                        <div class='row' [ngSwitch]="bici_one.tipologia">
+                                            <div *ngSwitchCase="'MOUNTAIN_BIKE'">Mountain Bike</div>
+                                            <div *ngSwitchCase="'DA_CORSA'">Da Corsa</div>
+                                            <div *ngSwitchCase="'CITTA'">Città</div>
+                                        </div>
+                                    </td>
+                                    <td class="cell100 column3">
+                                        <div class='row' [ngSwitch]="bici_one.statoBici">
+                                            <div *ngSwitchCase="1">Condizioni Sufficienti</div>
+                                            <div *ngSwitchCase="2">Condizioni Buone</div>
+                                            <div *ngSwitchCase="3">Condizioni Buone</div>
+                                            <div *ngSwitchCase="4">Condizioni Ottime</div>
+                                            <div *ngSwitchCase="5">Condizioni Perfette</div>
+                                        </div>
+                                    </td>
+                                    <td class="cell100 column4">
+                                        <div class='row' [ngSwitch]="importo">
+                                            <div *ngSwitchCase="0">Gratis</div>
+                                            <div *ngSwitchDefault>{{importo}} €</div>
+                                        </div>
+                                    </td>
+                                    <td class="cell200 column5">
+                                        <button class="btn btn-success" *ngIf="this._bikeService.validaPrenota()" (click)="prenota(bici_one.id)">Prenota</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $('.js-pscroll').each(function() {
+        var ps = new PerfectScrollbar(this);
+
+        $(window).on('resize', function() {
+            ps.update();
+        })
+    });
+</script>

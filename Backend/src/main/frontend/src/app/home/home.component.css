@@ -3,13 +3,20 @@
 
 html {
     font-size: 16px;
-  }
+}
 
-  button:focus, button:active, input:focus, input:active, input:checked, a:focus, a:active {
-     outline: none !important;
-     box-shadow: none!important;
-     border-color:none !important;
-  }
+button:focus,
+button:active,
+input:focus,
+input:active,
+input:checked,
+a:focus,
+a:active {
+    outline: none !important;
+    box-shadow: none!important;
+    border-color: none !important;
+}
+
 
 /* Padding below the footer and lighter body text */
 
@@ -31,14 +38,13 @@ html {
     bottom: 3.4rem;
     z-index: 10;
     margin-bottom: 6rem;
-    color:greenyellow;
-
+    color: greenyellow;
 }
 
-.carousel-caption p{
+.carousel-caption p {
     color: white;
-
 }
+
 
 /* Declare heights because of positioning of img element */
 
@@ -54,29 +60,28 @@ html {
     height: 32rem;
 }
 
- .btn-secondary{
+.btn-secondary {
     background-color: darkgreen;
     border-color: none;
     border-radius: 0.3rem;
-    color:white;
-    cursor:pointer;
+    color: white;
+    cursor: pointer;
     border: 2px solid white;
-
 }
 
 a.btn-secondary:hover {
+    transition: background-color 500ms ease;
     background-color: white;
     transition-property: color;
     transition-duration: 500ms, 500ms;
     transition-timing-function: ease;
     -webkit-transition: background-color 500ms ease;
-      -moz-transition: background-color 500ms ease;
-      -o-transition: background-color 500ms ease;
-      -ms-transition: background-color 500ms ease;
-      transition: background-color 500ms ease;
-      border: 2px solid darkgreen !important;
-color: darkgreen;}
-
+    -moz-transition: background-color 500ms ease;
+    -o-transition: background-color 500ms ease;
+    -ms-transition: background-color 500ms ease;
+    border: 2px solid darkgreen !important;
+    color: darkgreen;
+}
 
 
 /* MARKETING CONTENT
@@ -92,7 +97,7 @@ color: darkgreen;}
 
 .marketing h2 {
     font-weight: 400;
-	color:lightgreen;
+    color: lightgreen;
 }
 
 .marketing .col-lg-4 p {
@@ -100,14 +105,13 @@ color: darkgreen;}
     margin-left: .75rem;
 }
 
-.img-fluid{
+.img-fluid {
     height: auto;
     width: auto;
 }
+
 .carousel-item .img-fluid {
-   object-position: inherit;
-   
-    
+    object-position: inherit;
 }
 
 
@@ -127,7 +131,6 @@ color: darkgreen;}
     line-height: 1;
     letter-spacing: -.05rem;
 }
-
 
 
 /* RESPONSIVE CSS

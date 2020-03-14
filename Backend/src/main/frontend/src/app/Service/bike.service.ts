@@ -91,8 +91,6 @@ export class BikeService {
   passata(stato) {
     if (stato == 'PASSATA')
       return true
-    else
-      return false
   }
 
   daIniziare(stato, oraPrenotazione) {
