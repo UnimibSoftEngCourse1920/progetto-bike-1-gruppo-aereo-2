@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ContoService } from '../Service/conto.service'
+import { LoginService } from '../Service/login.service'
 
 
 @Component({
@@ -9,7 +10,8 @@ import { ContoService } from '../Service/conto.service'
 })
 export class ContoComponent implements OnInit {
 
-  constructor(private _conto: ContoService) { }
+  constructor(private _conto: ContoService,
+    private _service: LoginService) { }
   handler: any = null;
   conto = 0;
 
@@ -25,7 +27,8 @@ export class ContoComponent implements OnInit {
       locale: 'auto',
       token: (token: any) => {
         this._conto.ricarica(importo).subscribe(
-          res => {alert(res.message),this.getConto()},
+          res => {alert(res.message)
+            this.getConto()},
           err => alert(err.message)
         )
       }
@@ -67,7 +70,8 @@ export class ContoComponent implements OnInit {
   abbonati(tipoAbbonamento){
     this._conto.abbonati(tipoAbbonamento)
     .subscribe(
-      res => alert(res.message),
+      res => {alert(res.message) 
+        this.getConto()},
       err => alert(err.message)
     )
   }

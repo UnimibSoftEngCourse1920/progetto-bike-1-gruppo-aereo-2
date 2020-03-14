@@ -67,4 +67,10 @@ export class LoginService {
       return true;
     return false
   }
+
+  isPersonale() {
+    if (this.getRuolo() == 'ROLE_PERSONALE')
+      return true;
+    return false
+  }
 }

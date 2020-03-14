@@ -34,20 +34,35 @@ export class BikeService {
       return true
   }
 
+  confermaPrenota(oraInizio){ 
+    let currentdate = new Date()
+    let currentHours = +currentdate.getHours()
+    let currentMinutes = +currentdate.getMinutes()
+    let startHours = +oraInizio.substring(0, 2)
+    let startMinutes = +oraInizio.substring(3, 5)
+    if ((currentHours == startHours && currentMinutes < startMinutes) ||
+    (startHours - currentHours == 1 && startMinutes < currentMinutes)) {
+      return true
+    }
+    return false
+  }
+
   validaFiltri(oraInizio, oraFine) {
     let currentdate = new Date()
     let currentHours = +currentdate.getHours()
     let currentMinutes = +currentdate.getMinutes()
-    let filterHours = +oraInizio.substring(0, 2)
-    let filterMinutes = +oraInizio.substring(3, 5)
+    let startHours = +oraInizio.substring(0, 2)
+    let startMinutes = +oraInizio.substring(3, 5)
     let endHours = +oraFine.substring(0, 2)
     let endMinutes = +oraFine.substring(3, 5)
-    if ((currentHours == filterHours && currentMinutes < filterMinutes) ||
-      (filterHours - currentHours == 1 && filterMinutes < currentMinutes)) {
-      if ((endHours > filterHours) || (endHours == filterHours && endMinutes > filterMinutes)) {
+    if ((currentHours == startHours && currentMinutes < startMinutes) ||
+      (startHours - currentHours == 1 && startMinutes < currentMinutes)) {
+      if ((endHours > startHours) || (endHours == startHours && endMinutes > startMinutes)) {
         return true
       }
     }
+    return false
+
   }
 
   inizia(id) {
@@ -68,6 +83,13 @@ export class BikeService {
 
   inCorso(stato) {
     if (stato == 'IN_CORSO')
+      return true
+    else
+      return false
+  }
+
+  passata(stato) {
+    if (stato == 'PASSATA')
       return true
     else
       return false
