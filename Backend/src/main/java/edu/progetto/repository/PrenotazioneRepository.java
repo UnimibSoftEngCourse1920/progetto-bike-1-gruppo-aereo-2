@@ -11,7 +11,7 @@ import edu.progetto.response.HistogramResponse;
 
 public interface PrenotazioneRepository extends CrudRepository<Prenotazione,Integer>{
 	
-	public List<Prenotazione> findByClienteOrderByOraInizio(Cliente cliente);
+	public List<Prenotazione> findByClienteOrderByOraInizioDesc(Cliente cliente);
 	
 	@Query(value="SELECT " +
 	        "    new edu.progetto.response.HistogramResponse(COUNT(*), r.posizione) " +
