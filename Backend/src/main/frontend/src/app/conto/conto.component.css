@@ -1,24 +1,27 @@
-#saldoAttuale{
+#saldoAttuale {
     margin-left: 4rem;
 }
-#conto{
+
+#conto {
     position: absolute;
     top: 60%;
     left: 50%;
-    transform: translate(-50%, -50%);    
+    transform: translate(-50%, -50%);
 }
 
-img{
+img {
     width: 30%;
     height: auto;
 }
+
 .containermaialino {
     position: relative;
     text-align: center;
     color: black;
     margin-left: -3rem;
-  }
-body{
+}
+
+body {
     background-image: none;
 }
 
@@ -28,21 +31,21 @@ body{
     margin: 2rem !important;
 }
 
-.card-body{
+.card-body {
     border-color: darkgreen !important;
     border-style: solid !important;
     border-radius: 1rem;
     background-color: white;
 }
 
-.btn-primary{
+.btn-primary {
     background-color: darkkhaki;
     border: none;
 }
 
-.btn-secondary{
+.btn-secondary {
     background-color: darkkhaki;
-    border:none;
+    border: none;
     border-radius: 50%;
     display: inline-block;
     margin: 1rem;

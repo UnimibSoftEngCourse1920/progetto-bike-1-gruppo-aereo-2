@@ -4,6 +4,9 @@
             <h4>Il tuo saldo è </h4>
         </div>
     </div>
+    <div class="col-lg-2" class="col text-right pr-5" id="saldoAttuale">
+        <h4>{{scadenza}}</h4>
+    </div>
 </div>
 <div class="container">
     <div class="row">
@@ -47,39 +50,41 @@
 
                 <div class="card-body">
                     <h5 class="card-title">Annuale</h5>
-                    <p class="card-text"> Fai l'abbonamento annuale e usufruisci del servizio per 360 giorni.</p>
+                    <p class="card-text"> Fai l'abbonamento annuale e usufruisci del servizio per 365 giorni.</p>
                     <button (click)="abbonati('ANNUALE')" class="btn btn-primary ">Annuale 280€</button>
                 </div>
             </div>
         </div>
-    </div>
 
-</div>
-<div class="container">
-    <div class="row pt-4 pl-4 ">
-        <div class="col-lg-12">
-            <h3 style="text-align: center;">Ricarica conto</h3>
-        </div>
     </div>
+    <div class="container">
+        <div class="row pt-4 pl-4 ">
+            <div class="col-lg-12">
+                <h3 style="text-align: center;">Ricarica conto</h3>
+            </div>
+        </div>
 
-    <div class="row mb-5 justify-content-center">
-        <div class="col-lg-1">
-            <button (click)="ricarica(5)" class="btn btn-secondary">5 €</button>
-        </div>
-        <div class="col-lg-1">
-            <button (click)="ricarica(10)" class="btn btn-secondary">10 €</button>
-        </div>
-        <div class="col-lg-1">
-            <button (click)="ricarica(20)" class="btn btn-secondary">20 €</button>
-        </div>
-        <div class="col-lg-1">
-            <button (click)="ricarica(30)" class="btn btn-secondary">30 €</button>
-        </div>
-        <div class="col-lg-1">
-            <button (click)="ricarica(40)" class="btn btn-secondary">40 €</button>
-        </div>
-        <div class="col-lg-1">
-            <button (click)="ricarica(50)" class="btn btn-secondary">50 €</button>
+        <div class="row mb-5 justify-content-center">
+            <div class="col-lg-1">
+                <button (click)="ricarica(5)" class="btn btn-secondary">5 €</button>
+            </div>
+            <div class="col-lg-1">
+                <button (click)="ricarica(10)" class="btn btn-secondary">10 €</button>
+            </div>
+            <div class="col-lg-1">
+                <button (click)="ricarica(20)" class="btn btn-secondary">20 €</button>
+            </div>
+            <div class="col-lg-1">
+                <button (click)="ricarica(30)" class="btn btn-secondary">30 €</button>
+            </div>
+            <div class="col-lg-1">
+                <button (click)="ricarica(40)" class="btn btn-secondary">40 €</button>
+            </div>
+            <div class="col-lg-1">
+                <button (click)="ricarica(50)" class="btn btn-secondary">50 €</button>
+            </div>
         </div>
     </div>
-</div>
+    <div class="pt-3">
+
+    </div>
