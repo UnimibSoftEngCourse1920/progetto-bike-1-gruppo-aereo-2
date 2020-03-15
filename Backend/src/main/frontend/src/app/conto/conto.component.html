@@ -3,9 +3,10 @@
         <div class="col-lg-2" id="saldoAttuale">
             <h4>Il tuo saldo è </h4>
         </div>
-    </div>
-    <div class="col-lg-2" class="col text-right pr-5" id="saldoAttuale">
-        <h4>{{scadenza}}</h4>
+        <div class="col-lg-2" class="col text-right pr-5" id="saldoAttuale" [ngSwitch]="scadenza" *ngIf="!this._service.isPersonale()">
+            <h4 *ngSwitchCase=" '/' ">Non hai un abbonamento attivo</h4>
+            <h4 *ngSwitchDefault>{{scadenza}}</h4>
+        </div>
     </div>
 </div>
 <div class="container">

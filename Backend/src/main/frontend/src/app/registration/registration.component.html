@@ -1,33 +1,48 @@
-<div id="formPadding" class="container">
-    <form>
-        <div class="form-group">
-            <label for="nome">Nome</label>
-            <input type="text" class="form-control" id="nome" [(ngModel)]="userRegistration.nome" name="nome">
+<div class="container">
+    <div class="row pt-5 pl-5 pr-5 pb-5">
+        <div id="sfondo" class="container">
+            <section class="login-block ">
+                <div class="row ">
+                    <div class="col login-sec">
+                        <h2 class="text-center">Registrazione</h2>
+                        <form class="login-form">
+                            <div class="form-group">
+                                <label for="nome" class="text-uppercase">Nome</label>
+                                <input type="text" class="form-control" id="nome" [(ngModel)]="userRegistration.nome" name="nome">
+                            </div>
+                            <div class="form-group">
+                                <label for="cognome" class="text-uppercase">Cognome</label>
+                                <input type="text" class="form-control" id="cognome" [(ngModel)]="userRegistration.cognome" name="cognome">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1" class="text-uppercase">Email</label>
+                                <input type="email" class="form-control" id="email" [(ngModel)]="userRegistration.email" name="email">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1" class="text-uppercase">Username</label>
+                                <input type="text" class="form-control" id="username" [(ngModel)]="userRegistration.username" name="username">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1" class="text-uppercase">Password</label>
+                                <input type="password" class="form-control" id="password" [(ngModel)]="userRegistration.password" name="password">
+                            </div>
+                            <div class="form-group" id="special">
+                                <label for="ruolo" class="text-uppercase">Ruolo</label>
+                                <select class="form-control" id="ruolo" [(ngModel)]="userRegistration.ruolo" name="ruolo">
+                                <option value="ROLE_PERSONALE">PERSONALE</option>
+                                <option value="ROLE_GENERICO">GENERICO</option>
+                                <option value="ROLE_ADMIN">ADMIN </option>
+                             </select>
+                            </div>
+                            <div class="form-check">
+                                <button type="submit" (click)="registration()" class=" btn btn-login float-right ">Registrazione</button>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </section>
         </div>
-        <div class="form-group">
-            <label for="cognome">Cognome</label>
-            <input type="text" class="form-control" id="cognome" [(ngModel)]="userRegistration.cognome" name="cognome">
-        </div>
-        <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" class="form-control" id="email" [(ngModel)]="userRegistration.email" name="email">
-        </div>
-        <div class="form-group">
-            <label for="username">Username</label>
-            <input type="text" class="form-control" id="username" [(ngModel)]="userRegistration.username" name="username">
-        </div>
-        <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" class="form-control" id="password" [(ngModel)]="userRegistration.password" name="password">
-        </div>
-        <div class="form-group" id="special">
-            <label for="ruolo">Ruolo</label>
-            <select class="form-control" id="ruolo" [(ngModel)]="userRegistration.ruolo" name="ruolo">
-            <option value="ROLE_PERSONALE">PERSONALE</option>
-            <option value="ROLE_GENERICO">GENERICO</option>
-            <option value="ROLE_ADMIN">ADMIN </option>
-         </select>
-        </div>
-        <button type="submit" class="btn btn-primary" (click)="registration()">Registrazione</button>
-    </form>
+
+    </div>
 </div>

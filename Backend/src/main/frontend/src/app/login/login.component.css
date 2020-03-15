@@ -1,9 +1,41 @@
-#formPadding{
-    margin: auto;
-    width: 50%;
-    padding: 5% 12%;
+.login-block {
+    float: left;
+    width: 100%;
 }
-  
-input {
-text-align: justify;
+
+#sfondo {
+    background: #D3D3D3;
+    border-radius: 10px;
+    width: 40%;
+    height: 40%;
+}
+
+.login-sec {
+    padding: 50px 30px;
+    position: relative;
+}
+
+.login-sec h2 {
+    margin-bottom: 30px;
+    font-weight: 800;
+    font-size: 30px;
+    color: #013613;
+}
+
+.login-sec h2:after {
+    content: " ";
+    width: 100px;
+    height: 5px;
+    background: #06b440;
+    display: block;
+    margin-top: 20px;
+    border-radius: 3px;
+    margin-left: auto;
+    margin-right: auto
+}
+
+.btn-login {
+    background: #013613;
+    color: #fff;
+    font-weight: 600;
 }

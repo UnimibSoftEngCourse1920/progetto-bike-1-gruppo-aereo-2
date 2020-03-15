@@ -1,13 +1,28 @@
-<div id="formPadding" class="container">
-   <form>
-      <div class="form-group">
-         <label for="username">Username</label>
-         <input type="text" class="form-control" id="username" [(ngModel)]="userLogin.username" name="username">
-      </div>
-      <div class="form-group">
-         <label for="password">Password</label>
-         <input type="password" class="form-control" id="password" [(ngModel)]="userLogin.password" name="password">
-      </div>
-      <button type="submit" class="btn btn-primary" (click)="login()">Login</button>
-   </form>
+<div class="container">
+    <div class="row pt-5 pl-5 pr-5 pb-5">
+        <div id="sfondo" class="container">
+            <section class="login-block ">
+                <div class="row ">
+                    <div class="col login-sec">
+                        <h2 class="text-center">Login</h2>
+                        <form class="login-form">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1" class="text-uppercase">Username</label>
+                                <input type="text" class="form-control" id="username" [(ngModel)]="userLogin.username" name="username">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1" class="text-uppercase">Password</label>
+                                <input type="password" class="form-control" id="password" [(ngModel)]="userLogin.password" name="password">
+                            </div>
+                            <div class="form-check">
+                                <button type="submit" (click)="login()" class=" btn btn-login float-right ">Submit</button>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+    </div>
 </div>
