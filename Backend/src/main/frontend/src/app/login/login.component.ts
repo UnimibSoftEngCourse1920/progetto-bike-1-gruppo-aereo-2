@@ -11,18 +11,18 @@ import { IUser } from '../Interface/IUser'
 })
 export class LoginComponent implements OnInit {
   userLogin: IUser = { username: "", password: "" };
-  constructor(private _service: LoginService,
+  constructor(private _loginService: LoginService,
     private _router: Router) { }
 
   ngOnInit() {
   }
 
   login() {
-    this._service.login(this.userLogin)
+    this._loginService.login(this.userLogin)
       .subscribe(
         res => {
-          this._service.saveUser(res.username, res.ruolo)
-          this._service.saveToken(res.jwt)
+          this._loginService.saveUser(res.username, res.ruolo)
+          this._loginService.saveToken(res.jwt)
           this._router.navigate(['/'])
         },
         err => alert("username o password errati")

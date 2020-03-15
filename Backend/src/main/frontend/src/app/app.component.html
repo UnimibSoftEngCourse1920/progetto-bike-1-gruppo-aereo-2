@@ -10,28 +10,28 @@
                 <a class="nav-link" routerLink="/">Home</a>
             </li>
             <li class="nav-item ">
-                <a class="nav-link" routerLink="/login" *ngIf="!_service.loggedIn()">Login</a>
+                <a class="nav-link" routerLink="/login" *ngIf="!_loginService.loggedIn()">Login</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" routerLink="/registration" *ngIf="!_service.loggedIn()">Registrazione</a>
+                <a class="nav-link" routerLink="/registration" *ngIf="!_loginService.loggedIn()">Registrazione</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" routerLink="/prenotazione" *ngIf="_service.isUser()">Trova una bici</a>
+                <a class="nav-link" routerLink="/prenotazione" *ngIf="_loginService.isUser()">Trova una bici</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" routerLink="/mie-prenotazioni" *ngIf="_service.isUser()">Mie Prenotazioni</a>
+                <a class="nav-link" routerLink="/mie-prenotazioni" *ngIf="_loginService.isUser()">Mie Prenotazioni</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" routerLink="/manutenzione" *ngIf="_service.isAdmin()">Manutenzione</a>
+                <a class="nav-link" routerLink="/manutenzione" *ngIf="_loginService.isAdmin()">Manutenzione</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" routerLink="/dashboard" *ngIf="_service.isAdmin()">Dashboard</a>
+                <a class="nav-link" routerLink="/dashboard" *ngIf="_loginService.isAdmin()">Dashboard</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" routerLink="/conto" *ngIf="_service.isUser()">Conto</a>
+                <a class="nav-link" routerLink="/conto" *ngIf="_loginService.isUser()">Conto</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" *ngIf="_service.loggedIn()" style="cursor:pointer" (click)="_service.logout()">Logout</a>
+                <a class="nav-link" *ngIf="_loginService.loggedIn()" style="cursor:pointer" (click)="_loginService.logout()">Logout</a>
             </li>
         </ul>
     </div>

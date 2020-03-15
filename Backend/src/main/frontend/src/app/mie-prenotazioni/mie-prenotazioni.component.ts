@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { BikeService } from '../Service/bike.service';
-import { LoginService } from '../Service/login.service'
+import { MiePrenotazioniService } from '../Service/mie-prenotazioni.service';
 
 @Component({
   selector: 'app-mie-prenotazioni',
@@ -10,13 +8,11 @@ import { LoginService } from '../Service/login.service'
 })
 export class MiePrenotazioniComponent implements OnInit {
 
-  constructor(private _router: Router,
-    private _bikeService: BikeService,
-    private _service: LoginService) { }
+  constructor(private _bikeService: MiePrenotazioniService) { }
   prenotazioni = [];
 
   ngOnInit() {
-    this._bikeService.postMiePrenotazioni(this._service.getUser())
+    this._bikeService.postMiePrenotazioni()
       .subscribe(
         res => this.prenotazioni = res,
         err => console.log(err)
@@ -27,12 +23,12 @@ export class MiePrenotazioniComponent implements OnInit {
     this._bikeService.inizia(id)
       .subscribe(
         res => {
-           this._bikeService.postMiePrenotazioni(this._service.getUser())
+          this._bikeService.postMiePrenotazioni()
             .subscribe(
               res => this.prenotazioni = res,
               err => alert(err.message)
             )
-          },
+        },
         err => console.log(err)
       )
   }
@@ -41,12 +37,12 @@ export class MiePrenotazioniComponent implements OnInit {
     this._bikeService.termina(id)
       .subscribe(
         res => {
-        alert(res.message)
-         this._bikeService.postMiePrenotazioni(this._service.getUser())
-          .subscribe(
-            res => this.prenotazioni = res,
-            err => alert(err.message)
-          )
+          alert(res.message)
+          this._bikeService.postMiePrenotazioni()
+            .subscribe(
+              res => this.prenotazioni = res,
+              err => alert(err.message)
+            )
         },
         err => alert(err.message)
       )

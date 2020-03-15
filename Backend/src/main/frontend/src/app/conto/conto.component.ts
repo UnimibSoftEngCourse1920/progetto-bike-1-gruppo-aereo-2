@@ -10,8 +10,8 @@ import { LoginService } from '../Service/login.service'
 })
 export class ContoComponent implements OnInit {
 
-  constructor(private _conto: ContoService,
-    private _service: LoginService) { }
+  constructor(private _contoService: ContoService,
+    private _loginService: LoginService) { }
   handler: any = null;
   conto = 0;
   scadenza = '/';
@@ -28,7 +28,7 @@ export class ContoComponent implements OnInit {
       key: 'pk_test_aeUUjYYcx4XNfKVW60pmHTtI',
       locale: 'auto',
       token: (token: any) => {
-        this._conto.ricarica(importo).subscribe(
+        this._contoService.ricarica(importo).subscribe(
           res => {alert(res.message)
             this.getConto()},
           err => alert(err.message)
@@ -62,7 +62,7 @@ export class ContoComponent implements OnInit {
   }
 
   getConto() {
-    this._conto.getConto()
+    this._contoService.getConto()
       .subscribe(
         res => this.conto = res,
         err => console.log(err)
@@ -70,7 +70,7 @@ export class ContoComponent implements OnInit {
   }
 
   getScadenza() {
-    this._conto.getScadenza()
+    this._contoService.getScadenza()
       .subscribe(
         res => this.scadenza = res.message,
         err => console.log(err)
@@ -78,7 +78,7 @@ export class ContoComponent implements OnInit {
   }
 
   abbonati(tipoAbbonamento){
-    this._conto.abbonati(tipoAbbonamento)
+    this._contoService.abbonati(tipoAbbonamento)
     .subscribe(
       res => {alert(res.message) 
         this.getScadenza()

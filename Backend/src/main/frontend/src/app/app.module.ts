@@ -10,7 +10,8 @@ import { UserGuard } from './Guardie/user.guard';
 import { AdminGuard } from './Guardie/admin.guard';
 import { LoginService } from './Service/login.service';
 import { TokenService } from './Service/token.service';
-import { BikeService } from './Service/bike.service';
+import { MiePrenotazioniService } from './Service/mie-prenotazioni.service';
+import { PrenotazioneService } from './Service/prenotazione.service';
 import { ContoService } from './Service/conto.service';
 import { AbbonamentiService } from './Service/abbonamenti.service';
 import { DashboardService } from './Service/dashboard.service';
@@ -45,7 +46,7 @@ import { ManutenzioneComponent } from './manutenzione/manutenzione.component';
     BrowserAnimationsModule
   ],
   providers: [LoginService, AdminGuard,
-    BikeService, ContoService, AbbonamentiService,
+    MiePrenotazioniService, PrenotazioneService, ContoService, AbbonamentiService,
     DashboardService, ManutenzioneService,
     UserGuard, {
       provide: HTTP_INTERCEPTORS,

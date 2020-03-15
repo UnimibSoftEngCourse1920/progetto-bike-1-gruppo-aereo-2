@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { BikeService } from '../Service/bike.service';
+import { PrenotazioneService } from '../Service/prenotazione.service';
 import { LoginService } from '../Service/login.service';
 import { IFilter } from '../Interface/IFilter';
 
@@ -18,7 +18,7 @@ export class PrenotazioneComponent implements OnInit {
   mostraTab = false
 
   constructor(private _router: Router,
-    private _bikeService: BikeService,
+    private _bikeService: PrenotazioneService,
     private _loginService: LoginService) { }
   ngOnInit() {
     this._bikeService.getRastrelliere()

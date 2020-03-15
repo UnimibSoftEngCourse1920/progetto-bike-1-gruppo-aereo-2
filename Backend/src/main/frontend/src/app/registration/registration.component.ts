@@ -12,7 +12,7 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 export class RegistrationComponent implements OnInit {
 
   userRegistration = {}
-  constructor(private _service: LoginService,
+  constructor(private _loginService: LoginService,
     private _router: Router
   ) { }
 
@@ -22,7 +22,7 @@ export class RegistrationComponent implements OnInit {
 
   registration() {
     window.sessionStorage.clear()
-    this._service.registration(this.userRegistration)
+    this._loginService.registration(this.userRegistration)
       .subscribe(
         res => {
           alert("Registrazione avvenuta con successo")

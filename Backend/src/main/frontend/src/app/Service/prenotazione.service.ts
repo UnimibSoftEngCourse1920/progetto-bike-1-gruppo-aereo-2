@@ -5,19 +5,15 @@ import { LoginService } from './login.service'
 @Injectable({
   providedIn: 'root'
 })
-export class BikeService {
+export class PrenotazioneService {
   private _prenotazioniAPI = "http://localhost:8080/prenotazioni/filtra";
-  private _miePrenotazioniAPI = "http://localhost:8080/prenotazioni/mie";
-  private _terminaPrenotazioneAPI = "http://localhost:8080/finisci-corsa";
-  private _iniziaPrenotazioneAPI = "http://localhost:8080/inizia-corsa";
   private _prenotaAPI = "http://localhost:8080/prenotazioni/prenota";
   private _rastrelliereAPI = "http://localhost:8080/rastrelliere";
 
   constructor(private http: HttpClient,
-    private _service: LoginService) { }
+    private _loginService: LoginService) { }
 
   postPrenotazioni(filtri) {
-    console.log(filtri)
     return this.http.post<any>(this._prenotazioniAPI, filtri)
   }
 
@@ -65,45 +61,7 @@ export class BikeService {
 
   }
 
-  inizia(id) {
-    return this.http.post<any>(this._iniziaPrenotazioneAPI, { id: id })
-  }
-
-  termina(id) {
-    return this.http.put<any>(this._terminaPrenotazioneAPI, { id: id })
-  }
-
-  postMiePrenotazioni(user) {
-    return this.http.post<any>(this._miePrenotazioniAPI, {username: user})
-  }
-
   prenota(prenotazione) {
     return this.http.post<any>(this._prenotaAPI, prenotazione)
-  }
-
-  inCorso(stato) {
-    if (stato == 'IN_CORSO')
-      return true
-    else
-      return false
-  }
-
-  passata(stato) {
-    if (stato == 'PASSATA')
-      return true
-  }
-
-  daIniziare(stato, oraPrenotazione) {
-    let dataCorrente = new Date()
-    let oraInizio = + oraPrenotazione.substring(9, 11)
-    let minutiInizio = + oraPrenotazione.substring(12, 14)
-    let oraCorrente = + dataCorrente.getHours()
-    let minutiCorrente = + dataCorrente.getMinutes()
-    console.log(minutiInizio)
-
-    if (stato == 'DA_INIZIARE' && ((oraInizio < oraCorrente) || (oraInizio == oraCorrente && minutiInizio <= minutiCorrente)))
-      return true
-    else
-      return false
   }
 }
