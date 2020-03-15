@@ -2,13 +2,16 @@
     <div class="col-lg-2" id="saldoAttuale">
         <h4>Il tuo saldo è </h4>
     </div>
-</div>
-    <div class="col-lg-3">
-        <div class="container ">
-            <img src="../../assets/images/demo/money.png" alt="piggy">
-            <div id="conto">{{conto}} € </div>
-        </div>
+    <div class="col-lg-2" class="col text-right pr-5" id="saldoAttuale">
+        <h4>{{scadenza}}</h4>
     </div>
+</div>
+<div class="col-lg-3">
+    <div class="container ">
+        <img src="../../assets/images/demo/money.png" alt="piggy">
+        <div id="conto">{{conto}} € </div>
+    </div>
+</div>
 
 <div class="row pt-4 pl-4" *ngIf="!this._service.isPersonale()">
     <div class="col-lg-12">
@@ -40,7 +43,7 @@
 
             <div class="card-body">
                 <h5 class="card-title">Annuale</h5>
-                <p class="card-text"> Fai l'abbonamento annuale e usufruisci del servizio per 360 giorni.</p>
+                <p class="card-text"> Fai l'abbonamento annuale e usufruisci del servizio per 365 giorni.</p>
                 <button (click)="abbonati('ANNUALE')" class="btn btn-primary ">Annuale 280€</button>
             </div>
         </div>
@@ -73,4 +76,7 @@
     <div class="col-lg-1">
         <button (click)="ricarica(50)" class="btn btn-secondary">50 €</button>
     </div>
+</div>
+<div class="pt-3">
+
 </div>

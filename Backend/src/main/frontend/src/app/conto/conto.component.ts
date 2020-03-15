@@ -14,10 +14,12 @@ export class ContoComponent implements OnInit {
     private _service: LoginService) { }
   handler: any = null;
   conto = 0;
+  scadenza = '/';
 
   ngOnInit() {
     this.loadStripe();
     this.getConto();
+    this.getScadenza();
   }
 
   ricarica(importo) {
@@ -67,10 +69,19 @@ export class ContoComponent implements OnInit {
       )
   }
 
+  getScadenza() {
+    this._conto.getScadenza()
+      .subscribe(
+        res => this.scadenza = res.message,
+        err => console.log(err)
+      )
+  }
+
   abbonati(tipoAbbonamento){
     this._conto.abbonati(tipoAbbonamento)
     .subscribe(
       res => {alert(res.message) 
+        this.getScadenza()
         this.getConto()},
       err => alert(err.message)
     )
