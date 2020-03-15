@@ -23,7 +23,7 @@ public class AbbonamentoController {
 	//getScadenza
 
 	@PostMapping("/scadenza")
-	public ResponseEntity<MessageResponse> getScadenza(InfoRequest infoRequest) {
+	public ResponseEntity<MessageResponse> getScadenza(@RequestBody InfoRequest infoRequest) {
 		return ResponseEntity.ok(new MessageResponse(
 				abbonamentoService.getScadenza(infoRequest.getUsername())));
 	}

@@ -85,8 +85,8 @@ public class AbbonamentoService {
 			Abbonamento abbonamento = this.abbonamentoRepo.findByCliente(
 					clienteService.findByUsername(username));
 			if (this.isValido(abbonamento))
-				return "L'abbonamento scade il " + abbonamento.getScadenza();
-			return "L'abbonamento è scaduto il" + abbonamento.getScadenza();
+				return "Il tuo abbonamento scade il " + abbonamento.getScadenza();
+			return "Il tuo abbonamento è scaduto il" + abbonamento.getScadenza();
 		}
 		catch(Exception e) {
 			return "/";
