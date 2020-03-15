@@ -1,50 +1,5 @@
-<!-- <div class="container">
-    <div class="row pb-4 pt-5">
-        <div class="col-lg-5 pr-5">
-            <div class="table-responsive" id="firstTable">
-                <h2>Ripara</h2>
-                <table class="table table-striped table-sm">
-                    <thead>
-                        <tr>
-                            <th scope="col">Id</th>
-                            <th scope="col">Tipologia</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let one_bici of bici">
-                            <td>{{one_bici.id}}</td>
-                            <td>{{one_bici.tipologia}}</td>
-                            <td> <button class="btn btn-success" (click)="ripara(one_bici.id)" style="margin-left: 20px;">Ripara</button></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <div class="col-lg-6 pl-5">
-            <div class="table-responsive" id="secondTable">
-                <h2>Rialloca</h2>
-                <table class="table table-striped table-sm">
-                    <thead>
-                        <tr>
-                            <th scope="col">Rastrelliera</th>
-                            <th scope="col">Numero bici</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let rastrelliera of rastrelliere">
-                            <td>{{rastrelliera.posizione}}</td>
-                            <td>{{rastrelliera.numBici}}</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <button type="button" (click)="rialloca()" *ngIf="this._manutenzioneService.validaRialloca()" class="btn btn-primary">Rialloca</button>
-            </div>
-        </div>
-    </div>
-</div>
--->
 <div class="row pb-5 pt-5">
-    <div class="col-lg-5 pr-5 pl-4">
+    <div class="col-lg-6 pr-5 pl-4">
         <div class="limiter">
             <div class="container-table100">
                 <div class="wrap-table100">
@@ -54,9 +9,9 @@
                                 <caption></caption>
                                 <thead>
                                     <tr class="row100 head">
-                                        <th scope="col" class="cell100 column1">Id</th>
-                                        <th scope="col" class="cell100 column2">Tipologia</th>
-                                        <th scope="col" class="cell100 column3">Ripara</th>
+                                        <th scope="col" class="cell100 column11">Id</th>
+                                        <th scope="col" class="cell100 column12">Tipologia</th>
+                                        <th scope="col" class="cell100 column13">Ripara</th>
                                     </tr>
                                 </thead>
                             </table>
@@ -65,15 +20,16 @@
                             <table>
                                 <caption></caption>
                                 <thead>
-                                    <th scope="col"></th>
-                                    <th scope="col"></th>
-                                    <th scope="col"></th>
+                                    <th scope="col"> </th>
+                                    <th scope="col"> </th>
+                                    <th scope="col"> </th>
                                 </thead>
                                 <tbody>
-                                    <tr class="row100 body" *ngFor="let prenotazione of prenotazioni">
-                                        <td class="cell100 column1">{{one_bici.id}}</td>
-                                        <td class="cell100 column2">{{one_bici.tipologia}}</td>
-                                        <td class="cell100 column3"> <button class="btn btn-success" (click)="ripara(one_bici.id)" style="margin-left: 20px;">Ripara</button>
+                                    <tr class="row100 body" *ngFor="let one_bici of biciDaRiparare">
+                                        <td class="cell100 column11">{{one_bici.id}}</td>
+                                        <td class="cell100 column12">{{one_bici.tipologia}}</td>
+                                        <td class="cell100 column13">
+                                            <button class="btn btn-success" (click)="ripara(one_bici.id)">Ripara</button>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -85,34 +41,34 @@
             </div>
         </div>
     </div>
-    <div class="col-lg-6 pl-5">
-        <div class="limiter">
-            <div class="container-table100">
-                <div class="wrap-table100">
-                    <div class="table100 ver1 m-b-110">
-                        <div class="table100-head">
+    <div class="col-lg-4 pl-5 ">
+        <div class="limiter ">
+            <div class="container-table100 ">
+                <div class="wrap-table100 ">
+                    <div class="table100 ver1 m-b-110 ">
+                        <div class="table100-head ">
                             <table>
                                 <caption></caption>
                                 <thead>
-                                    <tr class="row100 head">
-                                        <th scope="col" class="cell100 column1">Rastrelliera</th>
-                                        <th scope="col" class="cell100 column2">Numero bici</th>
+                                    <tr class="row100 head ">
+                                        <th scope="col " class="cell100 column1 ">Rastrelliera</th>
+                                        <th scope="col " class="cell100 column2 ">Numero bici</th>
                                     </tr>
                                 </thead>
                             </table>
                         </div>
 
-                        <div class="table100-body js-pscroll">
+                        <div class="table100-body js-pscroll ">
                             <table>
                                 <caption></caption>
                                 <thead>
-                                    <th scope="col"></th>
-                                    <th scope="col"></th>
+                                    <th scope="col "></th>
+                                    <th scope="col "></th>
                                 </thead>
                                 <tbody>
-                                    <tr class="row100 body" *ngFor="let rastrelliera of rastrelliere">
-                                        <td class="cell100 column1">{{rastrelliera.posizione}}</td>
-                                        <td class="cell100 column2">{{rastrelliera.numBici}}</td>
+                                    <tr class="row100 body " *ngFor="let rastrelliera of rastrelliere ">
+                                        <td class="cell100 column1 ">{{rastrelliera.posizione}}</td>
+                                        <td class="cell100 column2 ">{{rastrelliera.numBici}}</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -124,11 +80,11 @@
     </div>
 </div>
 <div class="row pb-5 ">
-    <div class="col-lg-5 pr-5 pl-4">
+    <div class="col-lg-7 pr-5 pl-4 ">
     </div>
-    <div class="col-lg-6 pl-5">
+    <div class="col-lg-4 pl-5 ">
         <div>
-            <button class="btn btn-primary" class="btnSubmit" (click)="rialloca()">Rialloca</button>
+            <button class="btn btn-primary " class="btnSubmit " (click)="rialloca() ">Rialloca</button>
         </div>
     </div>
 </div>

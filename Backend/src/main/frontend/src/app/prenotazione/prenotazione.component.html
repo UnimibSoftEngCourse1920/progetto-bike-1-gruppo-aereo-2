@@ -38,7 +38,12 @@
     </div>
     <div class="col-lg-3  pl-5">
         <div class="textWidget">
-            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Distinctio, reiciendis ullam. Ratione tenetur eum odit est minima consequatur dolore tempore perspiciatis! Ad eaque ipsam commodi delectus nesciunt minus, consectetur iste.</p>
+            <p *ngIf="!!_loginService.isPersonale()">Seleziona la rastrelliera da cui preleverai la bici e la rastrelliera di arrivo. Indica anche l'orario di partenza e l'orario di consegna, ma ricorda, puoi prenotare la bici nell'arco di un'ora. Effettua la ricerca e prenota la bici adatta
+                a te, successivamente potrai accedere alla sezione 'Mie Prenotazioni' dove avrai la possibilità di iniziare la corsa. Assicurati di rispettare l'orario di consegna stabilito, altrimenti sarai soggetto ad una sazione di 0.1€/min. </p>
+            <p *ngIf="!!_loginService.isGenerico()">Seleziona la rastrelliera da cui preleverai la bici e la rastrelliera di arrivo. Indica anche l'orario di partenza e l'orario di consegna, ma ricorda, puoi prenotare la bici nell'arco di un'ora. Effettua la ricerca, se hai un saldo sufficiente
+                o un abbonamento attivo, prenota la bici adatta a te, successivamente potrai accedere alla sezione 'Mie Prenotazioni' dove avrai la possibilità di iniziare la corsa. Assicurati di rispettare l'orario di consegna stabilito, altrimenti sarai
+                soggetto ad una sazione di 0.1€/min. </p>
+
         </div>
     </div>
 </div>

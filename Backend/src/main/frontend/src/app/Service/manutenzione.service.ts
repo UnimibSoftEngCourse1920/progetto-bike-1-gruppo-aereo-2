@@ -22,7 +22,7 @@ export class ManutenzioneService {
   }
 
   ripara(id) {
-    return this.http.post<any>(this._riparaBiciAPI, {id: id})
+    return this.http.post<any>(this._riparaBiciAPI, { id: id })
   }
 
   rialloca() {
@@ -31,8 +31,8 @@ export class ManutenzioneService {
 
 
   validaRialloca() {
-    let currentDate = new Date()
-    let currentHours = + currentDate.getHours
+    let currentDate = new Date();
+    let currentHours = + currentDate.getHours()
     if (currentHours == 0) {
       return true
     }

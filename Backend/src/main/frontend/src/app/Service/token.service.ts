@@ -13,7 +13,6 @@ export class TokenService implements HttpInterceptor {
     if (token != null) {
       tokenizedReq = req.clone({ headers: req.headers.set("Authorization", 'Bearer ' + token) });
     }
-    console.log(req.headers.getToken)
     return next.handle(tokenizedReq)
   }
 
