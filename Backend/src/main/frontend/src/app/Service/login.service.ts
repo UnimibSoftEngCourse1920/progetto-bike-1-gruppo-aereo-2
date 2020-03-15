@@ -70,4 +70,9 @@ export class LoginService {
     if (this.getRuolo() == 'ROLE_PERSONALE')
       return true;
     }
+
+    isGenerico() {
+      if (this.getRuolo() == 'ROLE_GENERICO')
+        return true;
+      }
 }

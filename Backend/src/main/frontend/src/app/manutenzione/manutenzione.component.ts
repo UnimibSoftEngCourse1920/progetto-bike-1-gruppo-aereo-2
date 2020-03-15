@@ -46,11 +46,12 @@ export class ManutenzioneComponent implements OnInit {
     }else{
     this._manutenzioneService.rialloca()
       .subscribe(
-        res => { alert(res)
+        res => { 
           this._manutenzioneService.getRastrelliere()
           .subscribe(
             res2 => this.rastrelliere = res2,
           )
+          alert("Le bici sono state riallocate correttamente")
         }
               )
   }

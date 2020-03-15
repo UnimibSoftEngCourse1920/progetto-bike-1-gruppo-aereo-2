@@ -262,12 +262,12 @@
  
  .form-content {
      padding: 5%;
-     border: 1px solid #ced4da;
+     border: 1px solid #059167;
      margin-bottom: 2%;
  }
  
  .form-control {
-     border-radius: 1.5rem;
+     border: 1px solid #3fdd0b;
  }
  
  .btnSubmit {
